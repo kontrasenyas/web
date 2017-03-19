@@ -4,26 +4,53 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Like;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
 	public function getDashboard()
 	{
 		$posts = Post::orderBy('created_at', 'desc')->get();
-		return view('dashboard', ['posts' => $posts]);
+		return view('posts.dashboard', ['posts' => $posts]);
 	}
 	
 	public function postCreatePost(Request $request)
 	{
 		//Validation
-		$this->validate($request, [
+
+		$this->validate($request, [			
+			'title' => 'required|max:100',
+			'capacity' => 'required|numeric|max:100',
+			'image' => 'image',
+			'contact_no' => 'required|numeric',
+			'location' => 'required|max:100',
 			'body' => 'required|max:1000'
-		]);
+		], ['image.image' => 'Photo must be a valid image file.']
+
+		);
 
 		$post = new Post();
+		$post->title = $request['title'];
+		$post->capacity = $request['capacity'];
 		$post->body = $request['body'];
+		$post->contact_no = $request['contact_no'];
+		$post->location = $request['location'];
 		$message = 'There was an error';
+
+		$file = $request->file('image');
+		$filename = uniqid() . '.jpg';
+
+		if ($file) {
+			Storage::disk('local')->put('post-photos/' . $filename, File::get($file));
+			//Storage::disk('local')->putFile('photos', File::get($file));
+			//Storage::putFile('photos', new File('/path/to/photo'));
+
+			$post->image_name = $filename;
+		}
 
 		if ($request->user()->posts()->save($post)) {
 			$message = 'Post succesfully created!';
@@ -47,8 +74,10 @@ class PostController extends Controller
 
 	public function postEditPost(Request $request) {
 		$this->validate($request, [
-			'body' => 'required'
-		]);
+			'body' => 'required',
+			'contactNo' => 'required',
+			'location' => 'required'
+			]);
 
 		$post = Post::find($request['postId']);
 
@@ -57,8 +86,10 @@ class PostController extends Controller
 		}
 
 		$post->body = $request['body'];
+		$post->contact_no = $request['contactNo'];
+		$post->location = $request['location'];
 		$post->update();
-		return response()->json(['message' => 'Post edited', 'new_body' => $post->body], 200);
+		return response()->json(['message' => 'Post edited', 'new_body' => $post->body, 'new_contact' => $post->contact_no, 'new_location' => $post->location], 200);
 	}
 
 	public function postLikePost(Request $request)
@@ -72,7 +103,7 @@ class PostController extends Controller
 		}
 
 		$user = Auth::user();
-        $like = $user->likes()->where('post_id', $post_id)->first();
+		$like = $user->likes()->where('post_id', $post_id)->first();
 
 		if ($like) {
 			$already_like = $like->like;
@@ -97,5 +128,17 @@ class PostController extends Controller
 			$like->save();
 		}
 		return null;
+	}
+
+	public function getPostDetails($post_id)
+	{
+		$post = Post::where('id', $post_id)->first();
+		return view('posts.details', ['post' => $post]);
+	}
+
+	public function getPostImage($filename)
+	{
+		$file = Storage::disk('local')->get('post-photos/' . $filename);
+		return new Response($file, 200);
 	}
 }

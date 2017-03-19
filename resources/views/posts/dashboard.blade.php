@@ -4,11 +4,27 @@
 @include('includes.message-block')
 <section class="row new-post">
 	<div class="col-md-6 col-md-offset-3">
-		<header><h3>What do you have?</h3></header>
-		<form action="{{ route('post.create') }}" method="post">
+		<h3>What do you have?</h3>
+		<form action="{{ route('post.create') }}" method="post"  enctype="multipart/form-data">
 			<div class="form-group">
-				<textarea class="form-control" name="body" id="new-post" rows="5" placeholder="Your post"></textarea>
+				<input type="text" class="form-control" placeholder="Title (Eg. Van for rent)" aria-describedby="basic-addon2" name="title" id="title" value="{{ Request::old('title') }}">
 			</div>
+			<div class="form-group">
+				<input type="number" class="form-control" placeholder="Capacity" aria-describedby="basic-addon2" name="capacity" id="capacity" value="{{ Request::old('capacity') }}">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Contact No (Eg. 09051234567)" aria-describedby="basic-addon2" name="contact_no" id="contact_no" value="{{ Request::old('contact_no') }}">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Your Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}">
+			</div>
+			<div class="form-group">
+				<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Your Car details (Eg. Toyota Hiace)">{{ Request::old('body') }}</textarea>				
+			</div>
+			<div class="form-group">
+                    <label for="image">Photo (must be a valid image file)</label>
+                    <input type="file" name="image" class="form-control" id="image">
+            </div>
 			<button type="submit" class="btn btn-primary">Create Post</button>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
@@ -16,10 +32,10 @@
 </section>
 <section class="row posts">
 	<div class="col-md-6 col-md-offset-3">
-		<header><h3>What other post</h3></header>
+		<h3>What other post</h3>
 		@foreach($posts as $post)		
 		<article class="post" data-postid="{{ $post->id }}">
-			<p class="body">{{ $post->body }}</p>
+			<p class="body"><a href="{{ route('post.get', ['post_id' => $post->id]) }}">{{ $post->title }}</a></p>
 			<div class="info">
 				Posted by {{ $post->user->first_name }} {{ $post->user->last_name }} on {{ $post->created_at->diffForHumans() }}﻿
 			</div>

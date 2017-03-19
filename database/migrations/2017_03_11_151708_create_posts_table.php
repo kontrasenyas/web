@@ -17,7 +17,10 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->text('body');
+            $table->text('title');
+            $table->integer('capacity');
             $table->integer('user_id');
+            $table->string('image_name')->default('default.jpg');
         });
     }
 

@@ -2,8 +2,12 @@
 Route::group(['middleware' => ['web']],function(){
 
 	Route::get('/',function() {
-		return view('welcome');
+		return view('home');
 	})->name('home');
+
+	Route::get('/welcome',function() {
+		return view('welcome');
+	})->name('welcome');
 
 	Route::post('/signup',[
 		'uses'=>'UserController@postSignUp',
@@ -42,6 +46,11 @@ Route::group(['middleware' => ['web']],function(){
 		'middleware' => 'auth'
 	]);
 
+	Route::get('/post/{post_id}',[
+		'uses'=>'PostController@getPostDetails',
+		'as'=>'post.get'		
+	]);
+
 	Route::post('/createpost',[
 		'uses'=>'PostController@postCreatePost',
 		'as'=>'post.create',
@@ -63,6 +72,11 @@ Route::group(['middleware' => ['web']],function(){
 	Route::post('/like', [
 		'uses' => 'PostController@postLikePost',
 		'as' => 'like'
+	]);
+
+	Route::get('/post-image/{filename}', [
+		'uses' => 'PostController@getPostImage',
+		'as' => 'post.image'
 	]);
 	
 });
