@@ -4,18 +4,20 @@
 @include('includes.message-block')
 <div class="row">
 	<div class="col-md-12 text-center page-header">
-		<h1>{{ $post->title }}</h1>
+		<h1 class="text-uppercase">{{ $post->title }}</h1>
 	</div>
 	<div class="col-md-6">
 		<div class="form-group">
-			<img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="" class="img-responsive center-block" width="50%" height="50%">
+			<label for="image" style="display: block;">
+				<img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="" class="img-responsive center-block" width="50%" height="50%">
+			</label>
 		</div>
 		<div class="form-group text-center">
 			
 			{{-- <input type="file" name="image" class="form-control" id="image"> --}}
 			<form action="{{ route('post.image-update') }}" method="post"  enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="image">Change photo (must be a valid image file)</label>
+					<label for="image" class="info">Change photo (must be a valid image file)</label>
 				</div>
 				<div class="form-group">
 					<label class="btn btn-default btn-file">
@@ -47,8 +49,8 @@
 						Posted by {{ $post->user->first_name }} {{ $post->user->last_name }} on {{ $post->created_at->diffForHumans() }}﻿
 					</div>
 					<div class="interaction">
-						<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
-						<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a>
+						{{-- <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
+						<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a> --}}
 
 						@if(Auth::user() == $post->user)
 						|
