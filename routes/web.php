@@ -48,7 +48,7 @@ Route::group(['middleware' => ['web']],function(){
 
 	Route::get('/post/{post_id}',[
 		'uses'=>'PostController@getPostDetails',
-		'as'=>'post.get'		
+		'as'=>'post.get'
 	]);
 
 	Route::post('/createpost',[
@@ -77,6 +77,11 @@ Route::group(['middleware' => ['web']],function(){
 	Route::get('/post-image/{filename}', [
 		'uses' => 'PostController@getPostImage',
 		'as' => 'post.image'
+	]);
+
+	Route::post('/post-image', [
+		'uses' => 'PostController@postUpdateImage',
+		'as' => 'post.image-update'
 	]);
 	
 });

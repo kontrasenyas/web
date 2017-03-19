@@ -14,7 +14,7 @@ class PostController extends Controller
 {
 	public function getDashboard()
 	{
-		$posts = Post::orderBy('created_at', 'desc')->get();
+		$posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->get();
 		return view('posts.dashboard', ['posts' => $posts]);
 	}
 	
@@ -46,8 +46,6 @@ class PostController extends Controller
 
 		if ($file) {
 			Storage::disk('local')->put('post-photos/' . $filename, File::get($file));
-			//Storage::disk('local')->putFile('photos', File::get($file));
-			//Storage::putFile('photos', new File('/path/to/photo'));
 
 			$post->image_name = $filename;
 		}
@@ -140,5 +138,24 @@ class PostController extends Controller
 	{
 		$file = Storage::disk('local')->get('post-photos/' . $filename);
 		return new Response($file, 200);
+	}
+	public function postUpdateImage(Request $request)
+	{
+		$post_id = $request['post_id'];
+		$file = $request->file('image');
+		$filename = uniqid() . '.jpg';
+
+		$post = Post::find($post_id);
+
+		if ($file) {
+			Storage::disk('local')->put('post-photos/' . $filename, File::get($file));
+
+			$post->image_name = $filename;
+		}
+
+		$post->update();
+		$message = 'Photo succesfully changed!';
+
+		return redirect()->back()->with(['message' => $message]);
 	}
 }

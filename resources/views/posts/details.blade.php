@@ -7,7 +7,28 @@
 		<h1>{{ $post->title }}</h1>
 	</div>
 	<div class="col-md-6">
-		<img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="" class="img-responsive">
+		<div class="form-group">
+			<img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="" class="img-responsive center-block" width="50%" height="50%">
+		</div>
+		<div class="form-group text-center">
+			
+			{{-- <input type="file" name="image" class="form-control" id="image"> --}}
+			<form action="{{ route('post.image-update') }}" method="post"  enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="image">Change photo (must be a valid image file)</label>
+				</div>
+				<div class="form-group">
+					<label class="btn btn-default btn-file">
+						Browse <input type="file" hidden id="image" name="image">
+					</label>
+				</div>
+				<input type="post_id" name="post_id" hidden value="{{ $post->id }}">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Save Image</button>
+				</div>
+				<input type="hidden" name="_token" value="{{ Session::token() }}">
+			</form>
+		</div>
 	</div>
 	<div class="col-md-6">
 		<section class="row posts">
