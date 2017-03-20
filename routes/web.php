@@ -81,7 +81,8 @@ Route::group(['middleware' => ['web']],function(){
 
 	Route::post('/post-image', [
 		'uses' => 'PostController@postUpdateImage',
-		'as' => 'post.image-update'
+		'as' => 'post.image-update',
+		'middleware' => 'auth'
 	]);
 
 	ROute::get('/search', [

@@ -8,10 +8,13 @@
 	</div>
 	<div class="col-md-6">
 		<div class="form-group">
-			<label for="image" style="display: block;">
+			@if(Auth::user() == $post->user)
+				<label for="image" style="display: block;">
+			@endif
 				<img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="" class="img-responsive center-block" width="50%" height="50%">
 			</label>
 		</div>
+		@if(Auth::user() == $post->user)
 		<div class="form-group text-center">
 			
 			{{-- <input type="file" name="image" class="form-control" id="image"> --}}
@@ -31,6 +34,7 @@
 				<input type="hidden" name="_token" value="{{ Session::token() }}">
 			</form>
 		</div>
+		@endif
 	</div>
 	<div class="col-md-6">
 		<section class="row posts">
