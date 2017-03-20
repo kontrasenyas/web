@@ -22,9 +22,9 @@
 				<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Your Car details (Eg. Toyota Hiace)">{{ Request::old('body') }}</textarea>				
 			</div>
 			<div class="form-group">
-                    <label for="image">Photo (must be a valid image file)</label>
-                    <input type="file" name="image" class="form-control" id="image">
-            </div>
+				<label for="image">Photo (must be a valid image file)</label>
+				<input type="file" name="image" class="form-control" id="image">
+			</div>
 			<button type="submit" class="btn btn-primary">Create Post</button>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
@@ -34,24 +34,30 @@
 	<div class="col-md-6 col-md-offset-3">
 		<h3>My post</h3>
 		@foreach($posts as $post)		
-		<article class="post" data-postid="{{ $post->id }}">
-			<p class="body"><a href="{{ route('post.get', ['post_id' => $post->id]) }}">{{ $post->title }}</a></p>
-			<div class="info">
-				Posted {{ $post->created_at->diffForHumans() }}﻿
-			</div>
-			{{-- <div class="interaction">
-				<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
-				<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a>
+		<a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
+			<div class="form-group div_hover">
+				<article class="post" data-postid="{{ $post->id }}">
 
-				@if(Auth::user() == $post->user)
-				|
-				<a href="#" class="edit">Edit</a> | 
-				<a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a> |
-				@endif
-				
-			</div> --}}
-		</article>
-		@endforeach
-	</div>
+					<p class="body text-uppercase">{{ $post->title }}</p>
+					<div class="info">
+						Posted {{ $post->created_at->diffForHumans() }}﻿
+					</div>
+					{{-- <div class="interaction">
+					<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
+					<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a>
+
+					@if(Auth::user() == $post->user)
+					|
+					<a href="#" class="edit">Edit</a> | 
+					<a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a> |
+					@endif
+
+				</div> --}}
+
+			</article>
+		</div>
+	</a>
+	@endforeach
+</div>
 </section>
 @endsection

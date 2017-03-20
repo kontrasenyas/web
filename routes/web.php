@@ -83,5 +83,10 @@ Route::group(['middleware' => ['web']],function(){
 		'uses' => 'PostController@postUpdateImage',
 		'as' => 'post.image-update'
 	]);
+
+	ROute::get('/search', [
+		'uses' => 'SearchController@getSearch',
+		'as' => 'search'
+	]);
 	
 });

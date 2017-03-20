@@ -40,3 +40,8 @@
 	background-color: #d1f9da;
 	color: green;
 }
+
+
+.div_hover { background-color: white; }
+
+.div_hover:hover { background-color: #eff0f1; }
