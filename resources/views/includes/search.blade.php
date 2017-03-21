@@ -6,10 +6,10 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="col-md-6">
-								<input type="text" class="form-control" placeholder="Search for..." name="query" value="{{ Request::old('query') }}">
+								<input type="text" class="form-control" placeholder="Search for..." name="query" value="{{ Request::query('query') }}">
 							</div>
 							<div class="col-md-6">
-								<input type="text" class="form-control typeahead" placeholder="Location..." name="location" id="location" autocomplete="off" value="{{ Request::old('location') }}">
+								<input type="text" class="form-control typeahead" placeholder="Location..." name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
 							</div>
 						</div>
 					</div>
