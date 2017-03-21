@@ -2,6 +2,7 @@
 
 @section('content')
 @include('includes.message-block')
+@include('includes.search')
 <div class="row">
 	<div class="col-md-12 text-center page-header">
 		<h1 class="text-uppercase">{{ $post->title }}</h1>

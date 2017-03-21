@@ -56,7 +56,7 @@ class UserController extends Controller
 	public function getLogout()
 	{
 		Auth::logout();
-		return redirect()->route('home');
+		return redirect()->back();
 	}
 
 	public function getAccount()

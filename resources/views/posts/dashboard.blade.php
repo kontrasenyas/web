@@ -16,7 +16,7 @@
 				<input type="text" class="form-control" placeholder="Contact No (Eg. 09051234567)" aria-describedby="basic-addon2" name="contact_no" id="contact_no" value="{{ Request::old('contact_no') }}">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Your Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}">
+				<input type="text" class="form-control typeahead" placeholder="Your Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="off">
 			</div>
 			<div class="form-group">
 				<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Your Car details (Eg. Toyota Hiace)">{{ Request::old('body') }}</textarea>				
