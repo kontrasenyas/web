@@ -10,7 +10,9 @@ Libot Philippines
 <section class="row posts">
 	<div class="col-md-6 col-md-offset-3">
 		@if(count($posts) < 1)
-
+			<div class="col-md-6">
+				No results!
+			</div>
 		@endif
 		@if(count($posts) > 0)
 		@foreach($posts as $post)

@@ -88,7 +88,7 @@
 					</div>
 					<div class="form-group">
 						<label for="post-body">Location</label>
-						<input type="text" name="post-location" id="post-location" rows="5" class="form-control">
+						<input type="text" name="post-location" id="post-location" rows="5" class="form-control typeahead">
 					</div>
 				</form>
 			</div>

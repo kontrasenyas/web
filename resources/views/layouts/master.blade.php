@@ -39,15 +39,9 @@
             $('input.typeahead').typeahead({
                 minLength: 1,
                 source:  function (query, process) {
-                    data3 =  $.get(path, { query: query }, function (data) {
-                        return process(data);
-                    });
-                    
                     return $.get(path, { query: query }, function (data) {
-                        data2 = process(data);
                         return process(data);
                     });
-                    
                 }
             }); 
 
