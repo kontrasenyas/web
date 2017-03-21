@@ -85,9 +85,14 @@ Route::group(['middleware' => ['web']],function(){
 		'middleware' => 'auth'
 	]);
 
-	ROute::get('/search', [
+	Route::get('/search', [
 		'uses' => 'SearchController@getSearch',
 		'as' => 'search'
+	]);
+
+	Route::get('/search-location', [
+		'uses' => 'SearchController@getSearchLocation',
+		'as' => 'search.location'
 	]);
 	
 });

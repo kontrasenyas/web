@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Location;
 use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
@@ -11,7 +12,7 @@ class SearchController extends Controller
 	{
 		$this->validate($request, [
 			'query' => 'required_without_all:location'
-		], ['query.required_without_all' => 'Please fill atleast one field.']
+			], ['query.required_without_all' => 'Please fill atleast one field.']
 
 		);
 
@@ -34,5 +35,12 @@ class SearchController extends Controller
 		}
 		
 		return view('includes.search-index', ['posts' => $posts]);		
+	}
+
+	public function getSearchLocation(Request $request)
+	{
+		$data = Location::select("city as name")->where("city","LIKE","%{$request->input('query')}%")->get();
+
+		return response()->json($data);
 	}
 }

@@ -9,7 +9,7 @@
 								<input type="text" class="form-control" placeholder="Search for..." name="query">
 							</div>
 							<div class="col-md-6">
-								<input type="text" class="form-control" placeholder="Location..." name="location">
+								<input type="text" class="form-control typeahead" placeholder="Location..." name="location" id="location" autocomplete="off">
 							</div>
 						</div>
 					</div>
@@ -22,3 +22,48 @@
 		</div>	
 	</form>
 </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
+
+<script type="text/javascript">
+
+	var path = "{{ route('search.location') }}";
+	var data2 = null;
+	var data3 = null;
+	$('input.typeahead').typeahead({
+		minLength: 1,
+		source:  function (query, process) {
+			data3 =  $.get(path, { query: query }, function (data) {
+				return process(data);
+			});
+			
+			return $.get(path, { query: query }, function (data) {
+				data2 = process(data);
+				return process(data);
+			});
+			
+		}
+	});	
+
+	var $input = $(".typeahead");
+	$input.change(function() {
+		var current = $input.typeahead("getActive");
+		if (current) {
+			if (current.name == $input.val()) {
+				console.log('2');
+			} else {
+				$('#location').val("");
+			}
+		} else {
+			console.log('4');
+		}
+	});
+
+	$("#location").focus(function() {
+		console.log('in');
+	}).blur(function() {
+		console.log('out');
+	});	
+
+</script>
