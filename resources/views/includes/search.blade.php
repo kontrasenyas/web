@@ -56,14 +56,14 @@
 				$('#location').val("");
 			}
 		} else {
-			console.log('4');
+			$('#location').val("");
 		}
 	});
 
-	$("#location").focus(function() {
-		console.log('in');
-	}).blur(function() {
-		console.log('out');
-	});	
+	// $("#location").focus(function() {
+	// 	console.log('in');
+	// }).blur(function() {
+	// 	console.log('out');
+	// });	
 
 </script>
