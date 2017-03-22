@@ -13,7 +13,7 @@ class UserController extends Controller
 	public function postSignUp(Request $request)
 	{
 		$this->validate($request, [
-			'mobile_no' => 'required|unique:users',
+			'mobile_no' => 'required|unique:users|numeric',
 			'password' => 'required|min:4',
 			'first_name' => 'required|max:120',
 			'last_name' => 'required|max:120',
@@ -49,7 +49,9 @@ class UserController extends Controller
 			return redirect()->route('dashboard');
 		}
 		else {
-			return redirect()->back();
+			return back()->withErrors([
+            'message' => 'Username/Password is invalid!'
+        ]);
 		}
 	}
 
@@ -59,33 +61,47 @@ class UserController extends Controller
 		return redirect()->back();
 	}
 
-	public function getAccount()
+	public function getAccountIndex()
 	{
-		return view('account', ['user' => Auth::user()]);
+		return view('accounts.index', ['user' => Auth::user()]);
+	}
+
+	public function getAccountProfile($user_id)
+	{
+		$user = User::where('id', $user_id)->first();		
+		return view('accounts.profile', ['user' => $user]);
 	}
 
 	public function postSaveAccount(Request $request)
 	{
-		$this->validate($request, [
-			'first_name' => 'required|max:120'
-		]);
-
 		$user = Auth::user();
+
+		$this->validate($request, [
+			'first_name' => 'required|max:120',
+			'last_name' => 'required|max:120',
+			'mobile_no' => 'required|numeric|unique:users,mobile_no,'. Auth::id()
+		]);
+		
 		$user->first_name = $request['first_name'];
-		$user->update();
+		$user->last_name = $request['last_name'];
+		$user->mobile_no = $request['mobile_no'];
+		
 
 		$file = $request->file('image');
-		$filename = $request['first_name'] . '-' . $user->id . '.jpg';
+		$filename = $user->id . '-' . $user->first_name . '-' . $user->last_name . '.jpg';
 
 		if ($file) {
-			Storage::disk('local')->put($filename, File::get($file));
+			Storage::disk('local')->put('profile_picture/' . $filename, File::get($file));
+			$user->profile_picture_path = $filename;
 		}
-		return redirect()->route('account');
+
+		$user->update();
+		return redirect()->route('account')->with(['message' => 'Account successfully updated!']);
 	}
 
 	public function getUserImage($filename)
 	{
-		$file = Storage::disk('local')->get($filename);
+		$file = Storage::disk('local')->get('profile_picture/' . $filename);
 		return new Response($file, 200);
 	}
 }

@@ -25,14 +25,20 @@ Route::group(['middleware' => ['web']],function(){
 	]);
 
 	Route::get('/account', [
-		'uses' => 'UserController@getAccount',
+		'uses' => 'UserController@getAccountIndex',
 		'as' => 'account',
 		'middleware' => 'auth'
 	]);
 
+	Route::get('/account/{user_id}', [
+		'uses' => 'UserController@getAccountProfile',
+		'as' => 'account.profile'
+	]);
+
 	Route::post('/updateaccount', [
 		'uses' => 'UserController@postSaveAccount',
-		'as' => 'account.save'
+		'as' => 'account.save',
+		'middleware' => 'auth'
 	]);
 
 	Route::get('/userimage/{filename}', [

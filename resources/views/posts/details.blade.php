@@ -51,7 +51,7 @@
 						<p class="location" id="location">{{ $post->location }}</p>
 					</div>
 					<div class="info">
-						Posted by {{ $post->user->first_name }} {{ $post->user->last_name }} on {{ $post->created_at->diffForHumans() }}﻿
+						Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a> on {{ $post->created_at->diffForHumans() }}﻿
 					</div>
 					<div class="interaction">
 						{{-- <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
