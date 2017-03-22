@@ -61,7 +61,7 @@ class UserController extends Controller
 		return redirect()->back();
 	}
 
-	public function getAccountIndex()
+	public function getAccountEdit()
 	{
 		return view('accounts.index', ['user' => Auth::user()]);
 	}
@@ -71,6 +71,12 @@ class UserController extends Controller
 		$user = User::where('id', $user_id)->first();		
 		return view('accounts.profile', ['user' => $user]);
 	}
+
+	// public function getEditAccountIndex()
+	// {
+	// 	$user = Auth::user();
+	// 	return view('accounts.index', ['user' => $user]);
+	// }
 
 	public function postSaveAccount(Request $request)
 	{
@@ -96,7 +102,7 @@ class UserController extends Controller
 		}
 
 		$user->update();
-		return redirect()->route('account')->with(['message' => 'Account successfully updated!']);
+		return redirect()->route('account.edit')->with(['message' => 'Account successfully updated!']);
 	}
 
 	public function getUserImage($filename)

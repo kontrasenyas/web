@@ -23,7 +23,7 @@ Libot Philippines
 						<p class="body text-uppercase">{{ $post->title }}</p>					
 						<div class="info">
 							<p class="body text-uppercase">{{ $post->location }}</p>
-							Posted {{ $post->created_at->diffForHumans() }}﻿
+							Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}﻿
 						</div>
 					</article>
 				</div>

@@ -23,7 +23,7 @@
                     <input type="text" name="mobile_no" class="form-control" value="{{ $user->mobile_no }}" id="mobile_no">
                 </div>
                 <div class="form-group">
-                    <label for="image">Image (only .jpg)</label>
+                    <label for="image">Change profile picture (Image only)</label>
                     <input type="file" name="image" class="form-control" id="image">
                 </div>
                 <button type="submit" class="btn btn-primary">Save Account</button>
@@ -31,11 +31,11 @@
             </form>
         </div>
     </section>
-    @if (Storage::disk('local')->has($user->first_name . '-' . $user->id . '.jpg'))
+    {{-- @if (Storage::disk('local')->has($user->first_name . '-' . $user->id . '.jpg')) --}}
         <section class="row new-post">
-            <div class="col-md-6 col-md-offset-3">
-                <img src="{{ route('account.image', ['filename' => $user->first_name . '-' . $user->id . '.jpg']) }}" alt="" class="img-responsive">
+            <div class="col-md-12">
+                <img src="{{ route('account.image', ['filename' => $user->profile_picture_path]) }}" alt="" class="img-responsive center-block">
             </div>
         </section>
-    @endif
+    {{-- @endif --}}
 @endsection

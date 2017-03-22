@@ -24,9 +24,9 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'logout'
 	]);
 
-	Route::get('/account', [
-		'uses' => 'UserController@getAccountIndex',
-		'as' => 'account',
+	Route::get('/edit-account', [
+		'uses' => 'UserController@getAccountEdit',
+		'as' => 'account.edit',
 		'middleware' => 'auth'
 	]);
 
@@ -35,7 +35,7 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'account.profile'
 	]);
 
-	Route::post('/updateaccount', [
+	Route::post('/update-account', [
 		'uses' => 'UserController@postSaveAccount',
 		'as' => 'account.save',
 		'middleware' => 'auth'

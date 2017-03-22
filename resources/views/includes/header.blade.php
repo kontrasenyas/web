@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav navbar-right">
           @if(Auth::user())
           <li><a href="{{ route('dashboard') }}">Post</a></li>
-          <li><a href="{{ route('account') }}">Account</a></li>
+          <li><a href="{{ route('account.profile', Auth::user()->id) }}">Account</a></li>
           <li><a href="{{ route('logout') }}">Logout</a></li>
           @endif
           @if(!Auth::user())
