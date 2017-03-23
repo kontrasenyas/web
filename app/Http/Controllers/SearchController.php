@@ -11,22 +11,35 @@ class SearchController extends Controller
 	public function getSearch(Request $request)
 	{
 		$this->validate($request, [
-			'query' => 'required_without_all:location'
+			'query' => 'required_without_all:keywords,location',
 			], ['query.required_without_all' => 'Please fill atleast one field.']
 
 		);
 
 		$query = $request['query'];
 		$location = $request['location'];
+		$keywords = $request['keywords'];
 
-		if (isset($location) && isset($query)) {
+		if (isset($location) && isset($query) && $keywords) {
+			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->where('location', 'like', $location)->where('body', 'like', $keywords)->get();
+		}
+		else if (isset($location) && isset($query)) {
 			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', $query)->where('location', 'like', $location)->get();
 		}
+		else if (isset($location) && isset($keywords)) {
+			$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', $keywords)->where('location', 'like', $location)->get();
+		}
+		else if (isset($keywords) && isset($query)) {
+			$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->where('location', 'like', '%' . $location . '%')->get();
+		}
 		else if (isset($query)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', $query)->get();
+			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->get();
 		}
 		else if (isset($location)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', $location)->get();
+			$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', '%' . $location . '%')->get();
+		}
+		else if (isset($keywords)) {
+			$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->get();
 		}
 		else {
 			$query = '';
