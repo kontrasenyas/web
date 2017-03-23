@@ -10,8 +10,8 @@
 	<div class="col-md-6">
 		<div class="form-group">
 			@if(Auth::user() == $post->user)
-				<label for="image" style="display: block;">
-			@endif
+			<label for="image" style="display: block;">
+				@endif
 				<img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="" class="img-responsive center-block" width="50%" height="50%">
 			</label>
 		</div>
@@ -52,22 +52,25 @@
 					</div>
 					<div class="info">
 						Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a> on {{ $post->created_at->diffForHumans() }}﻿
-					</div>
+					</div>					
 					<div class="interaction">
 						{{-- <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
-						<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a> --}}
-
+						<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a> --}}						
+						
+						
 						@if(Auth::user() == $post->user)
 						|
 						<a href="#" class="edit">Edit</a> | 
-						<a href="{{ route('post.delete', ['post_id' => $post->id]) }}">Delete</a> |
+						<a href="{{ route('post.delete', ['post_id' => $post->id]) }}" class="confirm">Delete</a> |
 						@endif
-
 					</div>
-				</article>
-			</div>
-		</section>
-	</div>
+					
+
+				</div>
+			</article>
+		</div>
+	</section>
+</div>
 </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
 	<div class="modal-dialog" role="document">
@@ -104,5 +107,49 @@
 	var token = '{{ Session::token() }}';
 	var urlEdit = '{{ route('edit') }}';
 	var urlLike = '{{ route('like') }}';
+
+
 </script>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $('.confirm').on('click', function () {
+        return confirm('Are you sure want to continue?');
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
+<script type="text/javascript">
+	var path = "{{ route('search.location') }}";
+	$('input.typeahead').typeahead({
+		minLength: 1,
+		source:  function (query, process) {
+			return $.get(path, { query: query }, function (data) {
+				return process(data);
+			});
+		}
+	}); 
+
+	var $input = $(".typeahead");
+	$input.change(function() {
+		var current = $input.typeahead("getActive");
+		if (current) {
+			if (current.name == $input.val()) {
+				console.log('2');
+			} else {
+				$('#location').val("");
+			}
+		} else {
+			$('#location').val("");
+		}
+	});
+
+            // $("#location").focus(function() {
+            //  console.log('in');
+            // }).blur(function() {
+            //  console.log('out');
+            // });  
+
+</script>
+
 @endsection
