@@ -61,7 +61,7 @@
 						@if(Auth::user() == $post->user)
 						|
 						<a href="#" class="edit">Edit</a> | 
-						<a href="{{ route('post.delete', ['post_id' => $post->id]) }}" class="confirm">Delete</a> |
+						<a href="{{ route('post.delete', ['post_id' => $post->id]) }}" onclick="return confirm('Are you sure?')">Delete</a> |
 						@endif
 					</div>
 					
@@ -112,12 +112,6 @@
 </script>
 @endsection
 @section('script')
-<script type="text/javascript">
-    $('.confirm').on('click', function () {
-        return confirm('Are you sure want to continue?');
-    });
-</script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
 <script type="text/javascript">
 	var path = "{{ route('search.location') }}";
@@ -149,7 +143,6 @@
             // }).blur(function() {
             //  console.log('out');
             // });  
-
 </script>
 
 @endsection
