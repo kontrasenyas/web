@@ -92,12 +92,5 @@
 			$('#location').val("");
 		}
 	});
-
-            // $("#location").focus(function() {
-            //  console.log('in');
-            // }).blur(function() {
-            //  console.log('out');
-            // });  
-
 </script>
 @endsection
