@@ -11,6 +11,7 @@
             <div class="col-md-12 text-center page-header">
                 <h1 class="text-uppercase">{{ $user->first_name }} {{ $user->last_name }}</h1>
                 <h3 class="text-uppercase">{{ $user->mobile_no }}</h3>
+                <h4 class="text-lowercase">{{ $user->email }}</h3>
             </div>
             @if(Auth::user())
             <div class="col-md-12 text-center">

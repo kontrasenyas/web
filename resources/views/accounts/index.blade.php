@@ -22,6 +22,10 @@
                     <label for="mobile_no">Mobile Number</label>
                     <input type="text" name="mobile_no" class="form-control" value="{{ $user->mobile_no }}" id="mobile_no">
                 </div>
+                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <label for="email">Email Address</label>
+                    <input type="text" name="email" class="form-control" value="{{ $user->email }}" id="email">
+                </div>
                 <div class="form-group">
                     <label for="image">Change profile picture (Image only)</label>
                     <input type="file" name="image" class="form-control" id="image">

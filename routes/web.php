@@ -53,6 +53,21 @@ Route::group(['middleware' => ['web']],function(){
 		'middleware' => 'auth'
 	]);
 
+	Route::get('/forgot-password', [
+		'uses' => 'UserController@getForgotPassword',
+		'as' => 'account.forgot'
+	]);
+
+	Route::post('/send-sms', [
+		'uses' => 'UserController@postSendSMS',
+		'as' => 'account.send-sms'
+	]);
+
+	Route::post('/send-email-forgot', [
+		'uses' => 'UserController@postSendEmailForgot',
+		'as' => 'account.send-email-forgot'
+	]);
+
 	Route::get('/userimage/{filename}', [
 		'uses' => 'UserController@getUserImage',
 		'as' => 'account.image'
@@ -111,6 +126,6 @@ Route::group(['middleware' => ['web']],function(){
 	Route::get('/search-location', [
 		'uses' => 'SearchController@getSearchLocation',
 		'as' => 'search.location'
-	]);
+	]);	
 	
 });

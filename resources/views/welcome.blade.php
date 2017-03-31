@@ -10,6 +10,10 @@
         <div class="col-md-6">
             <h3>Sign Up</h3>
             <form action="{{ route('signup') }}" method="post">
+                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <label for="email">Your Email Address</label>
+                    <input class="form-control" type="text" name="email" id="email" value="{{ Request::old('email') }}">
+                </div>
                 <div class="form-group {{ $errors->has('mobile_no') ? 'has-error' : '' }}">
                     <label for="mobile_no">Your Mobile Number</label>
                     <input class="form-control" type="text" name="mobile_no" id="mobile_no" value="{{ Request::old('mobile_no') }}">
@@ -41,6 +45,9 @@
                     <label for="password">Your Password</label>
                     <input class="form-control" type="password" name="password" id="password">
                 </div>
+                <div class="form-group">
+                    <a href="{{ route('account.forgot') }}">Forgot your password?</a>
+                </div>  
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>

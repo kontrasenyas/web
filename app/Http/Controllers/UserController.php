@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\ForgotPassword;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ class UserController extends Controller
 	public function postSignUp(Request $request)
 	{
 		$this->validate($request, [
+			'email' => 'required|email|unique:users',
 			'mobile_no' => 'required|unique:users|numeric',
 			'password' => 'required|min:4',
 			'first_name' => 'required|max:120',
@@ -21,12 +23,14 @@ class UserController extends Controller
 
 		]);
 
+		$email = $request['email'];
 		$mobile_no = $request['mobile_no'];
 		$password = bcrypt($request['password']);
 		$first_name = $request['first_name'];
 		$last_name = $request['last_name'];
 
 		$user = new User();
+		$user->email = $email;
 		$user->mobile_no = $mobile_no;
 		$user->password = $password;
 		$user->first_name = $first_name;
@@ -86,12 +90,14 @@ class UserController extends Controller
 		$this->validate($request, [
 			'first_name' => 'required|max:120',
 			'last_name' => 'required|max:120',
-			'mobile_no' => 'required|numeric|unique:users,mobile_no,'. Auth::id()
+			'mobile_no' => 'required|numeric|unique:users,mobile_no,'. Auth::id(),
+			'email' => 'required|email|unique:users,email,'. Auth::id()
 		]);
 		
 		$user->first_name = $request['first_name'];
 		$user->last_name = $request['last_name'];
 		$user->mobile_no = $request['mobile_no'];
+		$user->email = $request['email'];
 		
 
 		$file = $request->file('image');
@@ -148,6 +154,63 @@ class UserController extends Controller
 			return back()->withErrors([
             	'message' => 'Current Password is Invalid.'
         	]);
+		}
+	}
+
+	public function getForgotPassword()
+	{
+		return view('accounts.forgot-password');
+	}
+
+	public function postSendEmailForgot()
+	{
+		
+	}
+
+	public function postSendSMS(Request $request)
+	{
+		$this->validate($request, [
+			'mobile_no' => 'required'
+		]);
+
+		$mobile_no = $request['mobile_no'];
+		$user = User::where('mobile_no', $mobile_no)->first();		
+
+		if ($user != null) {
+			$user_id = $user->id;
+			$sms_code = strtoupper(str_random(5));
+			$valid_until = date("Y-m-d H:i:s", time() + 86400);
+
+			$forgot_password = new ForgotPassword();
+			$forgot_password->user_id = $user_id;
+			$forgot_password->mobile_no = $mobile_no;
+			$forgot_password->sms_code = $sms_code;
+			$forgot_password->valid_until = $valid_until;
+			$forgot_password->save();
+
+			$message = 'Your verification code: ' . $sms_code;
+			$apicode = 'TR-JOSEP290793_EH77D';
+
+			$url = 'https://www.itexmo.com/php_api/api.php';
+			$itexmo = array('1' => $mobile_no, '2' => $message, '3' => $apicode);
+			$param = array(
+			    'http' => array(
+			        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			        'method'  => 'POST',
+			        'content' => http_build_query($itexmo),
+			    ),
+			);
+
+			$fg = ForgotPassword::where('mobile_no', $mobile_no)->orderBy('valid_until', 'desc')->first();
+			return $fg;
+
+			//$context  = stream_context_create($param);
+			//$return = file_get_contents($url, false, $context);
+		}
+		else {
+			return back()->withErrors([
+			    'message' => 'Mobile Number is Invalid.'
+			]);
 		}
 	}
 }
