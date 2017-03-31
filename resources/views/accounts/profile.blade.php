@@ -16,6 +16,9 @@
             <div class="col-md-12 text-center">
         		<a href="{{ route('account.edit') }}">Edit your account</a>
         	</div>
+            <div class="col-md-12 text-center">
+                <a href="{{ route('account.get-change-password') }}">Change your password</a>
+            </div>
         	@endif
-        </div>        
+        </div>   
 @endsection

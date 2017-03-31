@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -50,7 +51,7 @@ class UserController extends Controller
 		}
 		else {
 			return back()->withErrors([
-            'message' => 'Username/Password is invalid!'
+            'message' => 'Username/Password is Invalid.'
         ]);
 		}
 	}
@@ -102,12 +103,51 @@ class UserController extends Controller
 		}
 
 		$user->update();
-		return redirect()->route('account.edit')->with(['message' => 'Account successfully updated!']);
+		return redirect()->route('account.edit')->with(['message' => 'Account successfully updated.']);
 	}
 
 	public function getUserImage($filename)
 	{
 		$file = Storage::disk('local')->get('profile_picture/' . $filename);
 		return new Response($file, 200);
+	}
+
+	public function getChangePassword()
+	{
+		return view('accounts.change-password', ['user' => Auth::user()]);
+	}
+
+	public function postChangePassword(Request $request)
+	{	
+
+		$this->validate($request, [
+			'current-password' => 'required',
+			'password' => 'required|min:8|same:password',
+			'confirm-password' => 'same:password',
+		], 
+		[
+			'current-password.required' => 'Please enter your Current Password.',
+			'password.required' => 'Please enter your New Password.',
+			'confirm-password.same' => 'Confirm Password does not match.',
+		]
+		);
+
+		$current_password = Auth::user()->password;
+
+		if (Hash::check($request['current-password'], $current_password)) {
+			$user_id = Auth::User()->id;
+			$user = User::Find($user_id);
+			$user->password = Hash::make($request['password']);
+			$user->save();
+
+			$message = 'Password successfully changed.';
+
+			return redirect()->route('account.get-change-password')->with(['message' => 'Password successfully updated.']);
+		}
+		else {
+			return back()->withErrors([
+            	'message' => 'Current Password is Invalid.'
+        	]);
+		}
 	}
 }

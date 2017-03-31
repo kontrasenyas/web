@@ -41,6 +41,18 @@ Route::group(['middleware' => ['web']],function(){
 		'middleware' => 'auth'
 	]);
 
+	Route::get('/change-password', [
+		'uses' => 'UserController@getChangePassword',
+		'as' => 'account.get-change-password',
+		'middleware' => 'auth'
+	]);
+
+	Route::post('/change-password', [
+		'uses' => 'UserController@postChangePassword',
+		'as' => 'account.post-change-password',
+		'middleware' => 'auth'
+	]);
+
 	Route::get('/userimage/{filename}', [
 		'uses' => 'UserController@getUserImage',
 		'as' => 'account.image'
