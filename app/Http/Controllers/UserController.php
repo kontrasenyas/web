@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -162,9 +163,65 @@ class UserController extends Controller
 		return view('accounts.forgot-password');
 	}
 
-	public function postSendEmailForgot()
+	public function getResetPassword($token, $code)
 	{
-		
+		$fg = ForgotPassword::where('token', $token)->where('code', $code)->first();
+
+		if ($fg != null) {
+			return view('accounts.reset-password')->with(['token' => $token, 'code' => $code]);
+		}
+		else {
+			return redirect()->route('home');
+		}		
+	}
+
+	public function postResetPassword(Request $request)
+	{
+		$token = $request['password_token'];
+		$code = $request['code'];
+		$fg = ForgotPassword::where('token', $token)->where('code', $code)->first();
+
+		$this->validate($request, [
+			'password' => 'required|min:8'
+		]);
+
+		$user_id = $fg->user_id;
+		$user = User::Find($user_id);
+		$user->password = Hash::make($request['password']);
+		$user->save();
+
+		return redirect()->back()->with(['message' => 'Succsefull']);
+	}
+
+	public function postSendEmailForgotPassword(Request $request)
+	{
+		$email = $request['email'];
+		$user = User::where('email', $email)->first();
+
+		if ($user != null) {
+			$user_id = $user->id;
+			$code = strtoupper(str_random(5));
+			$token = bin2hex(openssl_random_pseudo_bytes(24));
+			$valid_until = date("Y-m-d H:i:s", time() + 86400);			
+
+			$forgot_password = new ForgotPassword();
+
+			$forgot_password->user_id = $user_id;
+			$forgot_password->email = $email;
+			$forgot_password->code = $code;
+			$forgot_password->token = $token;
+			$forgot_password->valid_until = $valid_until;
+			$forgot_password->save();
+
+			Mail::to($email)
+				->send(new \App\Mail\SendEmailForgotPassword($user->first_name, $user->last_name, $code, $token));
+			return redirect()->back()->with(['message' => 'Please check your email for instructions.']);
+		}
+		else {
+			return back()->withErrors([
+			    'message' => 'Email Address is Invalid.'
+			]);
+		}
 	}
 
 	public function postSendSMS(Request $request)
@@ -178,17 +235,18 @@ class UserController extends Controller
 
 		if ($user != null) {
 			$user_id = $user->id;
-			$sms_code = strtoupper(str_random(5));
+			$code = strtoupper(str_random(5));
 			$valid_until = date("Y-m-d H:i:s", time() + 86400);
 
 			$forgot_password = new ForgotPassword();
+
 			$forgot_password->user_id = $user_id;
 			$forgot_password->mobile_no = $mobile_no;
-			$forgot_password->sms_code = $sms_code;
+			$forgot_password->code = $code;
 			$forgot_password->valid_until = $valid_until;
 			$forgot_password->save();
 
-			$message = 'Your verification code: ' . $sms_code;
+			$message = 'Your verification code: ' . $code;
 			$apicode = 'TR-JOSEP290793_EH77D';
 
 			$url = 'https://www.itexmo.com/php_api/api.php';
@@ -212,5 +270,5 @@ class UserController extends Controller
 			    'message' => 'Mobile Number is Invalid.'
 			]);
 		}
-	}
+	}	
 }

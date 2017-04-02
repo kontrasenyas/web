@@ -17,8 +17,10 @@ class CreateForgotPasswordTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id');
-            $table->string('mobile_no');
-            $table->string('sms_code');
+            $table->string('mobile_no')->nullable();
+            $table->string('email')->nullable();
+            $table->string('code');
+            $table->string('token');
             $table->dateTime('valid_until');
             $table->boolean('verified')->default(false);
         });

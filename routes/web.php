@@ -58,13 +58,23 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'account.forgot'
 	]);
 
+	Route::get('/reset-password/{token}/{code}', [
+		'uses' => 'UserController@getResetPassword',
+		'as' => 'account.get-reset-password'
+	]);
+
+	ROute::post('/reset-password', [
+		'uses' => 'UserController@postResetPassword',
+		'as' => 'account.post-reset-password'
+	]);
+
 	Route::post('/send-sms', [
 		'uses' => 'UserController@postSendSMS',
 		'as' => 'account.send-sms'
 	]);
 
 	Route::post('/send-email-forgot', [
-		'uses' => 'UserController@postSendEmailForgot',
+		'uses' => 'UserController@postSendEmailForgotPassword',
 		'as' => 'account.send-email-forgot'
 	]);
 
