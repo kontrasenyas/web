@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Account
+	{{ $user->first_name }}
 @endsection
 
 @section('content')

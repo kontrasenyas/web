@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+	Dashboard
+@endsection
+
 @section('content')
 @include('includes.message-block')
 <section class="row new-post">

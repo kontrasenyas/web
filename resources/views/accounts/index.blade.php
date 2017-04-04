@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Account
+	Edit Account
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Account - Change Password
+	Change Password
 @endsection
 
 @section('content')

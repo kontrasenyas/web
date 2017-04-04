@@ -21,11 +21,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-md-12">
-							<span class="input-group-btn">
+						<div class="col-md-12">							
 							<button class="btn btn-primary" type="submit">Search!</button>
-								<input type="hidden" name="_token" value="{{ Session::token() }}">
-							</span>
+							<input type="hidden" name="_token" value="{{ Session::token() }}">							
 						</div>
 					</div>
 				</div><!-- /input-group -->

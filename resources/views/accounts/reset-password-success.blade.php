@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Forgot Password
+	Reset Password Success
 @endsection
 
 @section('content')
