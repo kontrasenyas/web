@@ -63,7 +63,11 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'account.get-reset-password'
 	]);
 
-	ROute::post('/reset-password', [
+	Route::get('/reset-password-error',function() {
+		return view('accounts.reset-password-error');
+	})->name('reset-password-error');
+
+	Route::post('/reset-password', [
 		'uses' => 'UserController@postResetPassword',
 		'as' => 'account.post-reset-password'
 	]);

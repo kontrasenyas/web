@@ -147,8 +147,6 @@ class UserController extends Controller
 			$user->password = Hash::make($request['password']);
 			$user->save();
 
-			$message = 'Password successfully changed.';
-
 			return redirect()->route('account.get-change-password')->with(['message' => 'Password successfully updated.']);
 		}
 		else {
@@ -166,13 +164,19 @@ class UserController extends Controller
 	public function getResetPassword($token, $code)
 	{
 		$fg = ForgotPassword::where('token', $token)->where('code', $code)->first();
+		$fg_latest = ForgotPassword::where('user_id', $fg->user_id)->orderBy('created_at', 'desc')->first();
 
-		if ($fg != null) {
+		if (($fg->token == $fg_latest->token) && $fg->verified == 0) {
+			if ($fg != null) {
 			return view('accounts.reset-password')->with(['token' => $token, 'code' => $code]);
+			}
+			else if ($fg->verified == 1){
+				return redirect()->route('reset-password-error');
+			}	
 		}
 		else {
-			return redirect()->route('home');
-		}		
+			return redirect()->route('reset-password-error');
+		}			
 	}
 
 	public function postResetPassword(Request $request)
@@ -185,12 +189,21 @@ class UserController extends Controller
 			'password' => 'required|min:8'
 		]);
 
-		$user_id = $fg->user_id;
-		$user = User::Find($user_id);
-		$user->password = Hash::make($request['password']);
-		$user->save();
+		if ($fg->verified == 0) {
+			$user_id = $fg->user_id;
+			$user = User::Find($user_id);
+			$user->password = Hash::make($request['password']);
+			$user->save();
 
-		return redirect()->back()->with(['message' => 'Succsefull']);
+			$fg->verified = 1;
+			$fg->save();
+
+			return view('accounts.reset-password-success');
+		}
+		else {
+			return redirect()->route('reset-password-error');
+		}
+		
 	}
 
 	public function postSendEmailForgotPassword(Request $request)
