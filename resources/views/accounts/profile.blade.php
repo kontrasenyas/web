@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-@include('includes.message-block')
         <div class="col-md-6 col-md-offset-3">
         	<img src="{{ route('account.image', ['filename' => $user->profile_picture_path]) }}" alt="" class="img-responsive center-block">
             <div class="col-md-12 text-center page-header">

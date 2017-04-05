@@ -5,7 +5,6 @@ Libot Philippines
 @endsection
 
 @section('content')
-@include('includes.message-block')
 @include('includes.search')
 <section class="row posts">
 	<div class="col-md-6 col-md-offset-3">
