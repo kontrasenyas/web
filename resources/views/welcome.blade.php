@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @include('includes.message-block')
+    
     <div class="row">
         <div class="col-md-6">
             <h3>Sign Up</h3>
@@ -30,7 +30,7 @@
                     <label for="last_name">Your Last Name</label>
                     <input class="form-control" type="text" name="last_name" id="last_name" value="{{ Request::old('last_name') }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>
         </div>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <a href="{{ route('account.forgot') }}">Forgot your password?</a>
                 </div>  
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Log In</button>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
             </form>
         </div>
