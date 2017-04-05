@@ -26,7 +26,9 @@
 				"padding-top": "15px",
 				"padding-bottom": "15px",
 				"background-repeat": "no-repeat",
-				"background-position": "3px 7px"
+				"background-position": "3px 7px",
+				"margin-bottom": "22px",
+				"margin-right": "15px"
 			},
 			error: {
 				"color": "#B94A48",
@@ -55,7 +57,7 @@
 
 <script type="text/javascript">
 	$.notify.addStyle('notification', {
-		html: "<div>{{ Session::get('message') }}</div>",
+		html: "<div><li>{{ Session::get('message') }}</li></div>",
 		classes: {
 			base: {
 				"font-weight": "bold",
@@ -71,7 +73,9 @@
 				"padding-top": "15px",
 				"padding-bottom": "15px",
 				"background-repeat": "no-repeat",
-				"background-position": "3px 7px"
+				"background-position": "3px 7px",
+				"margin-bottom": "22px",
+				"margin-right": "15px"
 			},
 			success: {
 				"color": "#468847",
