@@ -116,7 +116,11 @@ return [
 
     'attributes' => [
         'password' => 'Password',
-        'current-password' => 'Current Password'
+        'current-password' => 'Current Password',
+        'email' => 'Email Address',
+        'mobile_no' => 'Mobile Number',
+        'first_name' => 'First Name',
+        'last_name' => 'Last Name',
     ],
 
 ];

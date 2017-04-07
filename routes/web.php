@@ -9,6 +9,15 @@ Route::group(['middleware' => ['web']],function(){
 		return view('welcome');
 	})->name('welcome');
 
+	Route::get('/login', function() {
+		return view('accounts.login');
+	})->name('login');
+
+	Route::get('/register', function() {
+		return view('accounts.register');
+	})->name('register');
+
+
 	Route::post('/signup',[
 		'uses'=>'UserController@postSignUp',
 		'as'=>'signup'
