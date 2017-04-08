@@ -65,6 +65,7 @@
 				</div> --}}
 		</a>
 		@endforeach
+		{{ $posts->links() }}
 	</div>
 </section>
 @endsection

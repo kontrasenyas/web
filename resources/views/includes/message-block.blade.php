@@ -15,7 +15,7 @@
             type: 'danger',
             delay: 4000,
             width: 300,
-            align: 'center'
+            align: 'right'
         });
     });
 </script>
@@ -30,7 +30,7 @@
 </div> -->
 <script type="text/javascript">
  	$(document).ready( function () {
-        $.bootstrapGrowl('{{ Session::get('message') }}',{
+        $.bootstrapGrowl('<p align="center"> {{ Session::get('message') }} </p>',{
             type: 'success',
             delay: 4000,
             width: 300,

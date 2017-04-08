@@ -14,7 +14,7 @@ class PostController extends Controller
 {
 	public function getDashboard()
 	{
-		$posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->get();
+		$posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->paginate(5);
 		return view('posts.dashboard', ['posts' => $posts]);
 	}
 	

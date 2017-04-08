@@ -17,7 +17,6 @@ Route::group(['middleware' => ['web']],function(){
 		return view('accounts.register');
 	})->name('register');
 
-
 	Route::post('/signup',[
 		'uses'=>'UserController@postSignUp',
 		'as'=>'signup'

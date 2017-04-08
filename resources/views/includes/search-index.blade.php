@@ -32,6 +32,7 @@ Libot Philippines
 			</div>
 		</a>
 		@endforeach
+		{{ $posts->appends(Request::except('page'))->links() }}
 		@endif
 	</div>
 </section>
