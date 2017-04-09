@@ -28,7 +28,7 @@
 				<label for="image">Photo (must be a valid image file)</label>
 				<input type="file" name="image" class="form-control" id="image">
 			</div>
-			<button type="submit" class="btn btn-primary">Create Post</button>
+			<button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Create Post</button>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
 	</div>

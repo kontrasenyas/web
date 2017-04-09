@@ -29,7 +29,7 @@
                     <label for="image">Change profile picture (Image only)</label>
                     <input type="file" name="image" class="form-control" id="image">
                 </div>
-                <button type="submit" class="btn btn-primary">Save Account</button>
+                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Save Account</button>
                 <input type="hidden" value="{{ Session::token() }}" name="_token">
             </form>
         </div>

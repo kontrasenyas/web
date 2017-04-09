@@ -21,7 +21,7 @@
                     <label for="confirm-password">Confirm Password</label>
                     <input type="password" name="confirm-password" class="form-control" id="confirm-password">
                 </div>
-                <button type="submit" class="btn btn-primary">Update Password</button>
+                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Update Password</button>
                 <input type="hidden" value="{{ Session::token() }}" name="_token">
             </form>
         </div>

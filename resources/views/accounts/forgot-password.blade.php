@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <a href="{{ route('account.forgot') }}">Don't have access to your Email Address?</a>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Submit</button>
                 <input type="hidden" value="{{ Session::token() }}" name="_token">
             </form>
         </div>

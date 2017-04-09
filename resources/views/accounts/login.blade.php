@@ -20,7 +20,7 @@ Welcome
         <div class="form-group">
             <a href="{{ route('account.forgot') }}">Forgot your password?</a>
         </div>  
-        <button type="submit" class="btn btn-primary">Log In</button>
+        <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Log In</button>
         <input type="hidden" name="_token" value="{{ Session::token() }}">
     </form>
 </div>

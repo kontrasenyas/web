@@ -1,3 +1,7 @@
+@section('title')
+{{ $post->title }}
+@endsection
+
 @extends('layouts.master')
 
 @section('content')
@@ -28,7 +32,7 @@
 				</div>
 				<input type="post_id" name="post_id" hidden value="{{ $post->id }}">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Save Image</button>
+					<button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Save Image</button>
 				</div>
 				<input type="hidden" name="_token" value="{{ Session::token() }}">
 			</form>
@@ -95,7 +99,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
+				<button type="button" class="btn btn-primary" id="modal-save" onclick="this.disabled=true;this.form.submit();">Save changes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

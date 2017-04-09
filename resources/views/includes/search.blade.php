@@ -22,7 +22,7 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-md-12">							
-							<button class="btn btn-primary" type="submit">Search!</button>
+							<button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Search!</button>
 							<input type="hidden" name="_token" value="{{ Session::token() }}">							
 						</div>
 					</div>

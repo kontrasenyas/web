@@ -13,7 +13,7 @@
                     <label for="password">Please enter your New Password</label>
                     <input type="password" name="password" class="form-control" id="password">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Submit</button>
                 <input type="hidden" value="{{ Session::token() }}" name="_token">
                 <input type="hidden" value="{{ $token }}" name="password_token">
                 <input type="hidden" value="{{ $code }}" name="code">
