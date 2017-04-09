@@ -5,10 +5,6 @@ Route::group(['middleware' => ['web']],function(){
 		return view('home');
 	})->name('home');
 
-	Route::get('/welcome',function() {
-		return view('welcome');
-	})->name('welcome');
-
 	Route::get('/login', function() {
 		return view('accounts.login');
 	})->name('login');

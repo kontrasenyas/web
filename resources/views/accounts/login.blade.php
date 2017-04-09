@@ -1,7 +1,7 @@
 @extends('layouts/master')
 
 @section('title')
-Welcome
+Login
 @endsection
 
 @section('content')

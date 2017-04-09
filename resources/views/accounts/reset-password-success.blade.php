@@ -13,7 +13,7 @@
                 Password successfully updated.
             </div>
         </div>
-        <p><a href="{{ route('welcome') }}">Click here to login</a></p>
+        <p><a href="{{ route('login') }}">Click here to login</a></p>
     </div>
 </section>
 @endsection
