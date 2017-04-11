@@ -1,5 +1,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
-@if(count($errors) > 0)
+@if(isset($errors) && count($errors) > 0)
 <!-- <div class="row form-group">
 	<div class="col-md-4 col-md-offset-4 error">
 		<ul>
