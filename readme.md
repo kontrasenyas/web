@@ -1,3 +1,10 @@
+<ol>
+<li> <a href="https://getcomposer.org/Composer-Setup.exe"> Install composer </a> </li>
+<li>Run composer update</li>
+<li>php artisan serve</li>
+</ol>
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
