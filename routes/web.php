@@ -1,9 +1,10 @@
 <?php
 Route::group(['middleware' => ['web']],function(){
 
-	Route::get('/',function() {
-		return view('home');
-	})->name('home');
+	Route::get('/', [
+		'uses' => 'HomeController@getHome',
+		'as' => 'home'
+	]);
 
 	Route::get('/login', function() {
 		return view('accounts.login');
