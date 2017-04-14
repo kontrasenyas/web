@@ -49,6 +49,7 @@
 					{{-- <p class="body">Details</p> --}}
 					<div class="col-md-12" id="details">
 						<p class="body" id="body">{{ $post->body }}</p>
+						<p class="capacity" id="capacity">{{ $post->capacity }} seaters</p>
 						<p class="contact" id="contact">{{ $post->contact_no }}</p>
 						<p class="location" id="location">{{ $post->location }}</p>
 					</div>
@@ -66,12 +67,11 @@
 						<a href="{{ route('post.delete', ['post_id' => $post->id]) }}" onclick="return confirm('Are you sure?')">Delete</a> |
 						@endif
 					</div>
-					
 
-				</div>
-			</article>
-		</div>
-	</section>
+				</article>
+			</div>
+		</section>
+	</div>
 </div>
 </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
