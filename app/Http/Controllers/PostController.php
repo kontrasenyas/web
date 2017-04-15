@@ -17,6 +17,12 @@ class PostController extends Controller
 		$posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->paginate(5);
 		return view('posts.dashboard', ['posts' => $posts]);
 	}
+
+	public function getMyPost()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->paginate(5);
+        return view('posts.my-post', ['posts' => $posts]);
+    }
 	
 	public function postCreatePost(Request $request)
 	{

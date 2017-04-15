@@ -36,7 +36,7 @@
                         </a>
                     @endforeach
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     {{ $posts->appends(Request::except('page'))->links() }}
                 </div>
             @endif
