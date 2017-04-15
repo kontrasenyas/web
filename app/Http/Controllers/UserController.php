@@ -27,8 +27,8 @@ class UserController extends Controller
 		$email = $request['email'];
 		$mobile_no = $request['mobile_no'];
 		$password = bcrypt($request['password']);
-		$first_name = $request['first_name'];
-		$last_name = $request['last_name'];
+		$first_name = ucwords($request['first_name']);
+		$last_name = ucwords($request['last_name']);
 
 		$user = new User();
 		$user->email = $email;
@@ -95,8 +95,8 @@ class UserController extends Controller
 			'email' => 'required|email|unique:users,email,'. Auth::id()
 		]);
 		
-		$user->first_name = $request['first_name'];
-		$user->last_name = $request['last_name'];
+		$user->first_name = ucwords($request['first_name']);
+		$user->last_name = ucwords($request['last_name']);
 		$user->mobile_no = $request['mobile_no'];
 		$user->email = $request['email'];
 		
