@@ -18,10 +18,10 @@ class PostController extends Controller
 		return view('posts.dashboard', ['posts' => $posts]);
 	}
 
-	public function getMyPost()
+	public function getUserPost($user_id)
     {
-        $posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->paginate(5);
-        return view('posts.my-post', ['posts' => $posts]);
+        $posts = Post::orderBy('created_at', 'desc')->where('user_id', $user_id)->paginate(5);
+        return view('posts.user-post', ['posts' => $posts, 'user_id' => $user_id]);
     }
 	
 	public function postCreatePost(Request $request)

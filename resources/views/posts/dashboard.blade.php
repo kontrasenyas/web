@@ -35,7 +35,7 @@
 </section>
 <section class="row posts">
 	<div class="col-md-12 text-center">
-		<h3><a href="{{ route('mypost') }}">My Posts ({{count($posts)}})</a></h3>
+		<h3><a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}">My Posts ({{count($posts)}})</a></h3>
 	</div>
 </section>
 @endsection

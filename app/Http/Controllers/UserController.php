@@ -74,8 +74,9 @@ class UserController extends Controller
 
 	public function getAccountProfile($user_id)
 	{
-		$user = User::where('id', $user_id)->first();		
-		return view('accounts.profile', ['user' => $user]);
+		$user = User::where('id', $user_id)->first();
+		$posts = $user->posts()->where('user_id', $user->id)->get();
+		return view('accounts.profile', ['user' => $user, 'posts' => $posts]);
 	}
 
 	// public function getEditAccountIndex()

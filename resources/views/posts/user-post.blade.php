@@ -7,7 +7,12 @@
 @section('content')
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
-            <h3>My Posts</h3>
+            @if(Auth::user() && Auth::user()->id == $user_id)
+                <h3>My Posts</h3>
+            @endif
+            @if(!Auth::user() || Auth::user()->id != $user_id)
+                <h3>User's Posts</h3>
+            @endif
             @foreach($posts as $post)
                 <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
                     <div class="form-group div_hover col-md-12">

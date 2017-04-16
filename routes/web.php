@@ -98,10 +98,9 @@ Route::group(['middleware' => ['web']],function(){
 		'middleware' => 'auth'
 	]);
 
-	Route::get('/mypost', [
-	   'uses' => 'PostController@getMyPost',
-        'as' => 'mypost',
-        'middleware' => 'auth'
+	Route::get('/user-post/{user_id}', [
+	   'uses' => 'PostController@getUserPost',
+        'as' => 'user-post'
     ]);
 
 	Route::get('/post/{post_id}',[
