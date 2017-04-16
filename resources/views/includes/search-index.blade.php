@@ -14,7 +14,7 @@
                 </div>
             @endif
             @if(count($posts) > 0)
-                <div class="col-md-12"> <p class="info"> {{ $posts->count() }} result/s </p></div>
+                <div class="col-md-12"> <p class="info"> {{ $posts->total() }} result/s </p></div>
                 <div class="col-md-12">
                     @foreach($posts as $post)
                         <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt=""
-                                         class="img-responsive center-block" style="height: 110px;">
+                                         class="img-responsive center-block" style="height: 80px;">
                                 </div>
                             </div>
                         </a>
