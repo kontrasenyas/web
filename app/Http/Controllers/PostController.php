@@ -79,6 +79,7 @@ class PostController extends Controller
 	public function postEditPost(Request $request) {
 		$this->validate($request, [
 			'body' => 'required',
+			'capacity' => 'required|numeric|max:100',
 			'contactNo' => 'required',
 			'location' => 'required'
 			]);
@@ -90,10 +91,11 @@ class PostController extends Controller
 		}
 
 		$post->body = $request['body'];
+        $post->capacity = $request['capacity'];
 		$post->contact_no = $request['contactNo'];
 		$post->location = $request['location'];
 		$post->update();
-		return response()->json(['message' => 'Post edited', 'new_body' => $post->body, 'new_contact' => $post->contact_no, 'new_location' => $post->location], 200);
+		return response()->json(['message' => 'Post edited', 'new_body' => $post->body, 'new_capacity' => $post->capacity, 'new_contact' => $post->contact_no, 'new_location' => $post->location], 200);
 	}
 
 	public function postLikePost(Request $request)

@@ -48,10 +48,10 @@
 					</div>
 					{{-- <p class="body">Details</p> --}}
 					<div class="col-md-12" id="details">
-						<p class="body" id="body">{{ $post->body }}</p>
-						<p class="capacity" id="capacity">{{ $post->capacity }} seaters</p>
-						<p class="contact" id="contact">{{ $post->contact_no }}</p>
-						<p class="location" id="location">{{ $post->location }}</p>
+						<p class="body col-md-12" id="body">{{ $post->body }}</p>
+						<p class="capacity col-md-12" id="capacity">{{ $post->capacity }}</p>
+						<p class="contact col-md-12 form-group" id="contact">{{ $post->contact_no }}</p>
+						<p class="location col-md-12 form-group" id="location">{{ $post->location }}</p>
 					</div>
 					<div class="info">
 						Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a> on {{ $post->created_at->diffForHumans() }}﻿
@@ -88,6 +88,10 @@
 						<textarea name="post-body" id="post-body" rows="5" class="form-control"></textarea>
 					</div>
 					<div class="form-group">
+						<label for="post-body">Capacity</label>
+						<input type="number" name="post-capacity" id="post-capacity" rows="5" class="form-control">
+					</div>
+					<div class="form-group">
 						<label for="post-body">Contact Number</label>
 						<input type="text" name="post-contact" id="post-contact" rows="5" class="form-control">
 					</div>
@@ -99,7 +103,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" id="modal-save" onclick="this.disabled=true;this.form.submit();">Save changes</button>
+				<button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

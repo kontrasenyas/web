@@ -1,5 +1,6 @@
 var postId = 0;
 var postBodyElement = null;
+var postCapacityElement = null;
 var postContactElement = null;
 var postLocationElement = null;
 var postElement = null;
@@ -11,16 +12,18 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 	postElement = event.target.parentNode.parentNode;
 
 	postBodyElement = postElement.childNodes[3].childNodes[1];
-	postContactElement = postElement.childNodes[3].childNodes[3];
-	postLocationElement = postElement.childNodes[3].childNodes[5];
-	
+    postCapacityElement = postElement.childNodes[3].childNodes[3];
+	postContactElement = postElement.childNodes[3].childNodes[5];
+	postLocationElement = postElement.childNodes[3].childNodes[7];
 
 	var postBody = postBodyElement.textContent;
+    var postCapacity = postCapacityElement.textContent;
 	var postContact = postContactElement.textContent
 	var postLocation = postLocationElement.textContent
 	postId = event.target.parentNode.parentNode.dataset['postid'];
 
 	$('#post-body').val(postBody);
+    $('#post-capacity').val(postCapacity);
 	$('#post-contact').val(postContact);
 	$('#post-location').val(postLocation);
 	$('#edit-modal').modal();
@@ -31,8 +34,9 @@ $('#modal-save').on('click', function() {
 		method: 'POST',
 		url: urlEdit,
 		data: {
-			body: $('#post-body').val(), 
-			contactNo: $('#post-contact').val(), 
+			body: $('#post-body').val(),
+            capacity: $('#post-capacity').val(),
+            contactNo: $('#post-contact').val(),
 			location: $('#post-location').val(),  
 			postId: postId, 
 			_token: token
@@ -41,6 +45,7 @@ $('#modal-save').on('click', function() {
 	.done(function (msg) {
 		//console.log(JSON.stringify(msg));
 		$(postBodyElement).text(msg['new_body']);
+        $(postCapacityElement).text(msg['new_capacity']);
 		$(postContactElement).text(msg['new_contact']);
 		$(postLocationElement).text(msg['new_location']);
 		$(postElement).effect("highlight", {color: '#eff0f1'}, 5000);
