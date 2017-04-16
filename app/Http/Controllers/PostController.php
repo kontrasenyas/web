@@ -32,7 +32,7 @@ class PostController extends Controller
 			'title' => 'required|max:100',
 			'capacity' => 'required|numeric|max:100',
 			'image' => 'image',
-			'contact_no' => 'required|numeric',
+			'contact_no' => 'required|regex:/(09)[0-9]{9}/',
 			'location' => 'required|max:100',
 			'body' => 'required|max:1000'
 		], ['image.image' => 'Photo must be a valid image file.']
@@ -80,7 +80,7 @@ class PostController extends Controller
 		$this->validate($request, [
 			'body' => 'required',
 			'capacity' => 'required|numeric|max:100',
-			'contactNo' => 'required',
+			'contactNo' => 'required|regex:/(09)[0-9]{9}/',
 			'location' => 'required'
 			]);
 

@@ -17,7 +17,7 @@ class UserController extends Controller
 	{
 		$this->validate($request, [
 			'email' => 'required|email|unique:users',
-			'mobile_no' => 'required|unique:users|numeric',
+			'mobile_no' => 'required|unique:users|regex:/(09)[0-9]{9}/',
 			'password' => 'required|min:8',
 			'first_name' => 'required|max:120',
 			'last_name' => 'required|max:120',
@@ -92,7 +92,7 @@ class UserController extends Controller
 		$this->validate($request, [
 			'first_name' => 'required|max:120',
 			'last_name' => 'required|max:120',
-			'mobile_no' => 'required|numeric|unique:users,mobile_no,'. Auth::id(),
+			'mobile_no' => 'required|regex:/(09)[0-9]{9}/|unique:users,mobile_no,'. Auth::id(),
 			'email' => 'required|email|unique:users,email,'. Auth::id()
 		]);
 		

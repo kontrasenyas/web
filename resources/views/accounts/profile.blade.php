@@ -13,7 +13,7 @@
             <h3>{{ $user->mobile_no }}</h3>
             <h4 class="text-lowercase">{{ $user->email }}</h4>
         </div>
-        @if(Auth::user())
+        @if(Auth::user() && Auth::user()->id == $user->id)
             <div class="col-md-12 text-center">
                 <a href="{{ route('account.edit') }}">Edit your account</a>
             </div>
