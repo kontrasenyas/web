@@ -1,27 +1,34 @@
 @extends('layouts.master')
 
 @section('title')
-    My Posts
+    @if(count($posts) > 0)
+        @if(Auth::user() && Auth::user()->id == $user->id)
+            My Posts
+        @endif
+        @if(!Auth::user() || Auth::user()->id != $user->id)
+            {{ $user->first_name }}'s Posts
+        @endif
+    @endif
 @endsection
 
 @section('content')
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
             @if(count($posts) == 0)
-                @if(!Auth::user() || Auth::user()->id != $user_id)
+                @if(!Auth::user() || Auth::user()->id != $user->id)
                     <h4>This user doesn't have any post at the moment</h4>
                 @endif
-                @if(Auth::user() && Auth::user()->id == $user_id)
+                @if(Auth::user() && Auth::user()->id == $user->id)
                     <h4>You don't have any post at the moment</h4>
                     <p><a href="{{ route('dashboard') }}"> Click here to create your first post. </a></p>
                 @endif
             @endif
             @if(count($posts) > 0)
-                @if(Auth::user() && Auth::user()->id == $user_id)
+                @if(Auth::user() && Auth::user()->id == $user->id)
                     <h3>My Posts</h3>
                 @endif
-                @if(!Auth::user() || Auth::user()->id != $user_id)
-                    <h3>User's Posts</h3>
+                @if(!Auth::user() || Auth::user()->id != $user->id)
+                    <h3>{{ $user->first_name }}'s Posts</h3>
                 @endif
             @endif
             @foreach($posts as $post)

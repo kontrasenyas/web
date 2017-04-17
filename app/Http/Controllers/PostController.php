@@ -21,7 +21,10 @@ class PostController extends Controller
 	public function getUserPost($user_id)
     {
         $posts = Post::orderBy('created_at', 'desc')->where('user_id', $user_id)->paginate(5);
-        return view('posts.user-post', ['posts' => $posts, 'user_id' => $user_id]);
+        $post = Post::where('user_id', $user_id)->first();
+		$user = $post->user()->where('id', $user_id)->first();
+
+        return view('posts.user-post', ['posts' => $posts, 'user' => $user]);
     }
 	
 	public function postCreatePost(Request $request)
