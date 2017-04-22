@@ -120,6 +120,12 @@ class UserController extends Controller
 		return new Response($file, 200);
 	}
 
+	public function getFeedback($user_id)
+	{
+		$user = User::Find($user_id);
+		return view('accounts.feedback', ['user' => $user]);
+	}
+
 	public function getChangePassword()
 	{
 		return view('accounts.change-password', ['user' => Auth::user()]);

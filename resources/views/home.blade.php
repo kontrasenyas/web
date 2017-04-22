@@ -6,7 +6,7 @@ Libot Philippines
 
 @section('content')
 @include('includes.search')
-
+<hr>
 @include('posts.latest-posts')
 
 @endsection

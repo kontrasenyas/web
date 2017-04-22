@@ -41,6 +41,6 @@
 }
 
 
-.div_hover { background-color: white; }
+.div_hover { background-color: #f8f8f8; }
 
 .div_hover:hover { background-color: #eff0f1; }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Like;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -19,13 +20,17 @@ class PostController extends Controller
 	}
 
 	public function getUserPost($user_id)
-    {
-        $posts = Post::orderBy('created_at', 'desc')->where('user_id', $user_id)->paginate(5);
-        $post = Post::where('user_id', $user_id)->first();
-		$user = $post->user()->where('id', $user_id)->first();
-
-        return view('posts.user-post', ['posts' => $posts, 'user' => $user]);
-    }
+	{
+		$posts = Post::orderBy('created_at', 'desc')->where('user_id', $user_id)->paginate(5);
+		$post = Post::where('user_id', $user_id)->first();
+		if ($post != NULL) {
+			$user = $post->user()->where('id', $user_id)->first();
+		}
+		else {
+			$user = User::Find($user_id);
+		}
+		return view('posts.user-post', ['posts' => $posts, 'user' => $user]);
+	}
 	
 	public function postCreatePost(Request $request)
 	{
@@ -38,9 +43,9 @@ class PostController extends Controller
 			'contact_no' => 'required|regex:/(09)[0-9]{9}/',
 			'location' => 'required|max:100',
 			'body' => 'required|max:1000'
-		], ['image.image' => 'Photo must be a valid image file.']
+			], ['image.image' => 'Photo must be a valid image file.']
 
-		);
+			);
 
 		$post = new Post();
 		$post->title = $request['title'];
@@ -94,7 +99,7 @@ class PostController extends Controller
 		}
 
 		$post->body = $request['body'];
-        $post->capacity = $request['capacity'];
+		$post->capacity = $request['capacity'];
 		$post->contact_no = $request['contactNo'];
 		$post->location = $request['location'];
 		$post->update();
