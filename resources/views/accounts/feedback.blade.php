@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    Give feedback {{ $user->first_name }} {{ $user->last_name }}
+    Give feedback {{ $user->first_name }} {{ $user->last_name }} 
 @endsection
