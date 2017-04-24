@@ -125,6 +125,12 @@ class UserController extends Controller
 		$user = User::Find($user_id);
 		return view('accounts.feedback', ['user' => $user]);
 	}
+	public function postFeedback(Request $request)
+	{
+		$user_id = $request['user_id'];
+		$comment = $request['comment'];
+		return redirect()->route('account.profile', ['id' => $user_id]);
+	}
 
 	public function getChangePassword()
 	{

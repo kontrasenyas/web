@@ -96,6 +96,10 @@ Route::group(['middleware' => ['web']],function(){
 		'uses' => 'UserController@getFeedback',
 		'as' => 'account.feedback'
 	]);
+	Route::post('/feedback', [
+		'uses' => 'UserController@postFeedback',
+		'as' => 'account.feedback-post'
+	]);
 
 	Route::get('/dashboard', [
 		'uses' => 'PostController@getDashboard',
