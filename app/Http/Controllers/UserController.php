@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\ForgotPassword;
+use App\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -129,7 +130,15 @@ class UserController extends Controller
 	{
 		$user_id = $request['user_id'];
 		$comment = $request['comment'];
-		return redirect()->route('account.profile', ['id' => $user_id]);
+
+		$feedback = new Feedback();
+
+		$feedback->user_to = $user_id;
+		$feedback->user_from = Auth::user()->id;
+		$feedback->comment = $comment;
+
+		$feedback->save();
+		return redirect()->route('account.profile', ['id' => $user_id])->with(['message' => 'Thank you for your feedback.']);
 	}
 
 	public function getChangePassword()
