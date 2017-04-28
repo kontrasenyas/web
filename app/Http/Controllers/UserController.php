@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Review;
 use App\ForgotPassword;
-use App\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +77,8 @@ class UserController extends Controller
 	{
 		$user = User::where('id', $user_id)->first();
 		$posts = $user->posts()->where('user_id', $user->id)->get();
-		return view('accounts.profile', ['user' => $user, 'posts' => $posts]);
+        $reviews = Review::where('user_to', $user_id)->get();
+		return view('accounts.profile', ['user' => $user, 'posts' => $posts, 'reviews' => $reviews]);
 	}
 
 	// public function getEditAccountIndex()
@@ -121,23 +122,30 @@ class UserController extends Controller
 		return new Response($file, 200);
 	}
 
-	public function getFeedback($user_id)
+	public function getReview($user_id)
 	{
 		$user = User::Find($user_id);
-		return view('accounts.feedback', ['user' => $user]);
+		$reviews = Review::where('user_to', $user_id)->orderBy('created_at', 'desc')->paginate(6);
+
+
+		//return $users;
+		return view('accounts.review', ['user' => $user, 'reviews' => $reviews]);
 	}
-	public function postFeedback(Request $request)
+	public function postReview(Request $request)
 	{
+	    $this->validate($request, [
+	       'comment' => 'required'
+        ]);
 		$user_id = $request['user_id'];
 		$comment = $request['comment'];
 
-		$feedback = new Feedback();
+		$review = new Review();
 
-		$feedback->user_to = $user_id;
-		$feedback->user_from = Auth::user()->id;
-		$feedback->comment = $comment;
+        $review->user_to = $user_id;
+        $review->user_id = Auth::user()->id;
+        $review->comment = $comment;
 
-		$feedback->save();
+        $review->save();
 		return redirect()->route('account.profile', ['id' => $user_id])->with(['message' => 'Thank you for your feedback.']);
 	}
 

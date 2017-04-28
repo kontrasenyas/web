@@ -27,7 +27,7 @@
             This user has <a href="{{ route('user-post', ['user_id' => $user->id]) }}">{{count($posts)}} post/s</a>.
         </div>
         <div class="col-md-12 text-center">
-            <a href="{{ route('account.feedback', ['user_id' => $user->id]) }}">Give this user a feedback.</a>
+            <a href="{{ route('account.review', ['user_id' => $user->id]) }}">Reviews ({{ count($reviews)  }})</a>
         </div>
     @endif
 @endsection

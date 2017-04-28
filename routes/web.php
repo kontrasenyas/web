@@ -92,13 +92,13 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'account.image'
 	]);
 
-	Route::get('/feedback/{user_id}', [
-		'uses' => 'UserController@getFeedback',
-		'as' => 'account.feedback'
+	Route::get('/review/{user_id}', [
+		'uses' => 'UserController@getReview',
+		'as' => 'account.review'
 	]);
-	Route::post('/feedback', [
-		'uses' => 'UserController@postFeedback',
-		'as' => 'account.feedback-post'
+	Route::post('/review', [
+		'uses' => 'UserController@postReview',
+		'as' => 'account.review-post'
 	]);
 
 	Route::get('/dashboard', [

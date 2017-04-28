@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Post;
 use App\Like;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
