@@ -63,6 +63,11 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'account.forgot'
 	]);
 
+	Route::get('/forgot-password-sms', [
+	   'uses' => 'UserController@getForgotPasswordSMS',
+        'as' => 'account.forgot-sms'
+    ]);
+
 	Route::get('/reset-password/{token}/{code}', [
 		'uses' => 'UserController@getResetPassword',
 		'as' => 'account.get-reset-password'

@@ -191,6 +191,11 @@ class UserController extends Controller
 		return view('accounts.forgot-password');
 	}
 
+	public function getForgotPasswordSMS()
+    {
+        return view('accounts.forgot-password-sms');
+    }
+
 	public function getResetPassword($token, $code)
 	{
 		$fg = ForgotPassword::where('token', $token)->where('code', $code)->first();
@@ -279,6 +284,7 @@ class UserController extends Controller
 		if ($user != null) {
 			$user_id = $user->id;
 			$code = strtoupper(str_random(5));
+            $token = bin2hex(openssl_random_pseudo_bytes(24));
 			$valid_until = date("Y-m-d H:i:s", time() + 86400);
 
 			$forgot_password = new ForgotPassword();
@@ -286,6 +292,7 @@ class UserController extends Controller
 			$forgot_password->user_id = $user_id;
 			$forgot_password->mobile_no = $mobile_no;
 			$forgot_password->code = $code;
+			$forgot_password->token = $token;
 			$forgot_password->valid_until = $valid_until;
 			$forgot_password->save();
 
@@ -302,11 +309,13 @@ class UserController extends Controller
 			    ),
 			);
 
-			$fg = ForgotPassword::where('mobile_no', $mobile_no)->orderBy('valid_until', 'desc')->first();
-			return $fg;
+			//$fg = ForgotPassword::where('mobile_no', $mobile_no)->orderBy('valid_until', 'desc')->first();
+			//return $fg;
 
-			//$context  = stream_context_create($param);
-			//$return = file_get_contents($url, false, $context);
+			$context  = stream_context_create($param);
+			$return = file_get_contents($url, false, $context);
+
+            return redirect()->back()->with(['message' => 'Please check your mobile for instructions.']);
 		}
 		else {
 			return back()->withErrors([
