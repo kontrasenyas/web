@@ -7,10 +7,12 @@ Route::group(['middleware' => ['web']],function(){
 	]);
 
 	Route::get('/login', function() {
+	    if (Auth::check()) {return Redirect::to('/');}
 		return view('accounts.login');
 	})->name('login');
 
 	Route::get('/register', function() {
+        if (Auth::check()) {return Redirect::to('/');}
 		return view('accounts.register');
 	})->name('register');
 
@@ -60,12 +62,14 @@ Route::group(['middleware' => ['web']],function(){
 
 	Route::get('/forgot-password', [
 		'uses' => 'UserController@getForgotPassword',
-		'as' => 'account.forgot'
+		'as' => 'account.forgot',
+        'middleware' => 'guest'
 	]);
 
 	Route::get('/forgot-password-sms', [
 	   'uses' => 'UserController@getForgotPasswordSMS',
-        'as' => 'account.forgot-sms'
+        'as' => 'account.forgot-sms',
+        'middleware' => 'guest'
     ]);
 
 	Route::get('/reset-password/{token}/{code}', [

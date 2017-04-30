@@ -7,11 +7,17 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">
-            <h3>Give feedback to <a
-                        href="{{ route('account.profile', ['id' => $user->id]) }}"> {{ $user->first_name }} {{ $user->last_name }} </a>
-            </h3>
-            <hr>
-            @if(Auth::user())
+            @if((Auth::user() && (Auth::user() && (Auth::user()->id != $user->id))) || (!Auth::user()))
+                <h3>Feedback to <a
+                            href="{{ route('account.profile', ['id' => $user->id]) }}"> {{ $user->first_name }} {{ $user->last_name }} </a>
+                </h3>
+                <hr>
+            @endif
+            @if(Auth::user() && (Auth::user() && (Auth::user()->id == $user->id)))
+                <h3>Your Feedback
+                </h3>
+            @endif
+            @if(Auth::user() && (Auth::user() && (Auth::user()->id != $user->id)))
                 <input type="hidden" class="rating"/>
                 <form action="{{ route('account.review-post') }}" method="post">
                     <div class="form-group {{ $errors->has('comment') ? 'has-error' : '' }}">
@@ -33,24 +39,31 @@
             <hr>
         </div>
         <div class="col-md-4 col-md-offset-4">
-            <h4>Reviews from other</h4>
+            <h4>Reviews</h4>
             @if(count($reviews) > 0)
-            @foreach($reviews as $review)
-                <div class="form-group div_hover col-md-12" title="View user profile">
-                    <div class="col-md-12">
-                        <a href="{{ route('account.profile', ['$id' => $review->user->id]) }}"><h5><strong>{{ $review->user->first_name }} {{ $review->user->last_name }}</strong></h5></a>
+                @foreach($reviews as $review)
+                    <div class="form-group div_hover col-md-12" title="View user profile">
+                        <div class="col-md-12">
+                            <a href="{{ route('account.profile', ['$id' => $review->user->id]) }}"><h5>
+                                    <strong>{{ $review->user->first_name }} {{ $review->user->last_name }}</strong></h5>
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <p><em>{{ $review->comment }}</em></p>
+                            <p class="small">{{ $review->created_at->diffForHumans() }}</p>
+                        </div>
+
                     </div>
-                    <div class="col-md-12">
-                        <p><em>{{ $review->comment }}</em></p>
-                    </div>
-                </div>
-            @endforeach
-                @endif
+                @endforeach
+            @endif
             @if(count($reviews) == 0)
                 <div class="col-md-12">
                     <p><em>There is no feedback for this user.</em></p>
                 </div>
-                @endif
+            @endif
         </div>
+    </div>
+    <div class="text-center">
+        {{ $reviews->appends(Request::except('page'))->links() }}
     </div>
 @endsection
