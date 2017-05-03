@@ -134,16 +134,22 @@ class UserController extends Controller
 	public function postReview(Request $request)
 	{
 	    $this->validate($request, [
-	       'comment' => 'required'
-        ]);
+	       'comment' => 'required',
+            'rating' => 'required'
+        ],
+            [
+                'rating.required' => 'Please rate the user from 0 to 5.'
+            ]);
 		$user_id = $request['user_id'];
 		$comment = $request['comment'];
+		$rating = $request['rating'];
 
 		$review = new Review();
 
         $review->user_to = $user_id;
         $review->user_id = Auth::user()->id;
         $review->comment = $comment;
+        $review->rating = $rating;
 
         $review->save();
 		return redirect()->route('account.profile', ['id' => $user_id])->with(['message' => 'Thank you for your feedback.']);
