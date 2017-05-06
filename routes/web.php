@@ -107,7 +107,8 @@ Route::group(['middleware' => ['web']],function(){
 	]);
 	Route::post('/review', [
 		'uses' => 'UserController@postReview',
-		'as' => 'account.review-post'
+		'as' => 'account.review-post',
+        'middleware' => 'auth'
 	]);
 
 	Route::get('/dashboard', [

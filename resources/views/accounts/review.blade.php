@@ -46,6 +46,9 @@
         <div class="col-md-4 col-md-offset-4">
             <h4>Reviews</h4>
             @if(count($reviews) > 0)
+                <div class="col-md-12">
+                    <h4><strong><em>{{ $rating }}</em></strong> <span class="glyphicon glyphicon-star" style="color: #ee8b2d;"></span></h4>
+                </div>
                 <div class="col-md-12"> <p class="info">There are <strong>{{ $reviews->total() }}</strong> reviews for this user. </p></div>
                 @foreach($reviews as $review)
                     <div class="form-group div_hover col-md-12" title="View user profile">
