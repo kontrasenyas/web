@@ -126,11 +126,18 @@ class UserController extends Controller
 	{
 		$user = User::Find($user_id);
 		$reviews = Review::where('user_to', $user_id)->orderBy('created_at', 'desc')->paginate(6);
-		$reviews_total = Review::where('user_to', $user_id)->sum('rating');
-		$rating = round($reviews_total / $reviews->count(), 2);
 
-		//return $users;
-		return view('accounts.review', ['user' => $user, 'reviews' => $reviews, 'rating' => $rating]);
+		if($reviews->count() > 0)
+        {
+            $reviews_total = Review::where('user_to', $user_id)->sum('rating');
+            $rating = round($reviews_total / $reviews->count(), 2);
+
+            return view('accounts.review', ['user' => $user, 'reviews' => $reviews, 'rating' => $rating]);
+        }
+        else
+        {
+            return view('accounts.review', ['user' => $user, 'reviews' => $reviews]);
+        }
 	}
 	public function postReview(Request $request)
 	{
