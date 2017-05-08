@@ -16,7 +16,7 @@ class UserController extends Controller
 {
 	public function postSignUp(Request $request)
 	{
-		$this->validate($request, [
+        $this->validate($request, [
 			'email' => 'required|email|unique:users',
 			'mobile_no' => 'required|unique:users|regex:/(09)[0-9]{9}/',
 			'password' => 'required|min:8',
@@ -38,11 +38,22 @@ class UserController extends Controller
 		$user->first_name = $first_name;
 		$user->last_name = $last_name;
 
-		$user->save();
-
-		Auth::login($user);
-
-		return redirect()->route('dashboard');
+        if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+            $secret = '6LfOYSAUAAAAAORzpDvtLOY621CyzACD239nURPV';
+            //get verify response data
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+            $responseData = json_decode($verifyResponse);
+            if ($responseData->success) {
+                $user->save();
+                Auth::login($user);
+                return redirect()->route('dashboard');
+            }
+        }
+        else {
+            return back()->withErrors([
+                'message' => 'Invalid captcha.'
+            ]);
+        }
 	}
 
 	public function postSignIn(Request $request)
