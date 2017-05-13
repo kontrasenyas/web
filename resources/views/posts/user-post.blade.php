@@ -40,6 +40,7 @@
                                         <div class="info">
                                             <p class="body text-uppercase">{{ $post->location }}</p>
                                             Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}
+                                            <h6>{{ $post->view_count }} views</h6>
                                         </div>
                                     </article>
                                 </div>

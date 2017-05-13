@@ -17,6 +17,9 @@
 				<img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="" class="img-responsive center-block" width="50%" height="50%">
 			</label>
 		</div>
+		<div class="col-md-12 text-center">
+			<p class="text-muted">{{ $post->view_count }} views</p>
+		</div>
 		@if(Auth::user() == $post->user)
 		<div class="form-group text-center">
 			

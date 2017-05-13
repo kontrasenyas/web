@@ -15,7 +15,8 @@
                             <div class="col-md-6">
                                 <div class="info">
                                     <p class="body text-uppercase">{{ $post->location }}</p>
-                                    Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}﻿
+                                    Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}
+                                    <h6>{{ $post->view_count }} views</h6>
                                 </div>
                             </div>
                             <div class="col-md-6">

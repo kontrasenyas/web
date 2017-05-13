@@ -6,7 +6,7 @@
 					<div class="row form-group">
 						<div class="col-md-12">
 							<div class="col-md-6">
-								<input type="text" class="form-control" placeholder="Search for...(Car/Services/Packages)" name="query" autocomplete="off" value="{{ Request::query('query') }}">
+								<input type="text" class="form-control" placeholder="Search for Car/Services/Packages" name="query" autocomplete="off" value="{{ Request::query('query') }}">
 							</div>
 							<div class="col-md-6">
 								<input type="text" class="form-control typeahead" placeholder="Province" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">

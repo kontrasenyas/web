@@ -16,9 +16,9 @@ class SearchController extends Controller
 
 		);
 
-		$query = $request['query'];
+		$query =  str_replace(' ', '%', $request['query']);
 		$location = $request['location'];
-		$keywords = $request['keywords'];
+		$keywords = str_replace(' ', '%', $request['keywords']);
 
 		if (isset($location) && isset($query) && $keywords) {
 			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->where('location', 'like', $location)->where('body', 'like', $keywords)->paginate(5);
