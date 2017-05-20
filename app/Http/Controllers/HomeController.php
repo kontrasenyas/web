@@ -10,4 +10,16 @@ class HomeController extends Controller
 		$posts = Post::orderBy('created_at', 'desc')->paginate(6);
 		return view('home', ['posts' => $posts]);
 	}
+	public function getAbout()
+    {
+        return view('about');
+    }
+    public function getContact()
+    {
+        return view('contact');
+    }
+    public function getHelp()
+    {
+        return view('help');
+    }
 }

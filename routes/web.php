@@ -5,6 +5,18 @@ Route::group(['middleware' => ['web']],function(){
 		'uses' => 'HomeController@getHome',
 		'as' => 'home'
 	]);
+	Route::get('/about', [
+	    'uses' => 'HomeController@getAbout',
+        'as' => 'about'
+    ]);
+	Route::get('/contact', [
+	   'uses' => 'HomeController@getContact',
+        'as' => 'contact'
+    ]);
+    Route::get('/help', [
+        'uses' => 'HomeController@getHelp',
+        'as' => 'help'
+    ]);
 
 	Route::get('/login', function() {
 	    if (Auth::check()) {return Redirect::to('/');}
