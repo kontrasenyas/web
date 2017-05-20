@@ -12,6 +12,6 @@
         <h1>About Us</h1>
     </div>
     <div class="col-md-12">
-        <p>Libot Philippines helps you to find travel package, a car or services to use for your travel and everything you needs for travel.</p>
+        <p>With Libot Philippines, we creates socially responsible travel experiences thus, making it more convenient to find travel packages for everyone.</p>
     </div>
 @endsection
