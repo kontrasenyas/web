@@ -11,15 +11,15 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 
 	postElement = event.target.parentNode.parentNode;
 
-	postBodyElement = postElement.childNodes[3].childNodes[1];
-    postCapacityElement = postElement.childNodes[3].childNodes[3];
-	postContactElement = postElement.childNodes[3].childNodes[5];
-	postLocationElement = postElement.childNodes[3].childNodes[7];
+	postBodyElement = document.getElementById('body');
+    postCapacityElement = document.getElementById('capacity');
+	postContactElement = document.getElementById('contact');
+	postLocationElement = document.getElementById('location');
 
 	var postBody = postBodyElement.textContent;
     var postCapacity = postCapacityElement.textContent;
-	var postContact = postContactElement.textContent
-	var postLocation = postLocationElement.textContent
+	var postContact = postContactElement.textContent;
+	var postLocation = postLocationElement.textContent;
 	postId = event.target.parentNode.parentNode.dataset['postid'];
 
 	$('#post-body').val(postBody);

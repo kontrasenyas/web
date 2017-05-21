@@ -51,10 +51,10 @@
 					</div>
 					{{-- <p class="body">Details</p> --}}
 					<div class="col-md-12" id="details">
-						<p class="body col-md-12" id="body">{{ $post->body }}</p>
-						<p class="capacity col-md-12" id="capacity">{{ $post->capacity }}</p>
-						<p class="contact col-md-12 form-group" id="contact">{{ $post->contact_no }}</p>
-						<p class="location col-md-12 form-group" id="location">{{ $post->location }}</p>
+						<p><strong>Description: </strong><span id="body">{{ $post->body }}</span></p>
+						<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
+						<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
+						<p><strong>Location: </strong><span id="location">{{ $post->location }}</span></p>
 					</div>
 					<div class="info">
 						Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a> on {{ $post->created_at->diffForHumans() }}﻿
