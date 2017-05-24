@@ -17,6 +17,10 @@ Route::group(['middleware' => ['web']],function(){
         'uses' => 'HomeController@getHelp',
         'as' => 'help'
     ]);
+    Route::get('/terms', [
+        'uses' => 'HomeController@getTerms',
+        'as' => 'terms'
+    ]);
 
 	Route::get('/login', function() {
 	    if (Auth::check()) {return Redirect::to('/');}
