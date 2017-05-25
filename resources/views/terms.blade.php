@@ -40,8 +40,6 @@
     <p>We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.</p>
 
 
-
-
     <h2>Governing Law</h2>
 
     <p>These Terms shall be governed and construed in accordance with the laws of Philippines, without regard to its conflict of law provisions.</p>
