@@ -10,7 +10,7 @@
 		<h3>What do you have?</h3>
 		<form action="{{ route('post.create') }}" method="post"  enctype="multipart/form-data">
 			<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-				<input type="text" class="form-control" placeholder="Title (Eg. Van for rent)" aria-describedby="basic-addon2" name="title" id="title" value="{{ Request::old('title') }}">
+				<input type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon2" name="title" id="title" value="{{ Request::old('title') }}">
 			</div>
 			<div class="form-group {{ $errors->has('capacity') ? 'has-error' : '' }}">
 				<input type="number" class="form-control" placeholder="Capacity" aria-describedby="basic-addon2" name="capacity" id="capacity" value="{{ Request::old('capacity') }}">
