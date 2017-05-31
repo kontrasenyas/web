@@ -22,6 +22,12 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'terms'
     ]);
 
+    Route::get('/moments', [
+       'uses' => 'MomentController@getIndex',
+        'as' => 'moments',
+        'middleware' => 'auth'
+    ]);
+
 	Route::get('/login', function() {
 	    if (Auth::check()) {return Redirect::to('/');}
 		return view('accounts.login');
