@@ -51,7 +51,7 @@
 					</div>
 					{{-- <p class="body">Details</p> --}}
 					<div class="col-md-12" id="details">
-						<p><strong>Description: </strong><span id="body">{{ $post->body }}</span></p>
+						<p><strong>Description: </strong><span id="body">{!! nl2br(e($post->body)) !!}</span></p>
 						<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
 						<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
 						<p><strong>Location: </strong><span id="location">{{ $post->location }}</span></p>

@@ -27,6 +27,11 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'moments',
         'middleware' => 'auth'
     ]);
+    Route::post('/moment', [
+       'uses' => 'MomentController@postMoment',
+        'as' => 'moment.create',
+        'middleware' => 'auth'
+    ]);
 
 	Route::get('/login', function() {
 	    if (Auth::check()) {return Redirect::to('/');}
