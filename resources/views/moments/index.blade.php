@@ -11,16 +11,13 @@
     <div class="col-md-12 text-center page-header">
         <h1>Moments</h1>
     </div>
+    @if(Auth::check() && Auth::user()->id == $user->id)
     <div class="col-md-12 text-center">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#momentModal" id="btnMoment">What is your travel moment?</button>
     </div>
-    <div class="col-md-6">
-        Picture
-    </div>
+    @endif
 
-    <div class="col-md-6">
-        Description
-    </div>
+    @include('moments.moment-user')
 
     @include('moments.moment-modal')
 @endsection

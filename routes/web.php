@@ -22,15 +22,18 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'terms'
     ]);
 
-    Route::get('/moments', [
-       'uses' => 'MomentController@getIndex',
-        'as' => 'moments',
-        'middleware' => 'auth'
-    ]);
     Route::post('/moment', [
        'uses' => 'MomentController@postMoment',
         'as' => 'moment.create',
         'middleware' => 'auth'
+    ]);
+    Route::get('/moments/{user_id}', [
+       'uses' => 'MomentController@getMoments',
+        'as' => 'moments.user'
+    ]);
+    Route::get('/moment/{filename}', [
+       'uses' => 'MomentController@getMomentImage',
+        'as' => 'moment.image'
     ]);
 
 	Route::get('/login', function() {
