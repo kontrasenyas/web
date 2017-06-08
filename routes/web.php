@@ -22,18 +22,20 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'terms'
     ]);
 
-    Route::post('/moment', [
-       'uses' => 'MomentController@postMoment',
-        'as' => 'moment.create',
-        'middleware' => 'auth'
+    Route::get('/messages/{user_id}', [
+    	'uses' => 'MessageController@getIndex',
+    	'as' => 'messages',
+    	'middleware' => 'auth'
     ]);
-    Route::get('/moments/{user_id}', [
-       'uses' => 'MomentController@getMoments',
-        'as' => 'moments.user'
+    Route::post('/message/{sent_to}', [
+    	'uses' => 'MessageController@postMessage',
+    	'as' => 'post.message',
+    	'middleware' => 'auth'
     ]);
-    Route::get('/moment/{filename}', [
-       'uses' => 'MomentController@getMomentImage',
-        'as' => 'moment.image'
+    Route::get('/message/u/{user_id}',[
+    	'uses' => 'MessageController@getMessage',
+    	'as' => 'get.message',
+    	'middleware' => 'auth'
     ]);
 
 	Route::get('/login', function() {

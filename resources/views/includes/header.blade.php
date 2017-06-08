@@ -17,13 +17,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     @if(Auth::user())
-                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-
+                        <li><a href="{{ route('dashboard') }}">Dashboard  </a></li>
+                        <li><a href="{{ route('messages', Auth::user()->id) }}">Messages  </a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle capitalize" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->first_name }}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ route('moments.user', Auth::user()->id) }}">Your Moments</a></li>
-                                <li role="separator" class="divider"></li>
                                 <li><a href="{{ route('account.profile', Auth::user()->id) }}">Account</a></li>
                                 <li><a href="{{ route('logout') }}">Logout</a></li>
                                 {{--<li role="separator" class="divider"></li>--}}
