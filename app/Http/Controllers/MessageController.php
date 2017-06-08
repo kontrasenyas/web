@@ -1,0 +1,121 @@
+<?php
+namespace App\Http\Controllers;
+
+use App\Message;
+use App\MessageReply;
+use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
+
+class MessageController extends Controller
+{
+	public function getIndex($user_id)
+	{
+        if (Auth::user()->id != $user_id) {
+            return redirect()->route('home');
+        }
+        else {
+            $message_replies = MessageReply::where('user_id', $user_id)->get();
+
+            $list = DB::table('messages as m')
+            ->join('users as u',function($join){
+                 $join->on('u.id','=','m.user_one')
+                 ->orOn('u.id','=','m.user_two'); 
+            })
+            ->where(function($query) use($user_id){
+                $query->where('m.user_one','=',$user_id);
+                $query->orWhere('m.user_two','=',$user_id);
+            })
+            ->where(function($query) use($user_id){
+                $query->whereRaw(DB::raw(
+                       'CASE WHEN m.user_one = '.$user_id.
+                       ' THEN m.user_two = u.id'. 
+                       ' WHEN m.user_two = '.$user_id.
+                       ' THEN m.user_one = u.id END'));
+               })
+            ->select('u.*', 'm.*')
+            ->orderBy('m.id','DESC')
+            ->limit('20')
+            ->get();
+
+    		return view('messages.index', ['list' => $list, 'message_replies' => $message_replies]);
+        }
+	}
+
+    public function getMessage($user_id)
+    {
+        $sent_to = User::where('id', $user_id)->first();
+        $sent_from = User::where('id', Auth::user()->id)->first();
+
+        $message = Message::where('user_one', $sent_from->id)
+                        ->where('user_two', $sent_to->id);
+                        
+        $message2 = Message::where('user_two', $sent_from->id)
+                        ->where('user_one', $sent_to->id)
+                        ->union($message)
+                        ->first();
+
+        $message_reply_union = MessageReply::where('user_id', $sent_to->id)
+                                           ->where('message_id', $message2->id);
+
+        $message_reply = MessageReply::where('user_id', $sent_from->id)
+                                    ->where('message_id', $message2->id)                           
+                                    ->union($message_reply_union)
+                                    ->orderBy('created_at', 'asc')
+                                    ->get();
+
+       
+        return view('messages.inbox', ['sent_to' => $sent_to, 'sent_from' => $sent_from, 'message' => $message2, 'message_reply' => $message_reply]);
+    }
+
+    public function postMessage(Request $request, $sent_to)
+    {
+        $sent_from = Auth::user()->id;
+        $sent_to = $request['sent_to'];
+        $reply = $request['reply'];
+
+        $first = Message::where('user_one', $sent_to)
+                            ->where('user_two', $sent_from);
+
+        $validate = Message::where('user_one', $sent_from)
+                            ->where('user_two', $sent_to)
+                            ->union($first)
+                            ->first();
+
+        if ($validate->user_one === NULL) {
+            $message = new Message();
+
+            $message->user_one = $sent_from;
+            $message->user_two = $sent_to;
+
+            $message->save();
+        }        
+
+        if ($validate->user_one == Auth::user()->id) {
+            $sent_from = $validate->user_one;
+            $messages = Message::where('user_one', $sent_from)
+                            ->orWhere('user_two', $sent_to)
+                            ->orderBy('id', 'desc')
+                            ->first();
+        }
+        else {
+            $sent_from = $validate->user_two;
+            $messages = Message::where('user_two', $sent_from)
+                            ->orWhere('user_one', $sent_to)
+                            ->orderBy('id', 'desc')
+                            ->first();
+        }
+
+        $message_reply = new MessageReply();
+
+        $message_reply->reply = $reply;
+        $message_reply->user_id = $sent_from;
+        $message_reply->message_id = $messages->id;
+
+        $message_reply->save();
+
+        return redirect()->back();
+    }
+}
