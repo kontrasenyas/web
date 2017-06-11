@@ -14,7 +14,7 @@
                         <textarea class="form-control" data-min-rows='2' placeholder="Share with us your travel experience." aria-describedby="basic-addon2" name="body" id="body" value="{{ Request::old('body') }}">{{ Request::old('body') }}</textarea>
                     </div>
                     <div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
-                        <input type="text" class="form-control typeahead" autocomplete="off" data-min-rows='2' placeholder="Where did this happen?" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('body') }}">
+                        <input type="text" class="form-control" autocomplete="off" data-min-rows='2' placeholder="Where did this happen?" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}">
                     </div>
                     <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                         <label for="image">Upload a photo</label>

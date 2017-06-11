@@ -51,7 +51,7 @@
 					</div>
 					{{-- <p class="body">Details</p> --}}
 					<div class="col-md-12" id="details">
-						<p><strong>Description: </strong><span id="body">{!! nl2br(e($post->body)) !!}</span></p>
+						<p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p>
 						<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
 						<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
 						<p><strong>Location: </strong><span id="location">{{ $post->location }}</span></p>
@@ -121,7 +121,7 @@
 </script>
 @endsection
 @section('script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> 
 <script type="text/javascript">
 	var path = "{{ route('search.location') }}";
 	$('input.typeahead').typeahead({
@@ -146,5 +146,8 @@
 			$('#location').val("");
 		}
 	});
-</script>
+</script>-->
+
+@include('includes.places-autocomplete')
+
 @endsection

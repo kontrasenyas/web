@@ -14,7 +14,7 @@
                             <div class="col-md-12"><p class="body text-uppercase text-center">{{ $post->title }}</p></div>
                             <div class="col-md-6">
                                 <div class="info">
-                                    <p class="body text-uppercase">{{ $post->location }}</p>
+                                    <p class="body text-uppercase">{{ str_limit($post->location, $limit = 10, $end = '...') }}</p>
                                     Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}
                                     <h6>{{ $post->view_count }} views</h6>
                                 </div>
