@@ -22,6 +22,22 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'terms'
     ]);
 
+    Route::get('/messages/{user_id}', [
+    	'uses' => 'MessageController@getIndex',
+    	'as' => 'messages',
+    	'middleware' => 'auth'
+    ]);
+    Route::post('/message/{sent_to}', [
+    	'uses' => 'MessageController@postMessage',
+    	'as' => 'post.message',
+    	'middleware' => 'auth'
+    ]);
+    Route::get('/message/u/{user_id}',[
+    	'uses' => 'MessageController@getMessage',
+    	'as' => 'get.message',
+    	'middleware' => 'auth'
+    ]);
+
     Route::post('/moment', [
        'uses' => 'MomentController@postMoment',
         'as' => 'moment.create',

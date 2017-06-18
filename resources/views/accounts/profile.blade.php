@@ -22,12 +22,13 @@
             </div>
         @endif
     </div>
-    @if(!Auth::user() || (Auth::user() && (Auth::user()->id != $user->id) ))
+    @if(!Auth::user() || (Auth::user() && (Auth::user()->id != $user->id) ))        
         <div class="col-md-12 text-center">
-            This user has <a href="{{ route('user-post', ['user_id' => $user->id]) }}">{{count($posts)}} post/s</a>.
+            <p>This user has <a href="{{ route('user-post', ['user_id' => $user->id]) }}">{{count($posts)}} post/s</a>.</p>
+            <p><a href="{{ route('get.message', ['user_id' => $user->id]) }}">Message this user</a></p>
         </div>
     @endif
-    <div class="col-md-12 text-center">
-        <a href="{{ route('account.review', ['user_id' => $user->id]) }}">Reviews ({{ count($reviews)  }})</a>
+    <div class="col-md-12 text-center">        
+        <p><a href="{{ route('account.review', ['user_id' => $user->id]) }}">Reviews ({{ count($reviews)  }})</a></p>
     </div>
 @endsection
