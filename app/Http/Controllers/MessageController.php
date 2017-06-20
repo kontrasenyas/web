@@ -38,13 +38,11 @@ class MessageController extends Controller
                        ' WHEN m.user_two = '.$user_id.
                        ' THEN m.user_one = u.id END'));
                })            
-            ->select('u.*', 'm.*', 'mr.reply', 'mr.created_at', 'mr.message_id')
+            ->select('u.*', 'm.*', 'mr.reply', 'mr.created_at', 'mr.message_id', 'mr.user_id as latest_user_reply', 'mr.created_at as mr_created')
             ->orderBy('mr.created_at','desc')
-            // ->groupBy('mr.message_id')
             ->limit('20')
             ->get()
             ->unique('message_id');
-
 
     		return view('messages.index', ['list' => $list]);
         }
@@ -109,7 +107,6 @@ class MessageController extends Controller
                                 ->where('user_two', $sent_to)
                                 ->union($first)
                                 ->first();
-
         }
 
         if ($validate != NULL) {      
@@ -119,7 +116,6 @@ class MessageController extends Controller
                                 ->where('user_two', $sent_to)
                                 ->orderBy('id', 'desc')
                                 ->first();
-                                //return $messages;
             }
             else {
                 $sent_from = $validate->user_two;
@@ -129,8 +125,6 @@ class MessageController extends Controller
                                 ->first();
             }
         }
-
-        //return $messages->id;
 
         $message_reply = new MessageReply();
 
