@@ -38,7 +38,7 @@ class MessageController extends Controller
                        ' WHEN m.user_two = '.$user_id.
                        ' THEN m.user_one = u.id END'));
                })            
-            ->select('u.*', 'm.*', 'mr.reply', 'mr.created_at', 'mr.message_id', 'mr.user_id as latest_user_reply', 'mr.created_at as mr_created')
+            ->select('u.*', 'm.*', 'mr.reply', 'mr.created_at', 'mr.message_id', 'mr.user_id as latest_user_reply', 'mr.created_at as mr_created', 'mr.is_read')
             ->orderBy('mr.created_at','desc')
             ->limit('20')
             ->get()
@@ -47,6 +47,24 @@ class MessageController extends Controller
     		return view('messages.index', ['list' => $list]);
         }
 	}
+
+    public function getCountMessage($user_id)
+    {
+        $messages = Message::where('user_one', $user_id)
+                            ->orWhere('user_two', $user_id)->get();
+
+        $count = 0;
+
+        foreach ($messages as $message) {
+            $message_reply = MessageReply::where('message_id', $message->id)->get()->last();
+
+            if ($message_reply->user_id != $user_id && $message_reply->is_read == 0) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
 
     public function getMessage($user_id)
     {
@@ -73,6 +91,13 @@ class MessageController extends Controller
                                         ->union($message_reply_union)
                                         ->orderBy('created_at', 'asc')
                                         ->get();
+        }
+
+        $latest_reply = $message_reply->last();
+
+        if ($latest_reply->user_id != Auth::user()->id) {            
+            $latest_reply->is_read = 1;
+            $latest_reply->save();
         }
        
         return view('messages.inbox', ['sent_to' => $sent_to, 'sent_from' => $sent_from, 'message' => $message2, 'message_reply' => $message_reply]);

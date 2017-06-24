@@ -136,5 +136,21 @@
         @include('includes.message-block')
         @include('includes/footer')
         @yield('script')
+        {{-- For message count in header.blade.php --}}
+        <script type="text/javascript">
+            var theUrl = "{{ route('count.message', ['user_id' =>  Auth::user()->id]) }}"
+            $.get(
+                theUrl,                
+                function(data) {
+                    document.getElementById("message_count").innerHTML = data;
+
+                    if (data == 0) {
+                        $('#message_count').removeClass('label-danger');
+                        $('#message_count').addClass('label-default');                        
+                    }                   
+                }
+            );
+        </script>
+        {{-- End --}}
     </body>
 </html>

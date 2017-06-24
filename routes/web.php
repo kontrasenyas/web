@@ -37,6 +37,11 @@ Route::group(['middleware' => ['web']],function(){
     	'as' => 'get.message',
     	'middleware' => 'auth'
     ]);
+    Route::get('/message_count/{user_id}', [
+    	'uses' => 'MessageController@getCountMessage',
+    	'as' => 'count.message',
+    	'middleware' => 'auth'
+    ]);
 
     Route::post('/moment', [
        'uses' => 'MomentController@postMoment',
