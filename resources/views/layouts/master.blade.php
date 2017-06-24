@@ -137,6 +137,7 @@
         @include('includes/footer')
         @yield('script')
         {{-- For message count in header.blade.php --}}
+        @if(Auth::check())
         <script type="text/javascript">
             var theUrl = "{{ route('count.message', ['user_id' =>  Auth::user()->id]) }}"
             $.get(
@@ -151,6 +152,7 @@
                 }
             );
         </script>
+        @endif
         {{-- End --}}
     </body>
 </html>
