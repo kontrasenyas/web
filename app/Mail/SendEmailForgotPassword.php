@@ -36,7 +36,8 @@ class SendEmailForgotPassword extends Mailable
      */
     public function build()
     {
-        return $this->from('forgotpassword@libot-ph.com')
+        return $this->from('noreply@libot-ph.com', 'Libot Ph')
+            ->subject('Forgot Password')
             ->view('emails.send-forgot-password');
     }
 }
