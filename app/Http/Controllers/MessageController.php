@@ -91,13 +91,12 @@ class MessageController extends Controller
                                         ->union($message_reply_union)
                                         ->orderBy('created_at', 'asc')
                                         ->get();
-        }
+            $latest_reply = $message_reply->last();
 
-        $latest_reply = $message_reply->last();
-
-        if ($latest_reply->user_id != Auth::user()->id) {            
-            $latest_reply->is_read = 1;
-            $latest_reply->save();
+            if ($latest_reply->user_id != Auth::user()->id) {            
+                $latest_reply->is_read = 1;
+                $latest_reply->save();
+            }
         }
        
         return view('messages.inbox', ['sent_to' => $sent_to, 'sent_from' => $sent_from, 'message' => $message2, 'message_reply' => $message_reply]);
