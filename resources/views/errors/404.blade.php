@@ -1,7 +1,7 @@
 @extends('layouts/master')
 
 @section('title')
-Login
+Page is not Found
 @endsection
 
 @section('content')

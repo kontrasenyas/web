@@ -1,7 +1,7 @@
 @extends('layouts/master')
 
 @section('title')
-Sign Up
+Sign Up for Libot
 @endsection
 
 @section('content')
@@ -30,8 +30,11 @@ Sign Up
 				<label for="last_name">Last Name</label>
 				<input class="form-control" type="text" name="last_name" id="last_name" value="{{ Request::old('last_name') }}">
 			</div>
-			<div class="g-recaptcha form-group" data-sitekey="6LfOYSAUAAAAAH-w85JaRA03LIOCowgsU3zInlhk"></div>
-			<button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Sign Up</button>
+			<div align="center" class="g-recaptcha form-group" data-sitekey="6LfOYSAUAAAAAH-w85JaRA03LIOCowgsU3zInlhk"></div>
+			<div class="form-group">
+				<span class="">By clickiing the "Sign Up" button you accept the <a href="{{ route('terms')}}" target="_blank">Terms and Condition</a>.</span>
+			</div>
+			<button type="submit" class="btn btn-success btn-block" onclick="this.disabled=true;this.form.submit();">Sign Up</button>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
 	</div>

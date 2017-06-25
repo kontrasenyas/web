@@ -87,6 +87,10 @@ class UserController extends Controller
 	public function getAccountProfile($user_id)
 	{
 		$user = User::where('id', $user_id)->first();
+		
+		if (is_null($user)) {
+			abort(404);
+		}
 		$posts = $user->posts()->where('user_id', $user->id)->get();
         $reviews = Review::where('user_to', $user_id)->get();
 		return view('accounts.profile', ['user' => $user, 'posts' => $posts, 'reviews' => $reviews]);

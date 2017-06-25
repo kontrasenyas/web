@@ -147,6 +147,9 @@ class PostController extends Controller
 	public function getPostDetails($post_id)
 	{
         $post = Post::where('id', $post_id)->first();
+        if (is_null($post)) {
+        	abort(404);
+        }
         Post::where('id', $post_id)->increment('view_count');
 		return view('posts.details', ['post' => $post]);
 	}

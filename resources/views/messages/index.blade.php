@@ -11,38 +11,44 @@
     <div class="col-md-12 text-center page-header">
         <h1>Inbox</h1>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-4">
     	@foreach($list as $each)
         <div class="col-md-12">
-    		@if($each->user_one == Auth::user()->id)
-                <a href="{{ route('get.message', ['user_id' => $each->user_two]) }}" style="text-decoration:none">                
-                    @if($each->latest_user_reply == Auth::user()->id)
-                    <div class="inbox_hover"> 
-                    {{ $each->first_name }} {{ $each->last_name }}<br/>
-                        You: {{ $each->reply }} <br/>
-                        <span class="text-muted"><small><i>{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</i></small></span>
-                    </div>   
-                    @endif
-                    @if($each->latest_user_reply != Auth::user()->id)
-                        @if($each->is_read == 0)
-                            <div class="inbox_hover inbox_unread">
-                        @endif
-                        @if($each->is_read == 1)
-                            <div class="inbox_hover">
-                        @endif                    
-                        {{ $each->first_name }} {{ $each->last_name }}<br/>
-                        {{ $each->reply }} <br/>
-                        <span class="text-muted"><small><i>{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</i></small></span>
+    		@if($each->user_one == Auth::user()->id)                                 
+                    <a href="{{ route('get.message', ['user_id' => $each->user_two]) }}" style="text-decoration:none; color: black;">
+                    <div class="col-md-3 visible-lg visible-md">
+                        <img style="padding-top: 3px;" src="{{ route('account.image', ['filename' => $each->profile_picture_path]) }}" alt="" class="img-circle" width="50" height="50">
                     </div>
-                    @endif
-                </a>
+                        @if($each->latest_user_reply == Auth::user()->id)
+                        <div class="inbox_hover">                     
+                        <strong>{{ $each->first_name }} {{ $each->last_name }}</strong><br/>
+                            <span class="text-muted">You: {{ $each->reply }} </span><br/>
+                            <span class="text-muted"><small><i>{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</i></small></span>
+                        </div>   
+                        @endif
+                        @if($each->latest_user_reply != Auth::user()->id)
+                            @if($each->is_read == 0)
+                                <div class="inbox_hover inbox_unread">
+                            @endif
+                            @if($each->is_read == 1)
+                                <div class="inbox_hover">
+                            @endif                    
+                            <strong>{{ $each->first_name }} {{ $each->last_name }}</strong><br/>
+                            <span class="text-muted">{{ $each->reply }}</span><br/>
+                            <span class="text-muted"><small><i>{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</i></small></span>
+                        </div>
+                        @endif
+                    </a>
     		@endif
     		@if($each->user_two == Auth::user()->id)
-    			<a href="{{ route('get.message', ['user_id' => $each->user_one]) }}" style="text-decoration:none">
+    			<a href="{{ route('get.message', ['user_id' => $each->user_one]) }}" style="text-decoration:none; color: black;">
+                <div class="col-md-3 visible-lg visible-md">
+                        <img style="padding-top: 3px;" src="{{ route('account.image', ['filename' => $each->profile_picture_path]) }}" alt="" class="img-circle" width="50" height="50">      
+                </div>
                     @if($each->latest_user_reply == Auth::user()->id)
                     <div class="inbox_hover"> 
-                        {{ $each->first_name }} {{ $each->last_name }}<br/>
-                        You: {{ $each->reply }} <br/>
+                        <strong>{{ $each->first_name }} {{ $each->last_name }}</strong><br/>
+                        <span class="text-muted">You: {{ $each->reply }} </span><br/>
                         <span class="text-muted"><small><i>{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</i></small></span>
                     </div>   
                     @endif
@@ -53,8 +59,8 @@
                         @if($each->is_read == 1)
                             <div class="inbox_hover">
                         @endif  
-                        {{ $each->first_name }} {{ $each->last_name }}<br/>
-                        {{ $each->reply }} <br/>
+                        <strong>{{ $each->first_name }} {{ $each->last_name }}</strong><br/>
+                        <span class="text-muted">{{ $each->reply }}</span><br/>
                         <span class="text-muted"><small><i>{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</i></small></span>
                     </div>   
                     @endif

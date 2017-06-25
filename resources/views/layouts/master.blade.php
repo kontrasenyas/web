@@ -31,6 +31,10 @@
                 background-color: #009dff;
                 border-color: #55beff;
             }
+            .navbar-default .navbar-nav > li:hover { 
+                background-color: #55beff; 
+            }
+
             .navbar-default .navbar-brand {
                 color: #ffffff;
             }

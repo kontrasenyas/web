@@ -10,7 +10,17 @@
 @section('content')
     <div class="col-md-12 text-center page-header">
         <h1>Inbox</h1>
-        <h3><a href="{{ route('account.profile', ['user_id' => $sent_to->id]) }}">{{ $sent_to->first_name }} {{ $sent_to->last_name }}</a></h3>
+        <h3>
+            <a href="{{ route('account.profile', ['user_id' => $sent_to->id]) }}" style="text-decoration: none;">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <div class="form-group">
+                <img style="padding-top: 3px;" src="{{ route('account.image', ['filename' => $sent_to->profile_picture_path]) }}" alt="" class="img-circle" width="100" height="100">
+                </div>
+                {{ $sent_to->first_name }} {{ $sent_to->last_name }}
+            </div>
+            
+            </a>
+        </h3>
     </div>
     <div class="col-md-12">    
     @if(count($message) > 0)
@@ -37,9 +47,53 @@
 					<textarea class="form-control" placeholder="Message" aria-describedby="basic-addon2" name="reply" id="reply" value="{{ Request::old('reply') }}"></textarea>
 				</div>
 				<input type="text" class="form-control hidden" placeholder="id" aria-describedby="basic-addon2" name="sent_to" id="sent_to" value="{{ $sent_to->id }}">
+                <p class="text-muted"><small>Press Alt + Enter to send</small></p>
 
-				<button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Send</button>
+				<button id="send" type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Send</button>
 				<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
 	</div>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('button[type="submit"]').attr('disabled', true);
+        $('input[type="text"],textarea').on('keyup',function() {
+            var textarea_value = $("#reply").val();
+            if(textarea_value != '') {
+                $('button[type="submit"]').attr('disabled' , false);
+            }else{
+                $('button[type="submit"]').attr('disabled' , true);
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        var ta = document.getElementById('reply');
+        ta.onkeydown = function (event) {
+            if (event.defaultPrevented) {
+               return;
+            }
+            var handled = false;
+            if (event.key !== undefined) {
+               if (event.key === 'Enter' && event.altKey) {
+                  document.getElementById("send").click(); 
+               }
+            } else if (event.keyIdentifier !== undefined) {
+               if (event.keyIdentifier === "Enter" && event.altKey) {
+                  document.getElementById("send").click(); 
+               }
+
+            } else if (event.keyCode !== undefined) {
+               if (event.keyCode === 13 && event.altKey) {
+                  document.getElementById("send").click(); 
+               }
+            }
+            if (handled) {
+               event.preventDefault();
+            };
+        };
+    });
+</script>
 @endsection

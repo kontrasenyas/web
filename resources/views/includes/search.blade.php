@@ -16,7 +16,7 @@
 					<div class="form-group row">
 						<div class="col-md-12">
 							<div class="col-md-12">
-								<input type="text" class="form-control" placeholder="Keywords/Travel destination.." name="keywords" autocomplete="off" value="{{ Request::query('keywords') }}">
+								<input type="text" class="form-control" placeholder="Keywords" name="keywords" autocomplete="off" value="{{ Request::query('keywords') }}">
 							</div>
 						</div>
 					</div>
