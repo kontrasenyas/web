@@ -12,7 +12,7 @@
         <h1>Moments</h1>
     </div>
     @if(Auth::check() && Auth::user()->id == $user->id)
-    <div class="col-md-12 text-center">
+    <div class="col-md-12 text-center form-group">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#momentModal" id="btnMoment">What is your travel moment?</button>
     </div>
     @endif

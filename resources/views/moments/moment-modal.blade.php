@@ -17,7 +17,7 @@
                         <input type="text" class="form-control" autocomplete="off" data-min-rows='2' placeholder="Where did this happen?" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}">
                     </div>
                     <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
-                        <label for="image">Upload a photo</label>
+                        <label for="image">Upload your best shot</label>
                         <input type="file" name="image" class="form-control" id="image">
                     </div>
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
