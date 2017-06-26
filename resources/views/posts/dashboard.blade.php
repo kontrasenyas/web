@@ -6,7 +6,7 @@
 
 @section('content')
 <section class="row new-post">
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-6">
 		<h3>What do you have?</h3>
 		<form action="{{ route('post.create') }}" method="post"  enctype="multipart/form-data">
 			<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
@@ -32,11 +32,37 @@
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
 	</div>
+	<div class="col-md-6 posts">
+		<h3>My Recent Posts</h3>
+		@foreach($posts as $post)
+                <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
+                            <div class="form-group div_hover col-md-12">
+                                <div class="col-md-6">
+                                    <article class="post" data-postid="{{ $post->id }}">
+                                        <p class="body text-uppercase">{{ $post->title }}</p>
+                                        <div class="info">
+                                            <p class="body text-uppercase">{{ $post->location }}</p>
+                                            Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}
+                                            <h6>{{ $post->view_count }} views</h6>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt=""
+                                         class="img-responsive center-block" style="height: 80px;">
+                                </div>
+                            </div>
+                </a>
+            @endforeach
+            <div class="text-center">
+                <div class="col-md-12 text-center">
+					<h5><a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}">You have ({{$posts->total()}}) total posts</a></h3>
+				</div>
+            </div>
+	</div>
 </section>
 <section class="row posts">
-	<div class="col-md-12 text-center">
-		<h3><a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}">My Posts ({{count($posts)}})</a></h3>
-	</div>
+	
 </section>
 @endsection
 
