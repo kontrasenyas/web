@@ -33,6 +33,7 @@
 		</form>
 	</div>
 	<div class="col-md-6 posts">
+		<div class="col-md-12" style="min-height: 480px;">
 		<h3>My Recent Posts</h3>
 		@foreach($posts as $post)
                 <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
@@ -53,8 +54,9 @@
                                 </div>
                             </div>
                 </a>
-            @endforeach
-            <div class="text-center">
+        @endforeach
+        </div>
+            <div class="col-md-12 text-center">
                 <div class="col-md-12 text-center">
 					<h5><a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}">You have ({{$posts->total()}}) total posts</a></h3>
 				</div>
