@@ -54,7 +54,7 @@
 						<p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p>
 						<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
 						<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
-						<p><strong>Location: </strong><span id="location">{{ $post->location }}</span></p>
+						<p><strong>Destionation: </strong><span id="location">{{ $post->location }}</span></p>
 					</div>
 					<div class="info">
 						Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a> on {{ $post->created_at->diffForHumans() }}﻿

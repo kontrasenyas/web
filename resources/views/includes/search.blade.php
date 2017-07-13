@@ -9,7 +9,7 @@
 								<input type="text" class="form-control" placeholder="Search for Car/Services/Packages" name="query" autocomplete="off" value="{{ Request::query('query') }}">
 							</div>
 							<div class="col-md-6">
-								<input type="text" class="form-control" placeholder="Location" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
+								<input type="text" class="form-control" placeholder="Destination" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
 							</div>
 						</div>						
 					</div>
