@@ -163,7 +163,7 @@ Route::group(['middleware' => ['web']],function(){
 	]);
 
 	Route::get('/dashboard', [
-		'uses' => 'PostController@getDashboard',
+		'uses' => 'HomeController@getDashboard',
 		'as' => 'dashboard',
 		'middleware' => 'auth'
 	]);

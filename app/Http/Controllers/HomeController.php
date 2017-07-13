@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -10,6 +11,12 @@ class HomeController extends Controller
 		$posts = Post::orderBy('created_at', 'desc')->paginate(6);
 		return view('home', ['posts' => $posts]);
 	}
+    public function getDashboard()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->paginate(3);
+        return view('posts.dashboard', ['posts' => $posts]);
+    }
+
 	public function getAbout()
     {
         return view('about');

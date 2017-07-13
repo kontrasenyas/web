@@ -13,12 +13,6 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-	public function getDashboard()
-	{
-		$posts = Post::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->paginate(3);
-		return view('posts.dashboard', ['posts' => $posts]);
-	}
-
 	public function getUserPost($user_id)
 	{
 		$posts = Post::orderBy('created_at', 'desc')->where('user_id', $user_id)->paginate(5);
