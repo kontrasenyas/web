@@ -13,5 +13,6 @@
     </div>
     <div class="col-md-12">
         <p>With Libot Philippines, we creates socially responsible travel experiences thus, making it more convenient to find travel packages for everyone.</p>
+        <p>Founded: May 06, 2017</p>
     </div>
 @endsection
