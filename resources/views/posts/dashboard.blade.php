@@ -28,13 +28,19 @@
 				<label for="image">Photo (must be a valid image file)</label>
 				<input type="file" name="image" class="form-control" id="image">
 			</div>
-			<button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Create Post</button>
+			<button type="submit" class="btn btn-success" onclick="this.disabled=true;this.form.submit();">Create Post</button>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
 		</form>
 	</div>
 	<div class="col-md-6 posts">
 		<div class="col-md-12" style="min-height: 480px;">
 		<h3>My Recent Posts</h3>
+		@if(count($posts) == 0)               
+            @if(Auth::user())
+				<h4>You don't have any post at the moment</h4><br/>
+				<label for="title"><span class="glyphicon glyphicon-arrow-left"></span> Create your first post. </label>
+            @endif
+        @endif
 		@foreach($posts as $post)
                 <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
                             <div class="form-group div_hover col-md-12">
@@ -58,13 +64,16 @@
         </div>
             <div class="col-md-12 text-center">
                 <div class="col-md-12 text-center">
-					<h5><a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}">You have ({{$posts->total()}}) total posts</a></h3>
+					<h5><a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}">You have ({{$posts->total()}}) total posts</a></h5>
+					<span class="text-muted">You have {{$posts->sum('view_count')}} total views</span>
 				</div>
             </div>
 	</div>
 </section>
 <section class="row posts">
-	
+	<div class="col-md-12 text-center">
+		<h4><a href="{{ route('account.review', ['user_id' =>Auth::user()->id]) }}">You have ({{$reviews->total()}}) total reviews</a></h4>
+	</div>
 </section>
 @endsection
 
