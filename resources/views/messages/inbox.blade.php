@@ -22,7 +22,7 @@
             </a>
         </h3>
     </div>
-    <div class="col-md-12">    
+    <div class="col-md-12" style="overflow-y:scroll; height: 220px;" id="message">    
     @if(count($message) > 0)
     	@foreach($message_reply as $reply)
     		@if($reply->user->id == Auth::user()->id)
@@ -95,5 +95,11 @@
             };
         };
     });
+
+    $(function () {
+    var wtf = $('#message');
+    var height = wtf[0].scrollHeight;
+    wtf.scrollTop(height);
+});
 </script>
 @endsection
