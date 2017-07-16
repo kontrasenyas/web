@@ -96,10 +96,7 @@
         };
     });
 
-    $(function () {
-    var wtf = $('#message');
-    var height = wtf[0].scrollHeight;
-    wtf.scrollTop(height);
-});
+    $("#message").scrollTop($("#message")[0].scrollHeight);
+
 </script>
 @endsection
