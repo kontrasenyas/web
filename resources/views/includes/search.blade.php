@@ -1,23 +1,21 @@
-<div class="form-group">
+	<h2>Where are you going?</h2>
 	<form action="{{ route('search') }}" method="get" >
-		<div class="row">
-			<div class="text-center col-md-6 col-md-offset-3">
+		<div class="col-md-12">
+			{{-- <div class="text-center col-md-6 col-md-offset-3"> --}}
 				<div class="">
 					<div class="row form-group">
 						<div class="col-md-12">
-							<div class="col-md-6">
-								<input type="text" class="form-control" placeholder="Search for Car/Services/Packages" name="query" autocomplete="off" value="{{ Request::query('query') }}">
-							</div>
-							<div class="col-md-6">
-								<input type="text" class="form-control" placeholder="Destination" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
-							</div>
-						</div>						
+							<input type="text" class="form-control" placeholder="Search for Car/Services/Packages" name="query" autocomplete="off" value="{{ Request::query('query') }}">
+						</div>							
+					</div>
+					<div class="row form-group">
+						<div class="col-md-12">
+							<input type="text" class="form-control" placeholder="Destination" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
+						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-md-12">
-							<div class="col-md-12">
-								<input type="text" class="form-control" placeholder="Keywords" name="keywords" autocomplete="off" value="{{ Request::query('keywords') }}">
-							</div>
+							<input type="text" class="form-control" placeholder="Keywords" name="keywords" autocomplete="off" value="{{ Request::query('keywords') }}">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -27,10 +25,9 @@
 						</div>
 					</div>
 				</div><!-- /input-group -->
-			</div>
-		</div>	
+			{{-- </div> --}}
+		</div>
 	</form>
-</div>
 
 @section('script')
 	@include('includes.places-autocomplete')

@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
 	public function getHome()
 	{
-		$posts = Post::orderBy('created_at', 'desc')->paginate(6);
+		$posts = Post::orderBy('created_at', 'desc')->paginate(2);
 		return view('home', ['posts' => $posts]);
 	}
     public function getDashboard()

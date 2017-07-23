@@ -42,24 +42,26 @@
             @endif
         @endif
 		@foreach($posts as $post)
-                <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
-                            <div class="form-group div_hover col-md-12">
-                                <div class="col-md-6">
-                                    <article class="post" data-postid="{{ $post->id }}">
-                                        <p class="body text-uppercase">{{ $post->title }}</p>
-                                        <div class="info">
-                                            <p class="body text-uppercase">{{ $post->location }}</p>
-                                            Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}
-                                            <h6>{{ $post->view_count }} views</h6>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="col-md-6">
-                                    <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt=""
-                                         class="img-responsive center-block" style="height: 80px;">
-                                </div>
-                            </div>
-                </a>
+            <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
+	            <div class="form-group div_hover col-md-12">                    
+		            <div class="post row" data-postid="{{ $post->id }}">                
+		                <div class="col-md-6">
+		                    <h4 class="body text-uppercase">{{ $post->title }}</h4>                
+		                    <div class="info">
+		                        <p class="body text-uppercase">{{ str_limit($post->location, $limit = 22, $end = '...') }}</p>
+		                        <p>Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}</p>
+		                        <p>Contact No: {{ $post->user->mobile_no }}</p>
+		                        <p>Description: {{ str_limit($post->body, $limit = 15, $end = '...') }}</p>
+		                        <h6>{{ $post->view_count }} views</h6>
+		                    </div>
+		                </div>
+		                <div class="col-md-6">
+		                    <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt=""
+		                    class="img-responsive center-block" style="width: : 100%;">
+		                </div>                
+		            </div>
+		        </div>
+            </a>
         @endforeach
         </div>
             <div class="col-md-12 text-center">

@@ -8,8 +8,14 @@ Libot Philippines
 @section('meta-image', 'https://libot-ph.com/favicon.ico')
 
 @section('content')
-@include('includes.search')
-<hr>
-@include('posts.latest-posts')
+
+<div class="col-md-12">
+	<div class="col-md-6">
+		@include('includes.search')		
+	</div>	
+	<div class="col-md-6 posts">		
+			@include('posts.latest-posts')
+	</div>
+</div>
 
 @endsection
