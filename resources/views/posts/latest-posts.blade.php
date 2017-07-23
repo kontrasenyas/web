@@ -6,8 +6,15 @@
     </div>
     @endif
     @if(count($posts) > 0)
-    @foreach($posts as $post)
-    <h4>{{ $post->user->first_name }} {{ $post->user->last_name }}</h4>
+    @foreach($posts as $post)    
+    <p><strong>{{ $post->user->first_name }} {{ $post->user->last_name }}</strong>
+    @if(Auth::user() || (Auth::user() && (Auth::user()->id != $post->user->id) ))
+    <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}"><span class="glyphicon glyphicon-envelope text-primary" title="Send message to this user."></span></a>
+    @endif
+    @if(!Auth::user())
+    <a href="#" data-toggle="modal" data-target="#register-first"><span class="glyphicon glyphicon-envelope text-primary" title="Please register to send a message."></span></a>
+    @endif
+    </p>
     <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
         <div class="form-group div_hover col-md-12">                    
             <div class="post row" data-postid="{{ $post->id }}">                
@@ -34,3 +41,5 @@
         {{ $posts->appends(Request::except('page'))->links() }}
     </div>
 </div>
+
+@include('includes.register-first')

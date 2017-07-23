@@ -37,6 +37,11 @@ Route::group(['middleware' => ['web']],function(){
     	'as' => 'get.message',
     	'middleware' => 'auth'
     ]);
+    Route::get('/message/u/{user_id}/?post={post_id}',[
+    	'uses' => 'MessageController@getMessage',
+    	'as' => 'get.message-post',
+    	'middleware' => 'auth'
+    ]);
     Route::get('/message_count/{user_id}', [
     	'uses' => 'MessageController@getCountMessage',
     	'as' => 'count.message',

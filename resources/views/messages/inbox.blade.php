@@ -97,6 +97,18 @@
     });
 
     $("#message").scrollTop($("#message")[0].scrollHeight);
+    $("#reply").focus();  
+
+    $(document).ready(function() {
+        var post_id = getParameterByName('post');
+        var base_url = window.location.origin;
+
+        if (post_id) {
+            var text = document.getElementById('reply');
+            text.value +=  "Hi I'm interested in this post " + base_url + "/post/" + post_id + " ";
+            $('button[type="submit"]').attr('disabled', false);
+        } 
+    });
 
 </script>
 @endsection

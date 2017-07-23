@@ -12,18 +12,18 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 	postElement = event.target.parentNode.parentNode;
 
 	postBodyElement = document.getElementById('body');
-    postCapacityElement = document.getElementById('capacity');
+	postCapacityElement = document.getElementById('capacity');
 	postContactElement = document.getElementById('contact');
 	postLocationElement = document.getElementById('location');
 
 	var postBody = postBodyElement.textContent;
-    var postCapacity = postCapacityElement.textContent;
+	var postCapacity = postCapacityElement.textContent;
 	var postContact = postContactElement.textContent;
 	var postLocation = postLocationElement.textContent;
 	postId = event.target.parentNode.parentNode.dataset['postid'];
 
 	$('#post-body').val(postBody);
-    $('#post-capacity').val(postCapacity);
+	$('#post-capacity').val(postCapacity);
 	$('#post-contact').val(postContact);
 	$('#post-location').val(postLocation);
 	$('#edit-modal').modal();
@@ -35,8 +35,8 @@ $('#modal-save').on('click', function() {
 		url: urlEdit,
 		data: {
 			body: $('#post-body').val(),
-            capacity: $('#post-capacity').val(),
-            contactNo: $('#post-contact').val(),
+			capacity: $('#post-capacity').val(),
+			contactNo: $('#post-contact').val(),
 			location: $('#post-location').val(),  
 			postId: postId, 
 			_token: token
@@ -45,7 +45,7 @@ $('#modal-save').on('click', function() {
 	.done(function (msg) {
 		//console.log(JSON.stringify(msg));
 		$(postBodyElement).text(msg['new_body']);
-        $(postCapacityElement).text(msg['new_capacity']);
+		$(postCapacityElement).text(msg['new_capacity']);
 		$(postContactElement).text(msg['new_contact']);
 		$(postLocationElement).text(msg['new_location']);
 		$(postElement).effect("highlight", {color: '#eff0f1'}, 5000);
@@ -79,3 +79,13 @@ $('.like').on('click', function(event) {
 		}
 	});
 });
+
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
