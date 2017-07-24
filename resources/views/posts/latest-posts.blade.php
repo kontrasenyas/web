@@ -8,11 +8,13 @@
     @if(count($posts) > 0)
     @foreach($posts as $post)    
     <p><strong>{{ $post->user->first_name }} {{ $post->user->last_name }}</strong>
-    @if(Auth::user() || (Auth::user() && (Auth::user()->id != $post->user->id) ))
-    <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}"><span class="glyphicon glyphicon-envelope text-primary" title="Send message to this user."></span></a>
-    @endif
-    @if(!Auth::user())
-    <a href="#" data-toggle="modal" data-target="#register-first"><span class="glyphicon glyphicon-envelope text-primary" title="Please register to send a message."></span></a>
+    @if(!Auth::user() || (Auth::user() && (Auth::user()->id != $post->user->id) ))
+        @if(Auth::user())
+        <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}"><span class="glyphicon glyphicon-envelope text-primary" title="Send message to this user."></span></a>
+        @endif    
+        @if(!Auth::user())
+        <a href="#" data-toggle="modal" data-target="#register-first"><span class="glyphicon glyphicon-envelope text-primary" title="Please register to send a message."></span></a>
+        @endif
     @endif
     </p>
     <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
