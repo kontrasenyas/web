@@ -158,6 +158,6 @@ class MessageController extends Controller
 
         $message_reply->save();
 
-        return redirect()->back();
+        return redirect()->route('get.message', ['user_id' => $sent_to]);
     }
 }

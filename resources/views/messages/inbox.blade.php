@@ -56,6 +56,7 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="{{ URL::to('js/anchorme.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('button[type="submit"]').attr('disabled', true);
@@ -102,6 +103,17 @@
     $(document).ready(function() {
         var post_id = getParameterByName('post');
         var base_url = window.location.origin;
+
+        var message = document.getElementById('message').innerHTML;
+        var new_message = anchorme(message,{
+                            attributes:[
+                                {
+                                    name:"target",
+                                    value:"_blank"
+                                }
+                            ]
+                        });
+        document.getElementById('message').innerHTML = new_message;
 
         if (post_id) {
             var text = document.getElementById('reply');

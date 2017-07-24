@@ -149,5 +149,17 @@
 </script>-->
 
 @include('includes.places-autocomplete')
-
+<script type="text/javascript" src="{{ URL::to('js/anchorme.js')}}"></script>
+<script type="text/javascript">
+	var innerHTML = document.getElementById('body').innerHTML;
+	var result = anchorme(innerHTML,{
+		attributes:[
+		{
+			name:"target",
+			value:"_blank"
+		}
+		]
+	});
+	document.getElementById('body').innerHTML = result;
+</script>
 @endsection
