@@ -4,8 +4,8 @@
 Libot Philippines
 @endsection
 
-@section('description', 'Libot Philippines helps you to find travel package, a car/services to use for your travel and everything you needs for travel.')
-@section('meta-image', 'https://libot-ph.com/favicon.ico')
+@section('description', 'With Libot Philippines, we creates socially responsible travel experiences thus, making it more convenient to find travel packages for everyone.')
+@section('meta-image', 'https://libot-ph.com/images/libot.png')
 
 @section('content')
 
