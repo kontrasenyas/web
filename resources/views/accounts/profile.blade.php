@@ -25,10 +25,18 @@
     @if(!Auth::user() || (Auth::user() && (Auth::user()->id != $user->id) ))        
         <div class="col-md-12 text-center">
             <p>This user has <a href="{{ route('user-post', ['user_id' => $user->id]) }}">{{count($posts)}} post/s</a>.</p>
+            @if(Auth::user())
             <p><a href="{{ route('get.message', ['user_id' => $user->id]) }}">Message this user</a></p>
+            @endif
+            @if(!Auth::user())
+            <p><a href="#" data-toggle="modal" data-target="#register-first">Message this user</span></a></p>
+            @endif
         </div>
     @endif
+
     <div class="col-md-12 text-center">        
         <p><a href="{{ route('account.review', ['user_id' => $user->id]) }}">Reviews ({{ count($reviews)  }})</a></p>
     </div>
 @endsection
+
+@include('includes.register-first')
