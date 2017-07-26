@@ -45,6 +45,8 @@ class UserController extends Controller
             $responseData = json_decode($verifyResponse);
             if ($responseData->success) {
                 $user->save();
+                Mail::to($email)
+				->send(new \App\Mail\SendEmailRegisteredUser($user->first_name, $user->last_name, $user->mobile_no));
                 Auth::login($user);
                 return redirect()->route('dashboard');
             }
