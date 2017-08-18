@@ -1,6 +1,15 @@
 <?php
 Route::group(['middleware' => ['web']],function(){
 
+	//facebook socialite
+	Route::get('login/facebook', [
+		'uses' => 'UserController@redirectToProvider',
+		'as' => 'login.facebook'
+	]);
+	Route::get('login/facebook/callback', [
+		'uses' => 'UserController@handleProviderCallback',
+	]);
+
 	Route::get('/', [
 		'uses' => 'HomeController@getHome',
 		'as' => 'home'

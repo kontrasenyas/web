@@ -11,9 +11,61 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Socialite;
 
 class UserController extends Controller
 {
+	/**
+     * Redirect the user to the Facebook authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $userSocial = Socialite::driver('facebook')->user();
+
+        $findUser = User::where('email', $userSocial->email)->first();
+
+        if ($findUser) {        
+	        Auth::login($findUser);
+    	}
+    	else {
+    		$name = explode(' ', $userSocial->name . ' C. Alcantara');
+
+	        // Remove middle initial
+			foreach($name as $key => $one) {
+			    if(strpos($one, '.') !== false)
+			        unset($name[$key]);
+			}
+
+	        $last_name = array_pop($name);
+	        $first_name = implode(' ', $name);
+
+	        $user = new User();
+
+	        $user->email = $userSocial->email;
+	        $user->mobile_no = '00000000000';
+	        $user->password = bcrypt(uniqid());
+	        $user->first_name = $first_name;
+	        $user->last_name = $last_name;
+
+	        $user->save();
+	        Auth::login($user);
+    	}        
+
+        return redirect()->route('dashboard');
+	}
+
 	public function postSignUp(Request $request)
 	{
         $this->validate($request, [
