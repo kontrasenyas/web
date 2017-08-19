@@ -29,13 +29,11 @@
 					<label for="image" class="info">Change photo (must be a valid image file)</label>
 				</div>
 				<div class="form-group">
-					<label class="btn btn-default btn-file">
-						Browse <input type="file" hidden id="image" name="image">
-					</label>
+					<input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
 				</div>
 				<input type="post_id" name="post_id" hidden value="{{ $post->id }}">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Save Image</button>
+					<button type="submit" class="btn btn-primary hidden" onclick="this.disabled=true;this.form.submit();">Save Image</button>
 				</div>
 				<input type="hidden" name="_token" value="{{ Session::token() }}">
 			</form>
@@ -161,5 +159,10 @@
 		]
 	});
 	document.getElementById('body').innerHTML = result;
+</script>
+<script>
+$(document).on('ready', function() {
+    $("#input-id").fileinput({showCaption: false});
+});
 </script>
 @endsection

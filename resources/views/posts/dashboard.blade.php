@@ -25,8 +25,9 @@
 				<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Other details (Eg. Toyota Hiace, Trip to Tagaytay.)">{{ Request::old('body') }}</textarea>				
 			</div>
 			<div class="form-group">
-				<label for="image">Photo (must be a valid image file)</label>
-				<input type="file" name="image" class="form-control" id="image">
+				<label for="input-id">Photo (must be a valid image file)</label>
+				{{-- <input type="file" name="image" class="form-control" id="image"> --}}
+				<input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
 			</div>
 			<button type="submit" class="btn btn-success" onclick="this.disabled=true;this.form.submit();">Create Post</button>
 			<input type="hidden" name="_token" value="{{ Session::token() }}">
@@ -82,4 +83,3 @@
 @section('script')
 	@include('includes.places-autocomplete')
 @endsection
-

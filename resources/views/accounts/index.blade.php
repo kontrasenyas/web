@@ -26,8 +26,9 @@
                     <input type="text" name="email" class="form-control" value="{{ $user->email }}" id="email">
                 </div>
                 <div class="form-group">
-                    <label for="image">Change profile picture (Image only)</label>
-                    <input type="file" name="image" class="form-control" id="image">
+                    <label for="input-id">Change profile picture (Image only)</label>
+                    {{-- <input type="file" name="image" class="form-control" id="image"> --}}
+                    <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
                 </div>
                 <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Save Account</button>
                 <input type="hidden" value="{{ Session::token() }}" name="_token">
