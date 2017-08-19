@@ -26,7 +26,7 @@
 			{{-- <input type="file" name="image" class="form-control" id="image"> --}}
 			<form action="{{ route('post.image-update') }}" method="post"  enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="image" class="info">Change photo (must be a valid image file)</label>
+					<label for="input-id" class="info">Change photo (must be a valid image file)</label>
 				</div>
 				<div class="form-group">
 					<input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
