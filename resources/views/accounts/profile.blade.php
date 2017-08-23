@@ -15,10 +15,10 @@
         </div>
         @if(Auth::user() && Auth::user()->id == $user->id)
             <div class="col-md-12 text-center">
-                <a href="{{ route('account.edit') }}">Edit your account</a>
+                <a href="{{ route('account.edit') }}"><span class="glyphicon glyphicon-edit"></span> Edit your account </a>
             </div>
             <div class="col-md-12 text-center">
-                <a href="{{ route('account.get-change-password') }}">Change your password</a>
+                <a href="{{ route('account.get-change-password') }}"><span class="glyphicon glyphicon-lock"></span> Change your password</a>
             </div>
         @endif
     </div>
@@ -35,7 +35,7 @@
     @endif
 
     <div class="col-md-12 text-center">        
-        <p><a href="{{ route('account.review', ['user_id' => $user->id]) }}">Reviews ({{ count($reviews)  }})</a></p>
+        <p><a href="{{ route('account.review', ['user_id' => $user->id]) }}"><span class="glyphicon glyphicon-book"></span> Reviews ({{ count($reviews)  }})</a></p>
     </div>
 @endsection
 

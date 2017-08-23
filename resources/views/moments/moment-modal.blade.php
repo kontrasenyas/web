@@ -18,7 +18,8 @@
                     </div>
                     <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                         <label for="image">Upload your best shot</label>
-                        <input type="file" name="image" class="form-control" id="image">
+                        {{-- <input type="file" name="image" class="form-control" id="image"> --}}
+                        <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
                     </div>
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
                 </div>
