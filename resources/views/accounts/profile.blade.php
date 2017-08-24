@@ -26,10 +26,10 @@
         <div class="col-md-12 text-center">
             <p>This user has <a href="{{ route('user-post', ['user_id' => $user->id]) }}">{{count($posts)}} post/s</a>.</p>
             @if(Auth::user())
-            <p><a href="{{ route('get.message', ['user_id' => $user->id]) }}">Message this user</a></p>
+            <p><a href="{{ route('get.message', ['user_id' => $user->id]) }}"><span class="glyphicon glyphicon-envelope"></span> Message this user</a></p>
             @endif
             @if(!Auth::user())
-            <p><a href="#" data-toggle="modal" data-target="#register-first">Message this user</span></a></p>
+            <p><a href="#" data-toggle="modal" data-target="#register-first"><span class="glyphicon glyphicon-envelope"></span> Message this user</span></a></p>
             @endif
         </div>
     @endif

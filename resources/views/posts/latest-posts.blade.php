@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                     <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt=""
                     class="img-responsive center-block" style="width: : 100%;">
-                </div>                
+                </div>
             </div>
         </div>
     </a>
