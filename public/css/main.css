@@ -44,3 +44,9 @@
 .div_hover { background-color: #f8f8f8; }
 
 .div_hover:hover { background-color: #eff0f1; }
+
+.img-preview {
+	width: 200px;
+	height: 185px; 
+	overflow: hidden;
+}

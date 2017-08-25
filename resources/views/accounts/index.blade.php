@@ -38,7 +38,7 @@
     {{-- @if (Storage::disk('local')->has($user->first_name . '-' . $user->id . '.jpg')) --}}
         <section class="row new-post">
             <div class="col-md-12">
-                <img src="{{ route('account.image', ['filename' => $user->profile_picture_path]) }}" alt="" class="img-responsive center-block">
+                <img src="{{ route('account.image', ['filename' => $user->profile_picture_path]) }}" alt="" class="img-responsive center-block img-preview">
             </div>
         </section>
     {{-- @endif --}}
