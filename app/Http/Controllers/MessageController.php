@@ -78,28 +78,13 @@ class MessageController extends Controller
             $message = Message::where('user_two', $sent_from->id)
                         ->where('user_one', $sent_to->id)->first();
         }
-                        
-        // $message2 = Message::where('user_two', $sent_from->id)
-        //                 ->where('user_one', $sent_to->id)
-        //                 ->union($message)
-        //                 ->first();
 
         $message_reply_union = new MessageReply();
         $message_reply = new MessageReply();
 
         if (count($message) != 0) {
-            // $message_reply_union = MessageReply::where('user_id', $sent_to->id)
-            //                                ->where('message_id', $message->id);
-
-            // $message_reply = MessageReply::where('user_id', $sent_from->id)
-            //                             ->where('message_id', $message->id)                           
-            //                             ->union($message_reply_union)
-            //                             ->orderBy('created_at', 'asc')
-            //                             ->get();
-
             $message_reply = MessageReply::where('message_id', $message->id)
                                             ->orderBy('created_at', 'desc');
-                                            
 
             $latest_reply = $message_reply->get()->first();
 

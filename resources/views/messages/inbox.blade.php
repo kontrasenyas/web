@@ -139,7 +139,7 @@
                             $.get(page, function(data){
                                 $('#message').prepend(data.messages);
                                 $('.endless-pagination').data('next-page', data.next_page);
-                                $('#message').scrollTop(30);
+                                $('#message').scrollTop(300);
                             });
                     }, 350))
 
