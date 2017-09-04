@@ -98,7 +98,8 @@ class MessageController extends Controller
             if($request->ajax()) {
                 return [
                     'messages' => view('messages.ajax.index')->with(compact('message_reply', 'sent_to'))->render(),
-                    'next_page' => $message_reply->nextPageUrl()
+                    'next_page' => $message_reply->nextPageUrl(),
+                    'count' => $message_reply->count()
                 ];
             }
         }

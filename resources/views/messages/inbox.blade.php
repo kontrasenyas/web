@@ -129,17 +129,16 @@
     $(document).ready(function () {
         $('#message').scroll(function(){
             if ($('#message').scrollTop() == 0){
-                var page = $('.endless-pagination').data('next-page');
+                var page = $('.endless-pagination').data('next-page');               
 
-                if(page !== null) {
-
+                if(page !== null && page !== "") {
                     clearTimeout( $.data( this, "scrollCheck" ) );
 
                     $.data( this, "scrollCheck", setTimeout(function() {
                             $.get(page, function(data){
-                                $('#message').prepend(data.messages);
+                                $('#message').prepend(data.messages);                            
                                 $('.endless-pagination').data('next-page', data.next_page);
-                                $('#message').scrollTop(300);
+                                $('#message').scrollTop(400);
                             });
                     }, 350))
 
