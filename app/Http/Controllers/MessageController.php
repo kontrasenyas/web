@@ -66,40 +66,59 @@ class MessageController extends Controller
         return $count;
     }
 
-    public function getMessage($user_id)
+    public function getMessage($user_id, Request $request)
     {
         $sent_to = User::where('id', $user_id)->first();
         $sent_from = User::where('id', Auth::user()->id)->first();
 
         $message = Message::where('user_one', $sent_from->id)
-                        ->where('user_two', $sent_to->id);
+                        ->where('user_two', $sent_to->id)->first();
+
+        if (!$message) {
+            $message = Message::where('user_two', $sent_from->id)
+                        ->where('user_one', $sent_to->id)->first();
+        }
                         
-        $message2 = Message::where('user_two', $sent_from->id)
-                        ->where('user_one', $sent_to->id)
-                        ->union($message)
-                        ->first();
+        // $message2 = Message::where('user_two', $sent_from->id)
+        //                 ->where('user_one', $sent_to->id)
+        //                 ->union($message)
+        //                 ->first();
 
         $message_reply_union = new MessageReply();
         $message_reply = new MessageReply();
 
-        if (count($message2) != 0) {
-            $message_reply_union = MessageReply::where('user_id', $sent_to->id)
-                                           ->where('message_id', $message2->id);
+        if (count($message) != 0) {
+            // $message_reply_union = MessageReply::where('user_id', $sent_to->id)
+            //                                ->where('message_id', $message->id);
 
-            $message_reply = MessageReply::where('user_id', $sent_from->id)
-                                        ->where('message_id', $message2->id)                           
-                                        ->union($message_reply_union)
-                                        ->orderBy('created_at', 'asc')
-                                        ->get();
-            $latest_reply = $message_reply->last();
+            // $message_reply = MessageReply::where('user_id', $sent_from->id)
+            //                             ->where('message_id', $message->id)                           
+            //                             ->union($message_reply_union)
+            //                             ->orderBy('created_at', 'asc')
+            //                             ->get();
 
-            if ($latest_reply->user_id != Auth::user()->id) {            
+            $message_reply = MessageReply::where('message_id', $message->id)
+                                            ->orderBy('created_at', 'desc');
+                                            
+
+            $latest_reply = $message_reply->get()->first();
+
+            if ($latest_reply->user_id != Auth::user()->id) {
                 $latest_reply->is_read = 1;
                 $latest_reply->save();
             }
+
+            $message_reply = $message_reply->paginate(10);
+
+            if($request->ajax()) {
+                return [
+                    'messages' => view('messages.ajax.index')->with(compact('message_reply', 'sent_to'))->render(),
+                    'next_page' => $message_reply->nextPageUrl()
+                ];
+            }
         }
        
-        return view('messages.inbox', ['sent_to' => $sent_to, 'sent_from' => $sent_from, 'message' => $message2, 'message_reply' => $message_reply]);
+        return view('messages.inbox', ['sent_to' => $sent_to, 'sent_from' => $sent_from, 'message' => $message, 'message_reply' => $message_reply]);
     }
 
     public function postMessage(Request $request, $sent_to)

@@ -22,15 +22,17 @@
             </a>
         </h3>
     </div>
-    <div class="col-md-12" style="overflow-y:scroll; height: 220px;" id="message">    
+    <div class="col-md-12 endless-pagination" data-next-page="{{ $message_reply->nextPageUrl() }}" style="overflow-y:scroll; height: 220px;" id="message">    
     @if(count($message) > 0)
-    	@foreach($message_reply as $reply)
+    	@foreach($message_reply->reverse() as $reply)
+            {{-- Own message --}}
     		@if($reply->user->id == Auth::user()->id)
     			<div class="text-right"> 
     				{!! nl2br(e($reply->reply)) !!}<br/>
 	    			<span class="text-muted" title="{{$reply->created_at->format('F d, Y g:i A')}}"><small><i>{{ $reply->created_at->diffForHumans() }}</i></small></span>
     			</div>
     		@endif
+            {{-- Recepient message--}}
     		@if($reply->user->id != Auth::user()->id)
     			<div class="text-left"> 
     				<a href="{{ route('account.profile', ['user_id' => $sent_to->id]) }}"><span class="text-muted"><small>{{ $reply->user->first_name }} {{ $reply->user->last_name }} </small></span></a> <br/>
@@ -120,6 +122,30 @@
             text.value +=  "Hi I'm interested in this post " + base_url + "/post/" + post_id + " ";
             $('button[type="submit"]').attr('disabled', false);
         } 
+    });
+
+    // Ajax load content of message
+
+    $(document).ready(function () {
+        $('#message').scroll(function(){
+            if ($('#message').scrollTop() == 0){
+                var page = $('.endless-pagination').data('next-page');
+
+                if(page !== null) {
+
+                    clearTimeout( $.data( this, "scrollCheck" ) );
+
+                    $.data( this, "scrollCheck", setTimeout(function() {
+                            $.get(page, function(data){
+                                $('#message').prepend(data.messages);
+                                $('.endless-pagination').data('next-page', data.next_page);
+                                $('#message').scrollTop(30);
+                            });
+                    }, 350))
+
+                }
+            }
+        });
     });
 
 </script>
