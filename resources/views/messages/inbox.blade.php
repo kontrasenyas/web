@@ -125,9 +125,11 @@
     });
 
     // Ajax load content of message
-
     $(document).ready(function () {
         $('#message').scroll(function(){
+            var msg = document.getElementById('message');
+            var lastScrollHeight = msg.scrollHeight;
+
             if ($('#message').scrollTop() == 0){
                 var page = $('.endless-pagination').data('next-page');               
 
@@ -136,9 +138,9 @@
 
                     $.data( this, "scrollCheck", setTimeout(function() {
                             $.get(page, function(data){
-                                $('#message').prepend(data.messages);                            
+                                $('#message').prepend(data.messages);
                                 $('.endless-pagination').data('next-page', data.next_page);
-                                $('#message').scrollTop(400);
+                                msg.scrollTop += (msg.scrollHeight-lastScrollHeight);
                             });
                     }, 350))
 
