@@ -30,8 +30,37 @@
     <link href="{{ URL::to('dist/css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 
-<body>    
-    @yield('content')
+<body>
+	<!--Preloader-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/Preloader-->
+
+    <!-- #wrapper -->
+    <div class="wrapper theme-1-active pimary-color-red">
+    	@include('layouts.partials.top-menu-items')
+    	@include('layouts.partials.right-sidebar')
+    	@include('layouts.partials.left-sidebar')
+
+    	<!-- Main Content -->
+    	<div class="page-wrapper">
+    		@yield('content')
+
+    		<!-- Footer -->
+			<footer class="footer container-fluid pl-30 pr-30">
+			    <div class="row">
+			        <div class="col-sm-12">
+			            <p>2017 &copy; Libot. Created by Joseph Alcantara</p>
+			        </div>
+			    </div>
+			</footer>
+			<!-- /Footer -->
+
+    	</div>
+    	<!-- /Main Content -->
+    </div>
+	<!-- /#wrapper -->
     
     <!-- JavaScript -->
     
