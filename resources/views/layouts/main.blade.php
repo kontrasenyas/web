@@ -19,6 +19,9 @@
     
     <!-- vector map CSS -->
     <link href="{{ URL::to('vendors/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" type="text/css"/>
+
+    {{-- toast/notification --}}
+    <link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
     
     <!-- Calendar CSS -->
     <link href="{{ URL::to('vendors/bower_components/fullcalendar/dist/fullcalendar.css') }}" rel="stylesheet" type="text/css"/>
@@ -126,6 +129,8 @@
     <!-- Init JavaScript -->
     <script src="{{ URL::to('dist/js/init.js') }}"></script>
     <script src="{{ URL::to('dist/js/widgets-data.js') }}"></script>
+
+    @include('includes.message-block')
 
 </body>
 

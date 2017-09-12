@@ -6,6 +6,8 @@
 	    <title>@yield('title')</title>
 
 	    @yield('meta_content')
+
+	    <base href="{{ URL::to('/') }}">
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="favicon.ico">
