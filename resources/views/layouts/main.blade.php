@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>@yield('title')</title>
-    <meta name="description" content="Magilla is a Dashboard & Admin Site Responsive Template by hencework." />
-    <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Magilla Admin, Magillaadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+    <meta name="description" content="With Libot Philippines, we creates socially responsible travel experiences thus, making it more convenient to find travel packages for everyone." />
+    <meta name="keywords" content="libot, libot philippines, travel, libot travel" />
     <meta name="author" content="hencework"/>
 
     <base href="{{ URL::to('/') }}">
