@@ -15,19 +15,23 @@
                             <div class="panel-body  pa-0">
                                 <div class="profile-box">
                                     <div class="profile-cover-pic">
+                                        @if(Auth::user() && Auth::user()->id == $user->id)
                                         <div class="fileupload btn btn-default">
                                             <span class="btn-text">edit</span>
                                             <input class="upload" type="file">
                                         </div>
+                                        @endif
                                         <div class="profile-image-overlay"></div>
                                     </div>
                                     <div class="profile-info text-center">
                                         <div class="profile-img-wrap">
                                             <img class="inline-block mb-10" src="dist/img/mock1.jpg" alt="user"/>
+                                            @if(Auth::user() && Auth::user()->id == $user->id)
                                             <div class="fileupload btn btn-default">
                                                 <span class="btn-text">edit</span>
                                                 <input class="upload" type="file">
                                             </div>
+                                            @endif()
                                         </div>  
                                         <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{ $user->first_name }} {{ $user->last_name }}</h5>
                                         <h6 class="block capitalize-font pb-20">Developer Geek</h6>
