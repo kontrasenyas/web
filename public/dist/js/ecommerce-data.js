@@ -289,7 +289,7 @@ $(document).ready(function(){
 $(window).load(function(){
 	window.setTimeout(function(){
 		$.toast({
-			heading: 'Welcome to Magilla',
+			heading: 'Welcome to Libot',
 			text: 'Use the predefined ones, or specify a custom position object.',
 			position: 'top-right',
 			loaderBg:'#f2b701',
