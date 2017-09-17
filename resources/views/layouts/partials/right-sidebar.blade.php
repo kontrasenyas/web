@@ -59,8 +59,10 @@
                                                         <div class="chat-data">
                                                             <img class="user-img img-circle"  src="dist/img/user2.png" alt="user"/>
                                                             <div class="user-data">
-                                                                <span class="name block capitalize-font">{{ $user->first_name }} {{ $user->last_name }}</span>
+                                                                @if(Auth::user())
+                                                                <span class="name block capitalize-font">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
                                                                 <span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
+                                                                @endif()
                                                             </div>
                                                             <div class="status online"></div>
                                                             <div class="clearfix"></div>
@@ -272,11 +274,13 @@
                                                 <img class="img-responsive img-circle" src="dist/img/user2.png" alt="avatar"/>
                                             </div>
                                             <div class="sl-content">
-                                                <span class="inline-block capitalize-font   pull-left message-per">{{ $user->first_name }} {{ $user->last_name }}</span>
+                                                @if(Auth::user())
+                                                <span class="inline-block capitalize-font   pull-left message-per">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
                                                 <span class="inline-block font-11  pull-right message-time">31 Jan</span>
                                                 <div class="clearfix"></div>
                                                 <span class=" truncate message-subject">Congratulations from design nominees</span>
                                                 <p class="txt-grey truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+                                                @endif()
                                             </div>
                                         </div>
                                     </a>

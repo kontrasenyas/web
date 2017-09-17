@@ -348,6 +348,10 @@ var chatApp = function() {
 		if(width<=1007) {
 			chatAppTarget.addClass('chat-box-slide');
 		}
+		else {
+			// Ajax call to load message
+			return true;
+		}
 		return false;
 	});
 	$(document).on("click","#goto_back_widget_1",function (e) {
