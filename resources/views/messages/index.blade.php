@@ -3,6 +3,15 @@
 @section('title')
 Messages
 @endsection
+
+@section('css')
+    <!-- switchery CSS -->
+    <link href="vendors/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" type="text/css"/>
+        
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+@endsection()
+
 @section('content')  
     <div class="container-fluid">
                 <!-- Title -->
@@ -459,4 +468,29 @@ Messages
                     </div>  
                 </div>
             </div>
+@endsection()
+
+@section('script')
+    <!-- JavaScript -->
+    
+    <!-- jQuery -->
+    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Slimscroll JavaScript -->
+    <script src="dist/js/jquery.slimscroll.js"></script>
+    
+    <!-- Owl JavaScript -->
+    <script src="vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+    
+    <!-- Fancy Dropdown JS -->
+    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+    
+    <!-- Switchery JavaScript -->
+    <script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
+    
+    <!-- Init JavaScript -->
+    <script src="dist/js/init.js"></script>
 @endsection()
