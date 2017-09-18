@@ -49,8 +49,7 @@
     	<!-- /Main Content -->
     </div>
 	<!-- /#wrapper -->
-
-    @yield('script')
+    @yield('script')    
 </body>
 
 </html>

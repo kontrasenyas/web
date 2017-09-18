@@ -20,7 +20,7 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 	var postCapacity = postCapacityElement.textContent;
 	var postContact = postContactElement.textContent;
 	var postLocation = postLocationElement.textContent;
-	postId = event.target.parentNode.parentNode.dataset['postid'];
+	postId = $(".post").data("postid"); //postId = event.target.parentNode.parentNode.dataset['postid'];
 
 	$('#post-body').val(postBody);
 	$('#post-capacity').val(postCapacity);
