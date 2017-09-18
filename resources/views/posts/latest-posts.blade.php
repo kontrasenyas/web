@@ -86,7 +86,7 @@
     </div>
     @endforeach()
 @endif()
-<div class="text-center">
+<div class="col-md-12 text-center">
     {{ $posts->appends(Request::except('page'))->links() }}
 </div>
 
@@ -94,21 +94,23 @@
 
 <style type="text/css">
     #div-post{
+        /*Important:*/
+        position:relative;
+    }
+
+    #div-post:hover { background-color: #eff0f1; }
+
     /*Important:*/
-    position:relative;
-}
+    .link-spanner{
+        position:absolute; 
+        width:100%;
+        height:100%;
+        top:0;
+        left: 0;
+        z-index: 1;
 
-/*Important:*/
-.link-spanner{
-  position:absolute; 
-  width:100%;
-  height:100%;
-  top:0;
-  left: 0;
-  z-index: 1;
-
-  /* edit: fixes overlap error in IE7/8, 
-     make sure you have an empty gif 
-  background-image: url('empty.gif');*/
-}   
+        /* edit: fixes overlap error in IE7/8, 
+        make sure you have an empty gif 
+        background-image: url('empty.gif');*/
+    }   
 </style>

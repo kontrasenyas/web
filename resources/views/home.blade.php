@@ -53,7 +53,7 @@ Libot Philippines
 							</div>
 							<div class="panel-heading">
 								<div class="pull-left">
-									<h6 class="panel-title txt-dark">top 5 products</h6>
+									<h6 class="panel-title txt-dark">top 5 places</h6>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -66,23 +66,23 @@ Libot Philippines
 										<div class="label-chatrs">
 											<div class="mb-5">
 												<span class="clabels inline-block bg-yellow mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Paleo Bars</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Tagaytay City</span>
 											</div>
 											<div class="mb-5">
 												<span class="clabels inline-block bg-pink mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Bow Ties</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Baguio City</span>
 											</div>
 											<div class="mb-5">
 												<span class="clabels inline-block bg-blue mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Pocket Squares</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Vigan City</span>
 											</div>
 											<div class="mb-5">
 												<span class="clabels inline-block bg-red mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Wood Sunglasses</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Cebu City</span>
 											</div>	
 											<div class="">
 												<span class="clabels inline-block bg-green mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Leggings</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">La Union</span>
 											</div>												
 										</div>
 									</div>										
@@ -142,7 +142,7 @@ Libot Philippines
 							</div>
 							<div class="panel-heading">
 								<div class="pull-left">
-									<h6 class="panel-title txt-dark">earnings by item type</h6>
+									<h6 class="panel-title txt-dark">visits by place</h6>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -155,19 +155,19 @@ Libot Philippines
 										<div class="label-chatrs">
 											<div class="mb-5">
 												<span class="clabels circular-clabels inline-block bg-yellow mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Paleo Bars</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">tagaytay city</span>
 											</div>
 											<div class="mb-5">
 												<span class="clabels circular-clabels inline-block bg-pink mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Bow Ties</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Baguio City</span>
 											</div>
 											<div class="mb-5">
 												<span class="clabels circular-clabels inline-block bg-blue mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Pocket Squares</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Vigan City</span>
 											</div>
 											<div class="">
 												<span class="clabels circular-clabels inline-block bg-red mr-5"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Wood Sunglasses</span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font">La Union</span>
 											</div>											
 										</div>
 									</div>										
@@ -197,39 +197,39 @@ Libot Philippines
 											<thead>
 											  <tr>
 												<th>Keyword</th>
-												<th>Revenue</th>
-												<th>Conversion Rate</th>
+												<th>Visit</th>
+												<th>Vs. Yesterday</th>
 											  </tr>
 											</thead>
 											<tbody>
 											  <tr>
 												<td>adidas</td>
-												<td>$49,897</td>
+												<td>49,897</td>
 												<td>8.61%</td>
 											  </tr>
 											  <tr>
 												<td>men's park</td>
-												<td>$15,478</td>
+												<td>15,478</td>
 												<td>2.10%</td>
 											  </tr>
 											  <tr>
 												<td>nutiva coconut oil</td>
-												<td>$23,546</td>
+												<td>23,546</td>
 												<td>4.35%</td>
 											  </tr>
 											  <tr>
 												<td>cart software</td>
-												<td>$36,589</td>
+												<td>36,589</td>
 												<td>1.58%</td>
 											  </tr>
 											   <tr>
 												<td>where to buy</td>
-												<td>$55,467</td>
+												<td>55,467</td>
 												<td>56%</td>
 											  </tr>
 											   <tr>
 												<td>pink adhesive</td>
-												<td>$71,245</td>
+												<td>71,245</td>
 												<td>47.6%</td>
 											  </tr>
 											</tbody>
@@ -248,7 +248,7 @@ Libot Philippines
 										<div class="container-fluid">
 											<div class="row">
 												<div class="col-xs-6 text-left pl-0 pr-0 data-wrap-left">
-													<span class="txt-dark block counter">$<span class="counter-anim">15,678</span></span>
+													<span class="txt-dark block counter"><span class="counter-anim">15,678</span></span>
 													<span class="block"><span class="weight-500 uppercase-font txt-grey font-13">Visits</span><i class="zmdi zmdi-caret-down txt-danger font-21 ml-5 vertical-align-middle"></i></span>
 												</div>
 												<div class="col-xs-6 text-left  pl-0 pr-0 pt-25 data-wrap-right">
@@ -287,7 +287,7 @@ Libot Philippines
 											<div class="row">
 												<div class="col-xs-6 text-left pl-0 pr-0 data-wrap-left">
 													<span class="txt-dark block counter"><span class="counter-anim">142,357</span></span>
-													<span class="block"><span class="weight-500 uppercase-font txt-grey font-13">Products</span><i class="zmdi zmdi-caret-down txt-danger font-21 ml-5 vertical-align-middle"></i></span>
+													<span class="block"><span class="weight-500 uppercase-font txt-grey font-13">Posts</span><i class="zmdi zmdi-caret-down txt-danger font-21 ml-5 vertical-align-middle"></i></span>
 												</div>
 												<div class="col-xs-6 text-left  pl-0 pr-0 pt-25 data-wrap-right">
 													<div id="sparkline_6" style="width: 100px; overflow: hidden; margin: 0px auto;"></div>
@@ -462,7 +462,7 @@ Libot Philippines
 				<!-- /Row -->
 				
 				<!-- Row -->
-				<div class="row">
+				{{-- <div class="row">
 					<div class="col-lg-8 col-md-6 col-xs-12">
 						<div class="panel panel-default card-view panel-refresh">
 							<div class="refresh-container">
@@ -660,7 +660,7 @@ Libot Philippines
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<!-- /Row -->
 			</div>
 @endsection()
