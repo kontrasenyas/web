@@ -49,7 +49,26 @@
     	<!-- /Main Content -->
     </div>
 	<!-- /#wrapper -->
-    @yield('script')    
+    @yield('script')
+    {{-- For message count in header.blade.php --}}
+        @if(Auth::check())
+        <script type="text/javascript">
+            var theUrl = "{{ route('count.message', ['user_id' =>  Auth::user()->id]) }}"
+            $.get(
+                theUrl,                
+                function(data) {
+                    document.getElementById("message_count").innerHTML = data;
+
+                    if (data == 0) {
+                        $('#message_count').remove();
+                        // $('#message_count').removeClass('label-danger');
+                        // $('#message_count').addClass('label-default');                        
+                    }                   
+                }
+            );
+        </script>
+        @endif
+    {{-- End --}}
 </body>
 
 </html>

@@ -378,7 +378,7 @@ Libot Philippines
 											<div class="sl-content">
 												<div class="per-rating inline-block pull-left">
 													<a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star-outline"></a>
-													<span class="inline-block">for Paleo Bars</span>
+													<span class="inline-block">for Cebu City</span>
 												</div>
 												<a href="javascript:void(0);"  class=" pull-right txt-grey"><i class="zmdi zmdi-mail-reply"></i></a>
 												<div class="clearfix"></div>
@@ -398,7 +398,7 @@ Libot Philippines
 											<div class="sl-content">
 												<div class="per-rating inline-block pull-left">
 													<a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a>
-													<span class="inline-block">for Bow Ties</span>
+													<span class="inline-block">for Tagaytay City</span>
 												</div>
 												<a href="javascript:void(0);"  class=" pull-right txt-grey"><i class="zmdi zmdi-mail-reply"></i></a>
 												<div class="clearfix"></div>
@@ -418,7 +418,7 @@ Libot Philippines
 											<div class="sl-content">
 												<div class="per-rating inline-block pull-left">
 													<a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star-outline"></a>
-													<span class="inline-block">for Pocket Squares</span>
+													<span class="inline-block">for Baguio City</span>
 												</div>
 												<a href="javascript:void(0);"  class=" pull-right txt-grey"><i class="zmdi zmdi-mail-reply"></i></a>
 												<div class="clearfix"></div>
@@ -438,7 +438,7 @@ Libot Philippines
 											<div class="sl-content">
 												<div class="per-rating inline-block pull-left">
 													<a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star-outline"></a>
-													<span class="inline-block">for Wood Sunglasses</span>
+													<span class="inline-block">for La Union</span>
 												</div>
 												<a href="javascript:void(0);"  class=" pull-right txt-grey"><i class="zmdi zmdi-mail-reply"></i></a>
 												<div class="clearfix"></div>
