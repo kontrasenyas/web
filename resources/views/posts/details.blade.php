@@ -58,6 +58,23 @@
 										</div>
 									</div>
 									<!-- END carousel-->
+									@if(Auth::user() == $post->user)
+									<div class="form-group text-center">
+										<form action="{{ route('post.image-update') }}" method="post"  enctype="multipart/form-data">
+											<div class="form-group">
+												<label for="input-id" class="info">Change photo (must be a valid image file)</label>
+											</div>
+											<div class="form-group">
+												<input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
+											</div>
+											<input type="post_id" name="post_id" hidden value="{{ $post->id }}">
+											<div class="form-group">
+												<button type="submit" class="btn btn-primary hidden" onclick="this.disabled=true;this.form.submit();">Save Image</button>
+											</div>
+											<input type="hidden" name="_token" value="{{ Session::token() }}">
+										</form>
+									</div>
+									@endif
 								</div>
 							</div>
 
@@ -77,7 +94,7 @@
 										<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
 										<p><strong>Destination: </strong><span id="location">{{ $post->location }}</span></p>
 									</div>
-									<div class="interaction btn-group mr-10">
+									<div class="interaction mr-10 mb-20">
 											{{-- <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
 											<a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'You don\'t like this post' : 'Dislike' : 'Dislike'  }}</a> --}}										
 											@if(Auth::user() == $post->user)
@@ -87,15 +104,16 @@
 											<div class="btn-group mr-10">
 												<a href="{{ route('post.delete', ['post_id' => $post->id]) }}" class="btn btn-danger btn-anim" onclick="return confirm('Are you sure?')"><i class="fa fa-minus-square-o"></i><span class="btn-text">Delete</span></a>
 											</div>
-											@endif
+											@endif											
 									</div>
 
 									{{-- <input class="vertical-spin" type="text" data-bts-button-down-class="btn btn-default"   data-bts-button-up-class="btn btn-default" value="1" name="vertical-spin"> --}}
 									@if(Auth::user() != $post->user)
-									<div class="btn-group wishlist">
+									<div class="btn-group wishlist mb-20">
 										<button class="btn btn-warning btn-outline btn-anim"><i class="icon-heart"></i><span class="btn-text">add to wishlist</span></button>
 									</div>
 									@endif()
+									<p class="text-muted">{{ $post->view_count }} views</p>
 								</div>
 							</div>
 						</div>

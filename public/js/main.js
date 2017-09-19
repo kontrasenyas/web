@@ -9,8 +9,7 @@ var postElement = null;
 $('.post').find('.interaction').find('.edit').on('click', function (event) {
 	event.preventDefault();
 
-	postElement = event.target.parentNode.parentNode;
-
+	postElement = $(".post");//postElement = event.target.parentNode.parentNode;
 	postBodyElement = document.getElementById('body');
 	postCapacityElement = document.getElementById('capacity');
 	postContactElement = document.getElementById('contact');
