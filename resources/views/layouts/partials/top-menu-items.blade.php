@@ -173,7 +173,7 @@
 				</li> --}}
 				<li class="dropdown alert-drp">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Messages"><i class="zmdi zmdi-email top-nav-icon"></i><span class="top-nav-icon-badge" id="message_count"></span></a>
-					<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+					<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 						<li>
 							<div class="notification-box-head-wrap">
 								<span class="notification-box-head pull-left inline-block">messages</span>
