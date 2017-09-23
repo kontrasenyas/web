@@ -18,6 +18,59 @@ Dashboard
 
 	<!-- File Upload CSS -->
 	<link href="{{ URL::to('plugins/file-upload/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" />
+
+	<!-- Post image style -->
+	<style type="text/css">
+		.img-preview {
+			width: 200px;
+			height: 150px; 
+			overflow: hidden;
+			margin-bottom: 0px;
+		}
+		.new-post {
+			padding: 16px 0;
+			border-bottom: 1px solid #ccc;
+		}
+
+		.new-post header,
+		.posts header {
+			margin: 20px;
+		}
+
+		.posts .post {
+			padding-left: 0px;
+			border-left: 3px solid #a21b24;
+		}
+
+		.posts .post .info {
+			color: #aaa;
+			font-style: italic;
+		}
+
+		.div_hover { background-color: #f8f8f8; }
+
+		.div_hover:hover { background-color: #eff0f1; }
+
+	    #div-post{
+	        /*Important:*/
+	        position:relative;
+	    }
+
+	    #div-post:hover { background-color: #eff0f1; }
+	    /*Important:*/
+	    .link-spanner{
+	        position:absolute; 
+	        width:100%;
+	        height:100%;
+	        top:0;
+	        left: 0;
+	        z-index: 1;
+
+	        /* edit: fixes overlap error in IE7/8, 
+	        make sure you have an empty gif 
+	        background-image: url('empty.gif');*/
+	    }   
+	</style>
 @endsection()
 
 @section('content')  
@@ -77,8 +130,8 @@ Dashboard
 							</div>
 							<div class="panel-wrapper collapse in">
                                 <div class="panel-body">
-									<div id="morris_extra_line_chart" class="morris-chart" style="height:293px;"></div>
-									<ul class="flex-stat mt-40">
+									<div id="morris_extra_line_chart" class="morris-chart hidden" style="height:293px;"></div>
+									<ul class="flex-stat mt-40 hidden">
 										<li>
 											<span class="block">Weekly Users</span>
 											<span class="block txt-dark weight-500 font-18"><span class="counter-anim">3,24,222</span></span>
@@ -94,6 +147,36 @@ Dashboard
 											</span>
 										</li>
 									</ul>
+
+									@if(count($posts) == 0)               
+							            @if(Auth::user())
+											<h4>You don't have any post at the moment</h4><br/>
+											<label for="title"><span class="glyphicon glyphicon-arrow-left"></span> Create your first post. </label>
+							            @endif
+							        @endif
+							        <div class="posts">
+							        @foreach($posts as $post)
+							        	<div class="form-group div_hover col-md-12">                    
+								            <div class="post row" data-postid="{{ $post->id }}">
+								                <div class="col-md-6">
+								                    <h4 class="body text-uppercase">{{ $post->title }}</h4>                
+								                    <div class="info">
+								                        <p class="body text-uppercase">{{ str_limit($post->location, $limit = 22, $end = '...') }}</p>
+								                        <p>Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}</p>
+								                        <p>Contact No: {{ $post->user->mobile_no }}</p>
+								                        <p>Description: {{ str_limit($post->body, $limit = 15, $end = '...') }}</p>
+								                        <span class="text-muted">{{ $post->view_count }} views</span>
+								                    </div>
+								                </div>
+								                <div class="col-md-6">
+								                    <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt=""
+								                    class="img-responsive center-block img-preview">
+								                </div>
+								            </div>
+								            <a href="{{ route('post.get', ['post_id' => $post->id]) }}"><span class="link-spanner"></span></a>
+								        </div>
+							        @endforeach()
+							    	</div>
 								</div>
 							</div>
                         </div>
@@ -130,14 +213,15 @@ Dashboard
 								<div class="panel-body pa-0">
 									<div class="sm-data-box bg-yellow">
 										<div class="container-fluid">
-											<div class="row">
+											<div class="row">												
 												<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-													<span class="txt-light block counter"><span class="counter-anim">46.41</span>%</span>
-													<span class="weight-500 uppercase-font txt-light block">bounce rate</span>
+													<span class="txt-light block counter"><span class="counter-anim">{{$posts->total()}}</span></span>
+													<span class="weight-500 uppercase-font txt-light block">total posts</span>
 												</div>
 												<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
 													<i class="zmdi zmdi-redo txt-light data-right-rep-icon"></i>
 												</div>
+												<a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}"><span class="link-spanner"></span></a>
 											</div>	
 										</div>
 									</div>
@@ -153,7 +237,7 @@ Dashboard
 										<div class="container-fluid">
 											<div class="row">
 												<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-													<span class="txt-light block counter"><span class="counter-anim">4,054,876</span></span>
+													<span class="txt-light block counter"><span class="counter-anim">{{$posts->sum('view_count')}}</span></span>
 													<span class="weight-500 uppercase-font txt-light block">pageviews</span>
 												</div>
 												<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
@@ -189,163 +273,6 @@ Dashboard
 					</div>
 				</div>
 				<!-- /Row -->
-				
-				<!-- Row -->
-				<div class="row">
-					<div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-						<div class="panel panel-default card-view panel-refresh">
-							<div class="refresh-container">
-								<div class="la-anim-1"></div>
-							</div>
-							<div class="panel-heading">
-								<div class="pull-left">
-									<h6 class="panel-title txt-dark">social campaigns</h6>
-								</div>
-								<div class="pull-right">
-									<a href="#" class="pull-left inline-block refresh mr-15">
-										<i class="zmdi zmdi-replay"></i>
-									</a>
-									<a href="#" class="pull-left inline-block full-screen mr-15">
-										<i class="zmdi zmdi-fullscreen"></i>
-									</a>
-									<div class="pull-left inline-block dropdown">
-										<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert"></i></a>
-										<ul class="dropdown-menu bullet dropdown-menu-right"  role="menu">
-											<li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
-											<li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Delete</a></li>
-											<li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>New</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="panel-wrapper collapse in">
-								<div class="panel-body row pa-0">
-									<div class="table-wrap">
-										<div class="table-responsive">
-											<table class="table table-hover mb-0">
-												<thead>
-													<tr>
-														<th>Campaign</th>
-														<th>Client</th>
-														<th>Changes</th>
-														<th>Budget</th>
-														<th>Status</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td><span class="txt-dark weight-500">Facebook</span></td>
-														<td>Beavis</td>
-														<td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>2.43%</span></span></td>
-														<td>
-															<span class="txt-dark weight-500">$1478</span>
-														</td>
-														<td>
-															<span class="label label-primary">Active</span>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="txt-dark weight-500">Youtube</span></td>
-														<td>Felix</td>
-														<td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>1.43%</span></span></td>
-														<td>
-															<span class="txt-dark weight-500">$951</span>
-														</td>
-														<td>
-															<span class="label label-danger">Closed</span>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="txt-dark weight-500">Twitter</span></td>
-														<td>Cannibus</td>
-														<td><span class="txt-danger"><i class="zmdi zmdi-caret-down mr-10 font-20"></i><span>-8.43%</span></span></td>
-														<td>
-															<span class="txt-dark weight-500">$632</span>
-														</td>
-														<td>
-															<span class="label label-default">Hold</span>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="txt-dark weight-500">Spotify</span></td>
-														<td>Neosoft</td>
-														<td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>7.43%</span></span></td>
-														<td>
-															<span class="txt-dark weight-500">$325</span>
-														</td>
-														<td>
-															<span class="label label-default">Hold</span>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="txt-dark weight-500">Instagram</span></td>
-														<td>Hencework</td>
-														<td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>9.43%</span></span></td>
-														<td>
-															<span class="txt-dark weight-500">$258</span>
-														</td>
-														<td>
-															<span class="label label-primary">Active</span>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>	
-								</div>	
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-						<div class="panel panel-default card-view panel-refresh">
-							<div class="refresh-container">
-								<div class="la-anim-1"></div>
-							</div>
-							<div class="panel-heading">
-								<div class="pull-left">
-									<h6 class="panel-title txt-dark">Advertising & Promotions</h6>
-								</div>
-								<div class="pull-right">
-									<a href="#" class="pull-left inline-block refresh mr-15">
-										<i class="zmdi zmdi-replay"></i>
-									</a>
-									<div class="pull-left inline-block dropdown">
-										<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert"></i></a>
-										<ul class="dropdown-menu bullet dropdown-menu-right"  role="menu">
-											<li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>option 1</a></li>
-											<li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>option 2</a></li>
-											<li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>option 3</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="panel-wrapper collapse in">
-								<div class="panel-body">
-									<div>
-										<canvas id="chart_2" height="253"></canvas>
-									</div>	
-									<div class="label-chatrs mt-30">
-										<div class="inline-block mr-15">
-											<span class="clabels inline-block bg-yellow mr-5"></span>
-											<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Active</span>
-										</div>
-										<div class="inline-block mr-15">
-											<span class="clabels inline-block bg-red mr-5"></span>
-											<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Closed</span>
-										</div>	
-										<div class="inline-block">
-											<span class="clabels inline-block bg-green mr-5"></span>
-											<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Hold</span>
-										</div>											
-									</div>
-								</div>
-							</div>	
-						</div>	
-					</div>	
-				</div>	
-				<!-- Row -->
 			</div>
 @endsection()
 
