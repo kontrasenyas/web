@@ -12,9 +12,9 @@
 		<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
 		<a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
 		<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
-		<form id="search_form" role="search" class="top-nav-search collapse pull-left">
+		<form id="search_form" role="search" class="top-nav-search collapse pull-left" action="{{ route('search') }}" method="get">
 			<div class="input-group">
-				<input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
+				<input type="text" name="query" class="form-control" placeholder="Search" value="{{ Request::query('query') }}">
 				<span class="input-group-btn">
 					<button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
 				</span>
@@ -24,7 +24,7 @@
 	@if(Auth::user())
 		<div id="mobile_only_nav" class="mobile-only-nav pull-right">
 			<ul class="nav navbar-right top-nav pull-right">
-				<li>
+				{{-- <li>
 					<a id="open_right_sidebar" href="#"><i class="zmdi zmdi-settings top-nav-icon"></i></a>
 				</li>
 				<li class="dropdown app-drp">
@@ -79,7 +79,7 @@
 							</div>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 				<li class="dropdown alert-drp">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Messages"><i class="zmdi zmdi-email top-nav-icon"></i><span class="top-nav-icon-badge" id="message_count"></span></a>
 					<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">

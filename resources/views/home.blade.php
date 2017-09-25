@@ -203,32 +203,32 @@ Libot Philippines
 											</thead>
 											<tbody>
 											  <tr>
-												<td>adidas</td>
+												<td>tagaytay</td>
 												<td>49,897</td>
 												<td>8.61%</td>
 											  </tr>
 											  <tr>
-												<td>men's park</td>
+												<td>cebu</td>
 												<td>15,478</td>
 												<td>2.10%</td>
 											  </tr>
 											  <tr>
-												<td>nutiva coconut oil</td>
+												<td>la union</td>
 												<td>23,546</td>
 												<td>4.35%</td>
 											  </tr>
 											  <tr>
-												<td>cart software</td>
+												<td>baguio</td>
 												<td>36,589</td>
 												<td>1.58%</td>
 											  </tr>
 											   <tr>
-												<td>where to buy</td>
+												<td>batanggas</td>
 												<td>55,467</td>
 												<td>56%</td>
 											  </tr>
 											   <tr>
-												<td>pink adhesive</td>
+												<td>cavite</td>
 												<td>71,245</td>
 												<td>47.6%</td>
 											  </tr>

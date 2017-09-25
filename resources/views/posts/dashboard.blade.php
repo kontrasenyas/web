@@ -281,8 +281,6 @@ Dashboard
 	<script src="{{ URL::to('plugins/file-upload/js/plugins/purify.min.js')}}" type="text/javascript"></script>
 	<script src="{{ URL::to('plugins/file-upload/js/fileinput.min.js')}}" type="text/javascript"></script>
 
-	
-
 	@include('includes.message-block')
 	@include('includes.places-autocomplete')
 @endsection()
