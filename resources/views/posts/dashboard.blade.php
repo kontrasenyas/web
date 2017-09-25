@@ -20,57 +20,8 @@ Dashboard
 	<link href="{{ URL::to('plugins/file-upload/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" />
 
 	<!-- Post image style -->
-	<style type="text/css">
-		.img-preview {
-			width: 200px;
-			height: 150px; 
-			overflow: hidden;
-			margin-bottom: 0px;
-		}
-		.new-post {
-			padding: 16px 0;
-			border-bottom: 1px solid #ccc;
-		}
+	<link href="{{ URL::to('css/post.css')}}" media="all" rel="stylesheet" type="text/css" />
 
-		.new-post header,
-		.posts header {
-			margin: 20px;
-		}
-
-		.posts .post {
-			padding-left: 0px;
-			border-left: 3px solid #a21b24;
-		}
-
-		.posts .post .info {
-			color: #aaa;
-			font-style: italic;
-		}
-
-		.div_hover { background-color: #f8f8f8; }
-
-		.div_hover:hover { background-color: #eff0f1; }
-
-	    #div-post{
-	        /*Important:*/
-	        position:relative;
-	    }
-
-	    #div-post:hover { background-color: #eff0f1; }
-	    /*Important:*/
-	    .link-spanner{
-	        position:absolute; 
-	        width:100%;
-	        height:100%;
-	        top:0;
-	        left: 0;
-	        z-index: 1;
-
-	        /* edit: fixes overlap error in IE7/8, 
-	        make sure you have an empty gif 
-	        background-image: url('empty.gif');*/
-	    }   
-	</style>
 @endsection()
 
 @section('content')  
@@ -129,7 +80,7 @@ Dashboard
 								<div class="clearfix"></div>
 							</div>
 							<div class="panel-wrapper collapse in">
-                                <div class="panel-body">
+                                <div class="panel-body" style="padding-bottom: 0px !important;">
 									<div id="morris_extra_line_chart" class="morris-chart hidden" style="height:293px;"></div>
 									<ul class="flex-stat mt-40 hidden">
 										<li>
@@ -329,6 +280,8 @@ Dashboard
 	<script src="{{ URL::to('plugins/file-upload/js/plugins/sortable.min.js')}}" type="text/javascript"></script>
 	<script src="{{ URL::to('plugins/file-upload/js/plugins/purify.min.js')}}" type="text/javascript"></script>
 	<script src="{{ URL::to('plugins/file-upload/js/fileinput.min.js')}}" type="text/javascript"></script>
+
+	
 
 	@include('includes.message-block')
 	@include('includes.places-autocomplete')

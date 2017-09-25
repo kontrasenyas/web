@@ -20,7 +20,7 @@ Sign Up to Libot
 	<div class="wrapper pa-0">
 		<header class="sp-header">
 			<div class="sp-logo-wrap pull-left">
-				<a href="{{ route('register') }}">
+				<a href="{{ route('home') }}">
 					<img class="brand-img mr-10" src="dist/img/logo.png" alt="brand"/>
 					<span class="brand-text">Libot</span>
 				</a>
