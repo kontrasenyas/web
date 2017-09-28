@@ -16,6 +16,23 @@
 			<a class="" href="{{ route('messages', Auth::user()->id) }}" id="messages"><div class="pull-left"><i class="zmdi zmdi-email mr-20"></i><span class="right-nav-text">Messages</span></div><div class="clearfix"></div></a>
 		</li>
 		<li><hr class="light-grey-hr mb-10"/></li>
+		<li class="navigation-header">
+			<span>Other</span> 
+			<i class="zmdi zmdi-more"></i>
+		</li>
+		<li>
+			<a class="" href="{{ route('about') }}" id="about"><div class="pull-left"><i class="zmdi zmdi-info mr-20"></i><span class="right-nav-text">About Us</span></div><div class="clearfix"></div></a>
+		</li>
+		<li>
+			<a class="" href="{{ route('contact') }}" id="contact"><div class="pull-left"><i class="zmdi zmdi-account-box-phone mr-20"></i><span class="right-nav-text">Contact Us</span></div><div class="clearfix"></div></a>
+		</li>
+		<li>
+			<a class="" href="{{ route('help') }}" id="help"><div class="pull-left"><i class="zmdi zmdi-pin-help mr-20"></i><span class="right-nav-text">Help</span></div><div class="clearfix"></div></a>
+		</li>
+		<li>
+			<a class="" href="{{ route('terms') }}" id="terms"><div class="pull-left"><i class="zmdi zmdi-collection-bookmark mr-20"></i><span class="right-nav-text">Terms & Condition</span></div><div class="clearfix"></div></a>
+		</li>
+		<li><hr class="light-grey-hr mb-10"/></li>
 	</ul>
 </div>
 @endif()
