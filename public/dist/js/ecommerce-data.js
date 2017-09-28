@@ -289,9 +289,9 @@ $(document).ready(function(){
 $(window).load(function(){
 	window.setTimeout(function(){
 		$.toast({
-			heading: 'Welcome to Libot',
-			text: 'Use the predefined ones, or specify a custom position object.',
-			position: 'top-right',
+			heading: 'Welcome to Libot Philippines',
+			// text: 'Use the predefined ones, or specify a custom position object.',
+			position: 'top-center',
 			loaderBg:'#f2b701',
 			icon: 'success',
 			hideAfter: 3500, 
