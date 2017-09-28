@@ -7,6 +7,9 @@
 			<i class="zmdi zmdi-more"></i>
 		</li>
 		<li>
+			<a class="" href="{{ route('home') }}" id="home"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">Home</span></div><div class="clearfix"></div></a>
+		</li>
+		<li>
 			<a class="" href="{{ route('dashboard') }}" id="dashboard"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
 		</li>
 		<li>
@@ -25,10 +28,19 @@
 			<i class="zmdi zmdi-more"></i>
 		</li>
 		<li>
-			<a class="active" href="{{ route('home') }}" id="dashboard"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Home</span></div><div class="clearfix"></div></a>
+			<a class="" href="{{ route('home') }}" id="home"><div class="pull-left"><i class="zmdi zmdi-home mr-20"></i><span class="right-nav-text">Home</span></div><div class="clearfix"></div></a>
 		</li>
 		<li>
-			<a class="" href="{{ route('about') }}" id="about"><div class="pull-left"><i class="zmdi zmdi-email mr-20"></i><span class="right-nav-text">About Us</span></div><div class="clearfix"></div></a>
+			<a class="" href="{{ route('about') }}" id="about"><div class="pull-left"><i class="zmdi zmdi-info mr-20"></i><span class="right-nav-text">About Us</span></div><div class="clearfix"></div></a>
+		</li>
+		<li>
+			<a class="" href="{{ route('contact') }}" id="contact"><div class="pull-left"><i class="zmdi zmdi-account-box-phone mr-20"></i><span class="right-nav-text">Contact Us</span></div><div class="clearfix"></div></a>
+		</li>
+		<li>
+			<a class="" href="{{ route('help') }}" id="help"><div class="pull-left"><i class="zmdi zmdi-pin-help mr-20"></i><span class="right-nav-text">Help</span></div><div class="clearfix"></div></a>
+		</li>
+		<li>
+			<a class="" href="{{ route('terms') }}" id="terms"><div class="pull-left"><i class="zmdi zmdi-collection-bookmark mr-20"></i><span class="right-nav-text">Terms & Condition</span></div><div class="clearfix"></div></a>
 		</li>
 		<li><hr class="light-grey-hr mb-10"/></li>
 	</ul>
@@ -38,7 +50,7 @@
 
 <!-- Add or remove active class to menu -->
 <script type="text/javascript">
-	function cutUrl(url,n){
+	function cutUrl(url,n) {
 	    return url.split('/').slice(0,n).join('/');
 	}
 
@@ -49,8 +61,13 @@
 	currentPage = (substring.split("/").pop());
 	var active = document.getElementById(currentPage);
 
-	if (string.indexOf(substring) !== -1 && active != null)
-	{
-		active.className += 'active';
+	if (string.indexOf(substring) !== -1) {
+		if (active == null) {
+			var active = document.getElementById('home');
+			active.className += 'active';
+		}
+		else {
+			active.className += 'active';	
+		}		
 	}		
 </script>
