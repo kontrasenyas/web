@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="profile-info text-center">
                                         <div class="profile-img-wrap">
-                                            <img class="inline-block mb-10" src="dist/img/mock1.jpg" alt="user"/>
+                                            <img class="inline-block mb-10" src="{{ route('account.image', ['filename' => $user->profile_picture_path]) }}" alt="user"/>
                                             @if(Auth::user() && Auth::user()->id == $user->id)
                                             <div class="fileupload btn btn-default">
                                                 <span class="btn-text">edit</span>
