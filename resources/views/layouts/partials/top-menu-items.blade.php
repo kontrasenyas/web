@@ -17,10 +17,14 @@
 				<input type="text" name="query" class="form-control" placeholder="Search" value="{{ Request::query('query') }}">
 				<span class="input-group-btn">
 					<button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
-				</span>
+				</span>				
 			</div>
 		</form>
+		<div class="form-group mb-0 pull-right">
+			<a class="inline-block pl-10 text-primary" href="{{ route('search-index') }}">Advance Search</a>
+		</div>
 	</div>
+	
 	@if(Auth::user())
 		<div id="mobile_only_nav" class="mobile-only-nav pull-right">
 			<ul class="nav navbar-right top-nav pull-right">

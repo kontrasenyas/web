@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
+	public function index()
+	{
+		return view('includes.search');
+	}
 	public function getSearch(Request $request)
 	{
 		$this->validate($request, [
