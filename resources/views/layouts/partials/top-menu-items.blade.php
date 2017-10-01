@@ -303,15 +303,15 @@
 								<a href="{{ route('logout') }}"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
 							</li>
 						</ul>
-					</li>
-				@endif()
-				@if(!Auth::user())
-                	<div class="form-group mb-0 pull-right">
-						<span class="inline-block pr-10">Already have an account?</span>
-						<a class="inline-block btn btn-info btn-rounded btn-outline" href="{{ route('login') }}">Sign In</a>
-					</div>
-				@endif
+					</li>				
 			</ul>
-		</div>  
+		</div>
+		@endif()  
+		@if(!Auth::user())
+            <div class="form-group mb-0 pull-right">
+				<span class="inline-block pr-10">Already have an account?</span>
+				<a class="inline-block btn btn-info btn-rounded btn-outline" href="{{ route('login') }}">Sign In</a>
+			</div>
+		@endif
 	</nav>
 <!-- /Top Menu Items -->
