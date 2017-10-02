@@ -70,6 +70,7 @@
                                         </div>
                                         @if(Auth::user() && Auth::user()->id != $user->id)
                                             <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#"><i class="fa fa-plus"></i><span class="btn-text">Follow</span></button>
+                                            <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('get.message', ['user_id' => $user->id]) }}"><i class="fa fa-inbox"></i><span class="btn-text">Send Message</span></a>
                                         @endif()
                                         @if(Auth::user() && Auth::user()->id == $user->id)
                                             <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">edit profile</span></button>

@@ -22,8 +22,8 @@
             </a>
         </h3>
     </div>
-    <div class="col-md-12 endless-pagination" data-next-page="{{ $message_reply->nextPageUrl() }}" style="overflow-y:scroll; height: 220px;" id="message">    
     @if(count($message) > 0)
+    <div class="col-md-12 endless-pagination" data-next-page="{{ $message_reply->nextPageUrl() }}" style="overflow-y:scroll; height: 220px;" id="message">
     	@foreach($message_reply->reverse() as $reply)
             {{-- Own message --}}
     		@if($reply->user->id == Auth::user()->id)
@@ -41,8 +41,8 @@
     			</div>
     		@endif
     	@endforeach
-    @endif
     </div>
+    @endif    
     <div class="col-md-12">
 		<form action="{{ route('post.message', ['sent_to' => $sent_to->id]) }}" method="post">
 				<div class="form-group {{ $errors->has('reply') ? 'has-error' : '' }}">

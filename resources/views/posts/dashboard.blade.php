@@ -102,7 +102,7 @@ Dashboard
 									@if(count($posts) == 0)               
 							            @if(Auth::user())
 											<h4>You don't have any post at the moment</h4><br/>
-											<label for="title"><span class="glyphicon glyphicon-arrow-left"></span> Create your first post. </label>
+											<label for="title" class="mb-20"><span class="glyphicon glyphicon-arrow-left"></span> Create your first post. </label>
 							            @endif
 							        @endif
 							        <div class="posts">
