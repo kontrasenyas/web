@@ -144,6 +144,7 @@ Libot Philippines
     <!-- Init JavaScript -->
     <script src="dist/js/init.js"></script>
 
+    @include('includes.places-autocomplete')
     @include('includes.message-block')
     @include('includes.register-first')
 @endsection()
