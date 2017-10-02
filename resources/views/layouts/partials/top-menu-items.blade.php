@@ -15,6 +15,7 @@
 		<form id="search_form" role="search" class="top-nav-search collapse pull-left" action="{{ route('search') }}" method="get">
 			<div class="input-group">
 				<input type="text" name="query" class="form-control" placeholder="Search" value="{{ Request::query('query') }}">
+				<input type="hidden" name="_token" value="{{ Session::token() }}">
 				<span class="input-group-btn">
 					<button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
 				</span>				
