@@ -28,8 +28,8 @@ Your Moments
                     <!-- Breadcrumb -->
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li class="active"><span>Help</span></li>
+                            <li><a href="{{ route('home') }}">Profile</a></li>
+                            <li class="active"><span>Moments</span></li>
                         </ol>
                     </div>
                     <!-- /Breadcrumb -->

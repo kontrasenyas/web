@@ -1,4 +1,4 @@
-<!-- Top Menu Items -->
+Top Menu Items -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="mobile-only-brand pull-left">
 		<div class="nav-header pull-left">
@@ -279,9 +279,9 @@
 							<li>
 								<a href="{{ route('account.profile', Auth::user()->id) }}"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
 							</li>
-							{{-- <li>
-								<a href="#"><i class="zmdi zmdi-card"></i><span>my balance</span></a>
-							</li> --}}
+							<li>
+								<a href="{{ route('moments.user', Auth::user()->id) }}"><i class="zmdi zmdi-card"></i><span>my moments</span></a>
+							</li>
 							<li>
 								<a href="{{ route('messages', Auth::user()->id) }}"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
 							</li>
@@ -319,4 +319,4 @@
 			</div>
 		@endif
 	</nav>
-<!-- /Top Menu Items -->
+<!-- /Top Menu Items
