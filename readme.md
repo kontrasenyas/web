@@ -1,7 +1,7 @@
 ## How to Install this to your local
 <ol>
-  <li>Download and install <a href="https://getcomposer.org/Composer-Setup.exe"> Composer </a> </li>
-  <li>Download and install <a href="https://www.apachefriends.org/download.html">XAMPP Control Panel</a> or <a href="https://laragon.org/">Laragon</a> </li>
+  <li>Download and install <a href="https://getcomposer.org/Composer-Setup.exe" target="_blank"> Composer </a> </li>
+  <li>Download and install <a href="https://www.apachefriends.org/download.html" target="_blank">XAMPP Control Panel</a> or <a href="https://laragon.org/" target="_blank">Laragon</a> </li>
   <li>After finishing the installation of Composer and Xampp/Laragon, open command prompt</li>
   <li>Change directory where you want to save the files <i>(Ex. cd C:\Documents\Projects\)</i></li>
   <li>Run this command <code>git clone https://github.com/kontrasenyas/web </code> to download this repository</li>
