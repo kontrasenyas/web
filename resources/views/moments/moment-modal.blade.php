@@ -19,7 +19,7 @@
                     <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                         <label for="image">Upload your best shot</label>
                         {{-- <input type="file" name="image" class="form-control" id="image"> --}}
-                        <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
+                        <input name="image" id="input-id" type="file" class="dropify" data-preview-file-type="text">
                     </div>
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
                 </div>
@@ -50,55 +50,3 @@
         </div>
     </div>
 </div>
-
-@section('script')
-    <script type="text/javascript">
-        @if (count($errors) > 0)
-        $('#momentModal').modal('show');
-        @endif
-    </script>
-
-    <script type="text/javascript">
-        $('textarea').each(function () {
-            this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
-        }).on('input', function () {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
-
-        $('#btnMoment').on("click", function(e){
-            $("#body").height(20);
-        });
-
-        $('#momentModal').on('hidden.bs.modal', function (e) {
-            var $body = $('#body').val();
-            if($body != "")
-            {
-                $('#momentModalClose').modal('show')
-            }
-        });
-
-        function clearData()
-        {
-            $('#momentModal')
-                .find("textarea,select")
-                .val('')
-                .end()
-
-            momentModalClose();
-        }
-
-        function openMomentModal()
-        {
-            $('#momentModal').modal('show');
-        }
-
-        function momentModalClose()
-        {
-            $('#momentModalClose').modal('hide');
-        }
-    </script>
-
-    @include('includes.places-autocomplete')
-
-@endsection

@@ -145,7 +145,7 @@ Messages
                                                         <a  id="goto_back_widget_1" href="javascript:void(0)" class="inline-block txt-grey">
                                                             <i class="zmdi zmdi-account-add"></i>
                                                         </a>    
-                                                        <span class="inline-block txt-dark" id="chat-name">Ezequiel</span>
+                                                        <span class="inline-block txt-dark" id="chat-name">Maan Decena</span>
                                                         <a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="zmdi zmdi-more"></i></a>
                                                         <div class="clearfix"></div>
                                                     </div>
