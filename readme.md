@@ -1,9 +1,21 @@
+## How to Install this to your local
 <ol>
-<li> <a href="https://getcomposer.org/Composer-Setup.exe"> Install composer </a> </li>
-<li>Run composer update</li>
-<li>php artisan serve</li>
-</ol>
-
+  <li>Download and install <a href="https://getcomposer.org/Composer-Setup.exe"> Composer </a> </li>
+  <li>Download and install <a href="https://www.apachefriends.org/download.html">XAMPP Control Panel</a> or <a href="https://laragon.org/">Laragon</a> </li>
+  <li>After finishing the installation of Composer and Xampp/Laragon, open command prompt</li>
+  <li>Change directory where you want to save the files <i>(Ex. cd C:\Documents\Projects\)</i></li>
+  <li>Run this command <code>git clone https://github.com/kontrasenyas/web </code> to download this repository</li>
+  <li>In your current directory (Ex. C:\Documents\Projects\), change again your directory to <code>web</code> (Ex. cd web) - this will change your directory to the current working directory or the website. (Ex. C:\Documents\Projects\web)</li>
+  <li>Run this command: <code>composer update</code> in your current directory (Ex. C:\Documents\Projects\web)</li>
+  <li>Wait until the composer finish the downloading and installing of php dependecies to your computer.</li>
+  <li>Go to <code>C:\Documents\Projects\web</code> then copy <code>env.example</code> and save it as <code>.env</code></li>
+  <li>Edit the <code>.env</code> suitable for your settings.</li>
+  <li>Run <code>php artisan migrate</code></li>
+  <li>Run <code>php aritsan db:seed</code></li>
+  <li>Now lets run the website, run <code>php artisan serve</code></li>
+  <li>Go to your browser and type <code>http://127.0.0.1:8000/</code></li>
+</ol>  
+  
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
