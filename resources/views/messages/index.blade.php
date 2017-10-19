@@ -68,7 +68,7 @@ Messages
                                                                 </a> --}}
                                                                 @foreach($list as $each)
                                                                     @if($each->user_one == Auth::user()->id)
-                                                                        <a href="{{ route('get.message', ['user_id' => $each->user_two]) }}" class="message-link" data-link="{{ route('get.message', ['user_id' => $each->user_one]) }}">
+                                                                        <a href="{{ route('get.message', ['user_id' => $each->user_two]) }}" class="message-link">
                                                                             @if($each->latest_user_reply == Auth::user()->id)
                                                                                 <div class="chat-data">
                                                                                     <img class="user-img img-circle"  src="{{ route('account.image', ['filename' => $each->profile_picture_path]) }}" alt="user"/>
@@ -101,7 +101,7 @@ Messages
                                                                         </a>
                                                                     @endif()
                                                                     @if($each->user_two == Auth::user()->id)
-                                                                        <a href="{{ route('get.message', ['user_id' => $each->user_one]) }}" class="message-link" data-link="{{ route('get.message', ['user_id' => $each->user_one]) }}">
+                                                                        <a href="{{ route('get.message', ['user_id' => $each->user_one]) }}" class="message-link">
                                                                             @if($each->latest_user_reply == Auth::user()->id)
                                                                                 <div class="chat-data">
                                                                                     <img class="user-img img-circle"  src="{{ route('account.image', ['filename' => $each->profile_picture_path]) }}" alt="user"/>

@@ -32,7 +32,7 @@
     	@include('layouts.partials.left-sidebar')
 
     	<!-- Main Content -->
-    	<div class="page-wrapper">
+    	<div class="page-wrapper" style="padding-bottom: 40px;">
     		@yield('content')
 
     		<!-- Footer -->

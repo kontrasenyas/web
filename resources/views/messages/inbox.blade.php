@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default border-panel card-view pa-0" style="
-    border-top-width: 0px;>
+    border-top-width: 0px;">
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body pa-0">
                                 <div class="chat-cmplt-wrap chat-for-widgets-1">
@@ -51,7 +51,7 @@
                                         <div class="panel-wrapper collapse in">
                                             <div class="panel-body pa-0">
                                                 @if(count($message) > 0)
-                                                <div class="chat-content endless-pagination" data-next-page="{{ $message_reply->nextPageUrl() }}" id="message" style="overflow-y:scroll; height: 220px;">
+                                                <div class="chat-content endless-pagination" data-next-page="{{ $message_reply->nextPageUrl() }}" id="message" style="overflow-y:scroll; height: 400px;">
                                                     <ul class="chatapp-chat-nicescroll-bar pt-20">
                                                         @foreach($message_reply->reverse() as $reply)
                                                         @if($reply->user->id != Auth::user()->id)
