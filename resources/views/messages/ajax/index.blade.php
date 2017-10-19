@@ -1,17 +1,30 @@
-		@foreach($message_reply->reverse() as $reply)
-            {{-- Own message --}}
-    		@if($reply->user->id == Auth::user()->id)
-    			<div class="text-right"> 
-    				{!! nl2br(e($reply->reply)) !!}<br/>
-	    			<span class="text-muted" title="{{$reply->created_at->format('F d, Y g:i A')}}"><small><i>{{ $reply->created_at->diffForHumans() }}</i></small></span>
-    			</div>
-    		@endif
-            {{-- Recepient message--}}
-    		@if($reply->user->id != Auth::user()->id)
-    			<div class="text-left"> 
-    				<a href="{{ route('account.profile', ['user_id' => $sent_to->id]) }}"><span class="text-muted"><small>{{ $reply->user->first_name }} {{ $reply->user->last_name }} </small></span></a> <br/>
-    				{!! nl2br(e($reply->reply)) !!}<br/>
-    				<span class="text-muted" title="{{$reply->created_at->format('F d, Y g:i A')}}"><small><i>{{ $reply->created_at->diffForHumans() }}</i></small></span>
-    			</div>
-    		@endif
-    	@endforeach
+<ul class="chatapp-chat-nicescroll-bar pt-20">
+    @foreach($message_reply->reverse() as $reply)
+        @if($reply->user->id != Auth::user()->id)
+            <li class="friend">
+                <div class="friend-msg-wrap">
+                    <img class="user-img img-circle block pull-left"  src="dist/img/user.png" alt="user"/>
+                    <div class="msg pull-left">
+                        <p>{!! nl2br(e($reply->reply)) !!}</p>
+                        <div class="msg-per-detail text-right">
+                            <span class="msg-time txt-grey">2:30 PM</span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>  
+            </li>
+        @endif()
+        @if($reply->user->id == Auth::user()->id)
+            <li class="self mb-10">
+                <div class="self-msg-wrap">
+                    <div class="msg block pull-right">{!! nl2br(e($reply->reply)) !!}
+                        <div class="msg-per-detail text-right">
+                            <span class="msg-time txt-grey">2:31 pm</span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>  
+            </li>
+        @endif()
+    @endforeach()
+</ul>
