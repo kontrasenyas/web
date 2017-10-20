@@ -20,7 +20,6 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
-    <link href="{{ URL::to('css/link.css')}}" rel="stylesheet" type="text/css">
 
 </head>
 
