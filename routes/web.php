@@ -32,8 +32,13 @@ Route::group(['middleware' => ['web']],function(){
     ]);
 
     Route::get('/messages/{user_id}', [
-    	'uses' => 'MessageController@getIndex',
+    	'uses' => 'MessageController@index',
     	'as' => 'messages',
+    	'middleware' => 'auth'
+    ]);
+    Route::get('ajax/messages/{user_id}/{requested_by}', [
+    	'uses' => 'MessageController@getIndex',
+    	'as' => 'ajax.messages',
     	'middleware' => 'auth'
     ]);
     Route::post('/message/{sent_to}', [

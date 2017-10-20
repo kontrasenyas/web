@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 
 class MessageController extends Controller
 {
-	public function getIndex($user_id)
+	public function getIndex($user_id, $requested_by)
 	{
         if (Auth::user()->id != $user_id) {
             return redirect()->route('home');
@@ -44,9 +44,23 @@ class MessageController extends Controller
             ->get()
             ->unique('message_id');
 
-    		return view('messages.index', ['list' => $list]);
+            if ($requested_by == 'messages.menu') {
+                $html = view('messages.ajax.top-menu')->with(compact('list'))->render();
+            }
+            else {
+                $html = view('messages.ajax.index2')->with(compact('list'))->render();
+            }
+            
+            return response()->json(['success' => true, 'html' => $html]);
+
+    		//return response()->json(['list' => $list]);
         }
 	}
+
+    function index($user_id)
+    {
+        return view('messages.index');
+    }
 
     public function getCountMessage($user_id)
     {

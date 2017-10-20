@@ -96,78 +96,9 @@
 							</div>
 						</li>
 						<li>
-							<div class="streamline message-nicescroll-bar">
-								<div class="sl-item">
-									<a href="javascript:void(0)">
-										<div class="icon bg-green">
-											<i class="zmdi zmdi-flag"></i>
-										</div>
-										<div class="sl-content">
-											<span class="inline-block capitalize-font  pull-left truncate head-notifications">
-												New subscription created</span>
-												<span class="inline-block font-11  pull-right notifications-time">2pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">Your customer subscribed for the basic plan. The customer will pay $25 per month.</p>
-											</div>
-										</a>    
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="icon bg-yellow">
-												<i class="zmdi zmdi-trending-down"></i>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications txt-warning">Server #2 not responding</span>
-												<span class="inline-block font-11 pull-right notifications-time">1pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">Some technical error occurred needs to be resolved.</p>
-											</div>
-										</a>    
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="icon bg-blue">
-												<i class="zmdi zmdi-email"></i>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications">2 new messages</span>
-												<span class="inline-block font-11  pull-right notifications-time">4pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate"> The last payment for your G Suite Basic subscription failed.</p>
-											</div>
-										</a>    
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="sl-avatar">
-												<img class="img-responsive" src="dist/img/avatar.jpg" alt="avatar"/>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications">Sandy Doe</span>
-												<span class="inline-block font-11  pull-right notifications-time">1pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-											</div>
-										</a>    
-									</div>
-									<hr class="light-grey-hr ma-0"/>
-									<div class="sl-item">
-										<a href="javascript:void(0)">
-											<div class="icon bg-red">
-												<i class="zmdi zmdi-storage"></i>
-											</div>
-											<div class="sl-content">
-												<span class="inline-block capitalize-font  pull-left truncate head-notifications txt-danger">99% server space occupied.</span>
-												<span class="inline-block font-11  pull-right notifications-time">1pm</span>
-												<div class="clearfix"></div>
-												<p class="truncate">consectetur, adipisci velit.</p>
-											</div>
-										</a>    
-									</div>
-								</div>
+							<div class="streamline message-nicescroll-bar" id="menu-messages" data-menu-messages="{{ route('ajax.messages', [Auth::user()->id, 'messages.menu']) }}">
+								
+							</div>
 							</li>
 							<li>
 								<div class="notification-box-bottom-wrap">
@@ -318,4 +249,22 @@
 			</div>
 		@endif
 	</nav>
-<!-- /Top Menu Items
+<!-- /Top Menu Items -->
+
+<!-- jQuery -->
+<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var url = $('#menu-messages').attr('data-menu-messages');
+		$.ajax({
+			method: 'GET',
+			url: url,
+			success: function(data) {
+				//console.log(data.html);
+				$('#menu-messages').html(data.html);
+			}
+		});
+	});
+
+</script>

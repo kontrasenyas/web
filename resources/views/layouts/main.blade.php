@@ -16,8 +16,6 @@
 
     @yield('css')
 
-    <link href="{{ URL::to('css/link.css')}}" rel="stylesheet" type="text/css">
-
 </head>
 
 <body>
