@@ -53,7 +53,8 @@
                                             @endif()
                                         </div>  
                                         <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{ $user->first_name }} {{ $user->last_name }}</h5>
-                                        <h6 class="block capitalize-font pb-20">Developer Geek</h6>
+                                        <span class="counts-text block">{{ $user->mobile_no }}</span>
+                                        <span class="counts-text block mb-10">{{ $user->email }}</span>
                                     </div>  
                                     <div class="social-info">
                                         <div class="row">
@@ -221,7 +222,7 @@
                                                                             <img class="img-responsive img-circle" src="dist/img/user.png" alt="avatar"/>
                                                                         </div>
                                                                         <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Clay Masse</span><span>invited to join the meeting in the conference room at 9.45 am</span></p>
+                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Maan Dyosa</span><span>invited to join the meeting in the conference room at 9.45 am</span></p>
                                                                             <span class="block txt-grey font-12 capitalize-font">3 Min</span>
                                                                         </div>
                                                                     </a>
@@ -233,7 +234,7 @@
                                                                             <img class="img-responsive img-circle" src="dist/img/user1.png" alt="avatar"/>
                                                                         </div>
                                                                         <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Evie Ono</span><span>added three new photos in the library</span></p>
+                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Jow Jow</span><span>added three new photos in the library</span></p>
                                                                             <div class="activity-thumbnail">
                                                                                 <img src="dist/img/thumb-1.jpg" alt="thumbnail"/>
                                                                                 <img src="dist/img/thumb-2.jpg" alt="thumbnail"/>
@@ -262,7 +263,7 @@
                                                                             <img class="img-responsive img-circle" src="dist/img/user3.png" alt="avatar"/>
                                                                         </div>
                                                                         <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Ezequiel Merideth</span><span>completed project wireframes</span></p>
+                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Batman</span><span>completed project wireframes</span></p>
                                                                             <span class="block txt-grey font-12 capitalize-font">yesterday</span>
                                                                         </div>
                                                                     </a>    
@@ -274,7 +275,7 @@
                                                                             <img class="img-responsive img-circle" src="dist/img/user4.png" alt="avatar"/>
                                                                         </div>
                                                                         <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">jonnie metoyer</span><span>created a group 'Hencework' in the discussion forum</span></p>
+                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">superman</span><span>created a group 'Hencework' in the discussion forum</span></p>
                                                                             <span class="block txt-grey font-12 capitalize-font">18 feb</span>
                                                                         </div>
                                                                     </a>
@@ -294,7 +295,7 @@
                                                                             <div class="follo-data">
                                                                                 <img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
                                                                                 <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Clay Masse</span>
+                                                                                    <span class="name block capitalize-font">Maan Dyosa</span>
                                                                                     <span class="time block truncate txt-grey">No one saves us but ourselves.</span>
                                                                                 </div>
                                                                                 <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
@@ -303,7 +304,7 @@
                                                                             <div class="follo-data">
                                                                                 <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
                                                                                 <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Evie Ono</span>
+                                                                                    <span class="name block capitalize-font">Superman</span>
                                                                                     <span class="time block truncate txt-grey">Unity is strength</span>
                                                                                 </div>
                                                                                 <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
@@ -321,7 +322,7 @@
                                                                             <div class="follo-data">
                                                                                 <img class="user-img img-circle"  src="dist/img/user3.png" alt="user"/>
                                                                                 <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Mitsuko Heid</span>
+                                                                                    <span class="name block capitalize-font">Batman</span>
                                                                                     <span class="time block truncate txt-grey">I’m thankful.</span>
                                                                                 </div>
                                                                                 <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
@@ -330,7 +331,7 @@
                                                                             <div class="follo-data">
                                                                                 <img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
                                                                                 <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Ezequiel Merideth</span>
+                                                                                    <span class="name block capitalize-font">Spiderman</span>
                                                                                     <span class="time block truncate txt-grey">Patience is bitter.</span>
                                                                                 </div>
                                                                                 <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
@@ -339,7 +340,7 @@
                                                                             <div class="follo-data">
                                                                                 <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
                                                                                 <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Jonnie Metoyer</span>
+                                                                                    <span class="name block capitalize-font">Captain America</span>
                                                                                     <span class="time block truncate txt-grey">Genius is eternal patience.</span>
                                                                                 </div>
                                                                                 <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
