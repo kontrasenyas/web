@@ -58,9 +58,11 @@
                                     </div>  
                                     <div class="social-info">
                                         <div class="row">
-                                            <div class="col-xs-4 text-center">
-                                                <span class="counts block head-font"><span class="counter-anim">345</span></span>
-                                                <span class="counts-text block">post</span>
+                                            <div class="col-xs-4 text-center txt-primary">
+                                                <a href="{{ route('user-post', ['user_id' => $user->id]) }}">
+                                                    <span class="counts block head-font"><span class="counter-anim txt-primary">{{count($posts)}}</span></span>
+                                                    <span class="counts-text block">post</span>
+                                                </a>
                                             </div>
                                             <div class="col-xs-4 text-center">
                                                 <span class="counts block head-font"><span class="counter-anim">246</span></span>
