@@ -53,7 +53,7 @@
             <img class="user-img img-circle"  src="{{ route('account.image', ['filename' => $each->profile_picture_path]) }}" alt="user"/>
             <div class="user-data">                                                                                    
                 <span class="name block capitalize-font">{{ $each->first_name }} {{ $each->last_name }}</span>
-                <span class="time block truncate txt-grey">You: {{ $each->reply }}</span>
+                <span class="time block truncate txt-grey">{{ $each->reply }}</span>
                 <span class="time block truncate txt-grey">{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</span>
             </div>
             <div class="status away"></div>
@@ -70,7 +70,7 @@
                 <img class="user-img img-circle"  src="{{ route('account.image', ['filename' => $each->profile_picture_path]) }}" alt="user"/>
                 <div class="user-data">
                     <span class="name block capitalize-font">{{ $each->first_name }} {{ $each->last_name }}</span>
-                    <span class="time block truncate txt-grey">You: {{ $each->reply }}</span>
+                    <span class="time block truncate txt-grey">{{ $each->reply }}</span>
                     <span class="time block truncate txt-grey">{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</span>
                 </div>
                 <div class="status away"></div>

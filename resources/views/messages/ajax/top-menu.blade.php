@@ -50,7 +50,7 @@
 				<span class="inline-block capitalize-font  pull-left truncate head-notifications">{{ $each->first_name }} {{ $each->last_name }}</span>
 				<span class="inline-block font-11  pull-right notifications-time">{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</span>
 				<div class="clearfix"></div>
-				<p class="truncate">You: {{ $each->reply }}</p>
+				<p class="truncate">{{ $each->reply }}</p>
 			</div>  
 		</div>
 		<hr class="light-grey-hr ma-0"/>
@@ -69,7 +69,7 @@
 						<span class="inline-block capitalize-font  pull-left truncate head-notifications">{{ $each->first_name }} {{ $each->last_name }}</span>
 						<span class="inline-block font-11  pull-right notifications-time">{{ Carbon\Carbon::parse($each->mr_created)->diffForHumans() }}</span>
 						<div class="clearfix"></div>
-						<p class="truncate">You: {{ $each->reply }}</p>
+						<p class="truncate">{{ $each->reply }}</p>
 					</div>  
 				</div>
 				<hr class="light-grey-hr ma-0"/>
