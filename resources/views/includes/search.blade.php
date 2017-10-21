@@ -42,7 +42,7 @@ Libot Philippines
 						                    </div>
 						                    <div class="row form-group">
 						                        <div class="col-md-12">
-						                            <input type="text" class="form-control" placeholder="Destination" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
+						                            <input type="text" class="form-control" placeholder="Location" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
 						                        </div>
 						                    </div>
 						                    <div class="form-group row">

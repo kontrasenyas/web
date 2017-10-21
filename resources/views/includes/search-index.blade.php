@@ -41,7 +41,7 @@ Libot Philippines
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" placeholder="Destination" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
+                                                    <input type="text" class="form-control" placeholder="Location" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -72,8 +72,8 @@ Libot Philippines
                                         <div class="col-md-12">
                                             @foreach($posts as $post)
                                                 <p><strong>{{ $post->user->first_name }} {{ $post->user->last_name }}</strong>
-                                                @if(Auth::user() || (Auth::user() && (Auth::user()->id != $post->user->id) ))
-                                                <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}"><span class="glyphicon glyphicon-envelope text-primary" title="Send message to this user."></span></a>
+                                                @if((Auth::user() && (Auth::user()->id != $post->user->id) ))
+                                                    <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}"><span class="glyphicon glyphicon-envelope text-primary" title="Send message to this user."></span></a>
                                                 @endif
                                                 @if(!Auth::user())
                                                 <a href="#" data-toggle="modal" data-target="#register-first"><span class="glyphicon glyphicon-envelope text-primary" title="Please register to send a message."></span></a>
