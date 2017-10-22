@@ -7,7 +7,7 @@
                     <div class="msg pull-left">
                         <p>{!! nl2br(e($reply->reply)) !!}</p>
                         <div class="msg-per-detail text-right">
-                            <span class="msg-time txt-grey">2:30 PM</span>
+                            <span class="msg-time txt-grey" title="{{$reply->created_at->format('F d, Y g:i A')}}">{{ $reply->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -19,7 +19,7 @@
                 <div class="self-msg-wrap">
                     <div class="msg block pull-right">{!! nl2br(e($reply->reply)) !!}
                         <div class="msg-per-detail text-right">
-                            <span class="msg-time txt-grey">2:31 pm</span>
+                            <span class="msg-time txt-grey" title="{{$reply->created_at->format('F d, Y g:i A')}}">{{ $reply->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
