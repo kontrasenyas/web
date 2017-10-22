@@ -37,23 +37,32 @@ $(document).ready(function() {
 	};
 });
 
-$("#message").scrollTop($("#message")[0].scrollHeight);
-$("#reply").focus();  
+$(document).ready(function() {
+	var message = $('#message');
+	if (message[0]) {
+		$("#message").scrollTop($("#message")[0].scrollHeight);
+	}
+});
+
+$("#reply").focus();
 
 $(document).ready(function() {
 	var post_id = getParameterByName('post');
 	var base_url = window.location.origin;
+	var messageId = document.getElementById('message');
 
-	var message = document.getElementById('message').innerHTML;
-	var new_message = anchorme(message,{
-		attributes:[
-		{
-			name:"target",
-			value:"_blank"
-		}
-		]
-	});
-	document.getElementById('message').innerHTML = new_message;
+	if (messageId) {
+		var message = messageId.innerHTML;
+		var new_message = anchorme(message,{
+			attributes:[
+			{
+				name:"target",
+				value:"_blank"
+			}
+			]
+		});
+		document.getElementById('message').innerHTML = new_message;
+	}	
 
 	if (post_id) {
 		var text = document.getElementById('reply');
