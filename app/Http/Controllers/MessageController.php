@@ -48,7 +48,7 @@ class MessageController extends Controller
                 $html = view('messages.ajax.top-menu')->with(compact('list'))->render();
             }
             else {
-                $html = view('messages.ajax.index2')->with(compact('list'))->render();
+                $html = view('messages.ajax.index')->with(compact('list'))->render();
             }
             
             return response()->json(['success' => true, 'html' => $html]);
@@ -111,7 +111,7 @@ class MessageController extends Controller
 
             if($request->ajax()) {
                 return [
-                    'messages' => view('messages.ajax.index')->with(compact('message_reply', 'sent_to'))->render(),
+                    'messages' => view('messages.ajax.inbox')->with(compact('message_reply', 'sent_to'))->render(),
                     'next_page' => $message_reply->nextPageUrl(),
                     'count' => $message_reply->count()
                 ];
