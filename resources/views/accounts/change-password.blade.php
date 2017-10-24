@@ -35,7 +35,7 @@ Change Password
                 </div>
                 <!-- /Title -->
                 <div class="row">
-                        <div class="col-md-6 ml-auto mr-auto no-float"">
+                        <div class="col-md-6 ml-auto mr-auto no-float">
                             <div class="panel panel-default card-view">
                                 <div class="panel-heading">
                                     <div class="pull-left">
