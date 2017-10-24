@@ -21,6 +21,9 @@
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
     <link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Dropify CSS -->
+    <link href="vendors/bower_components/dropify/dist/css/dropify.min.css" rel="stylesheet" type="text/css"/>
 @endsection()
 
 @section('content')    
@@ -48,13 +51,59 @@
                                             @if(Auth::user() && Auth::user()->id == $user->id)
                                             <div class="fileupload btn btn-default">
                                                 <span class="btn-text">edit</span>
-                                                <input class="upload" type="file">
-                                            </div>
+                                                {{-- <a href="#" data-toggle="modal" data-target="#modalProfPic"></a> --}}
+                                                <input class="upload" data-toggle="modal" data-target="#modalProfPic">
+                                            </div>1                                           
                                             @endif()
                                         </div>  
                                         <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{ $user->first_name }} {{ $user->last_name }}</h5>
                                         <span class="counts-text block">{{ $user->mobile_no }}</span>
                                         <span class="counts-text block mb-10">{{ $user->email }}</span>
+                                    </div>
+                                    <!-- Profile Pic Modal -->
+                                    <div id="modalProfPic" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h5 class="modal-title" id="myModalLabel">Edit Profile Picture</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Row -->
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="">
+                                                                <div class="panel-wrapper collapse in">
+                                                                    <div class="panel-body pa-0">
+                                                                        <div class="col-sm-12 col-xs-12">
+                                                                            <div class="form-wrap">
+                                                                                <form action="{{ route('account.post-image') }}" method="post" enctype="multipart/form-data">
+                                                                                    <div class="form-body overflow-hide">
+                                                                                        <div class="form-group">
+                                                                                            <label class="control-label mb-10" for="first_name">Choose your photo</label>
+                                                                                            
+                                                                                                <input name="image" id="input-id" type="file" class="dropify" data-preview-file-type="text">
+                                                                                           
+                                                                                        </div>                                                    
+                                                                                    </div>
+                                                                                    <div class="form-actions mt-10">
+                                                                                        <input type="hidden" value="{{ Session::token() }}" name="_token">
+                                                                                        <button type="submit" class="btn btn-success mr-10 mb-30" onclick="this.disabled=true;this.form.submit();">Save</button>
+                                                                                        <button type="button" class="btn btn-default mr-10 mb-30" data-dismiss="modal">Cancel</button>
+                                                                                    </div>              
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
                                     </div>  
                                     <div class="social-info">
                                         <div class="row">
@@ -1052,6 +1101,12 @@
     <!-- Init JavaScript -->
     <script src="dist/js/init.js"></script>
     <script src="dist/js/widgets-data.js"></script>
+
+    <!-- Form Flie Upload Data JavaScript -->
+    <script src="dist/js/form-file-upload-data.js"></script>
+
+    <!-- Bootstrap Daterangepicker JavaScript -->
+    <script src="vendors/bower_components/dropify/dist/js/dropify.min.js"></script>
 
     @include('includes.message-block')
     @include('includes.register-first')

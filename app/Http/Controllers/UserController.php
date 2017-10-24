@@ -191,6 +191,24 @@ class UserController extends Controller
 		return new Response($file, 200);
 	}
 
+	public function postUserImage(Request $request)
+	{
+		$user = Auth::user();
+		$this->validate($request, [
+			'image' => 'required',
+		]);
+		$file = $request->file('image');
+		$filename = $user->id . '-' . $user->first_name . '-' . $user->last_name . '.jpg';
+
+		if ($file) {
+			Storage::disk('local')->put('profile_picture/' . $filename, File::get($file));
+			$user->profile_picture_path = $filename;
+		}
+
+		$user->update();
+		return redirect()->back()->with(['message' => 'Profile picture successfully updated.']);
+	}
+
 	public function getReview($user_id)
 	{
 		$user = User::Find($user_id);

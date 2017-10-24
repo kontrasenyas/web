@@ -170,6 +170,10 @@ Route::group(['middleware' => ['web']],function(){
 		'uses' => 'UserController@getUserImage',
 		'as' => 'account.image'
 	]);
+	Route::post('/userimage', [
+		'uses' => 'UserController@postUserImage',
+		'as' => 'account.post-image'
+	]);
 
 	Route::get('/review/{user_id}', [
 		'uses' => 'UserController@getReview',
