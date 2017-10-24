@@ -182,7 +182,7 @@ class UserController extends Controller
 		}
 
 		$user->update();
-		return redirect()->route('account.edit')->with(['message' => 'Account successfully updated.']);
+		return redirect()->back()->with(['message' => 'Account successfully updated.']);
 	}
 
 	public function getUserImage($filename)
