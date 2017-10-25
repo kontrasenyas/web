@@ -53,7 +53,7 @@
                                                 <span class="btn-text">edit</span>
                                                 {{-- <a href="#" data-toggle="modal" data-target="#modalProfPic"></a> --}}
                                                 <input class="upload" data-toggle="modal" data-target="#modalProfPic">
-                                            </div>1                                           
+                                            </div>
                                             @endif()
                                         </div>  
                                         <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{ $user->first_name }} {{ $user->last_name }}</h5>
