@@ -5,95 +5,93 @@
 @endsection
 
 @section('css')
-    <!-- Morris Charts CSS -->
-    <link href="vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css"/>
-    
-    <!-- vector map CSS -->
-    <link href="vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
-    
-    <!-- Calendar CSS -->
-    <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet" type="text/css"/>
-        
-    <!-- Data table CSS -->
-    <link href="vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-    
-    <!-- Custom CSS -->
-    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+<!-- Morris Charts CSS -->
+<link href="vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css"/>
 
-    <link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+<!-- vector map CSS -->
+<link href="vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
 
-    <!-- Bootstrap Dropify CSS -->
-    <link href="vendors/bower_components/dropify/dist/css/dropify.min.css" rel="stylesheet" type="text/css"/>
+<!-- Calendar CSS -->
+<link href="vendors/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet" type="text/css"/>
+
+<!-- Data table CSS -->
+<link href="vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+<!-- Custom CSS -->
+<link href="dist/css/style.css" rel="stylesheet" type="text/css">
+
+<link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap Dropify CSS -->
+<link href="vendors/bower_components/dropify/dist/css/dropify.min.css" rel="stylesheet" type="text/css"/>
 @endsection()
 
 @section('content')    
-        <div class="container-fluid pt-25">
+<div class="container-fluid pt-25">
 
-            <!-- Row -->
-            <div class="row">
-                <div class="col-lg-3 col-xs-12">
-                    <div class="panel panel-default card-view  pa-0">
-                        <div class="panel-wrapper collapse in">
-                            <div class="panel-body  pa-0">
-                                <div class="profile-box">
-                                    <div class="profile-cover-pic">
-                                        @if(Auth::user() && Auth::user()->id == $user->id)
-                                        <div class="fileupload btn btn-default">
-                                            <span class="btn-text">edit</span>
-                                            <input class="upload" type="file">
+    <!-- Row -->
+    <div class="row">
+        <div class="col-lg-3 col-xs-12">
+            <div class="panel panel-default card-view  pa-0">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body  pa-0">
+                        <div class="profile-box">
+                            <div class="profile-cover-pic">
+                                @if(Auth::user() && Auth::user()->id == $user->id)
+                                <div class="fileupload btn btn-default">
+                                    <span class="btn-text">edit</span>
+                                    <input class="upload" type="file">
+                                </div>
+                                @endif
+                                <div class="profile-image-overlay"></div>
+                            </div>
+                            <div class="profile-info text-center">
+                                <div class="profile-img-wrap">
+                                    <img class="inline-block mb-10" src="{{ route('account.image', ['filename' => $user->profile_picture_path]) }}" alt="user"/>
+                                    @if(Auth::user() && Auth::user()->id == $user->id)
+                                    <div class="fileupload btn btn-default">
+                                        <span class="btn-text">edit</span>
+                                        {{-- <a href="#" data-toggle="modal" data-target="#modalProfPic"></a> --}}
+                                        <input class="upload" data-toggle="modal" data-target="#modalProfPic">
+                                    </div>
+                                    @endif()
+                                </div>  
+                                <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{ $user->first_name }} {{ $user->last_name }}</h5>
+                                <span class="counts-text block">{{ $user->mobile_no }}</span>
+                                <span class="counts-text block mb-10">{{ $user->email }}</span>
+                            </div>
+                            <!-- Profile Pic Modal -->
+                            <div id="modalProfPic" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h5 class="modal-title" id="myModalLabel">Edit Profile Picture</h5>
                                         </div>
-                                        @endif
-                                        <div class="profile-image-overlay"></div>
-                                    </div>
-                                    <div class="profile-info text-center">
-                                        <div class="profile-img-wrap">
-                                            <img class="inline-block mb-10" src="{{ route('account.image', ['filename' => $user->profile_picture_path]) }}" alt="user"/>
-                                            @if(Auth::user() && Auth::user()->id == $user->id)
-                                            <div class="fileupload btn btn-default">
-                                                <span class="btn-text">edit</span>
-                                                {{-- <a href="#" data-toggle="modal" data-target="#modalProfPic"></a> --}}
-                                                <input class="upload" data-toggle="modal" data-target="#modalProfPic">
-                                            </div>
-                                            @endif()
-                                        </div>  
-                                        <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-danger">{{ $user->first_name }} {{ $user->last_name }}</h5>
-                                        <span class="counts-text block">{{ $user->mobile_no }}</span>
-                                        <span class="counts-text block mb-10">{{ $user->email }}</span>
-                                    </div>
-                                    <!-- Profile Pic Modal -->
-                                    <div id="modalProfPic" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h5 class="modal-title" id="myModalLabel">Edit Profile Picture</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Row -->
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="">
-                                                                <div class="panel-wrapper collapse in">
-                                                                    <div class="panel-body pa-0">
-                                                                        <div class="col-sm-12 col-xs-12">
-                                                                            <div class="form-wrap">
-                                                                                <form action="{{ route('account.post-image') }}" method="post" enctype="multipart/form-data">
-                                                                                    <div class="form-body overflow-hide">
-                                                                                        <div class="form-group">
-                                                                                            <label class="control-label mb-10" for="first_name">Choose your photo</label>
-                                                                                            
-                                                                                                <input name="image" id="input-id" type="file" class="dropify" data-preview-file-type="text">
-                                                                                           
-                                                                                        </div>                                                    
-                                                                                    </div>
-                                                                                    <div class="form-actions mt-10">
-                                                                                        <input type="hidden" value="{{ Session::token() }}" name="_token">
-                                                                                        <button type="submit" class="btn btn-success mr-10 mb-30" onclick="this.disabled=true;this.form.submit();">Save</button>
-                                                                                        <button type="button" class="btn btn-default mr-10 mb-30" data-dismiss="modal">Cancel</button>
-                                                                                    </div>              
-                                                                                </form>
+                                        <div class="modal-body">
+                                            <!-- Row -->
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="">
+                                                        <div class="panel-wrapper collapse in">
+                                                            <div class="panel-body pa-0">
+                                                                <div class="col-sm-12 col-xs-12">
+                                                                    <div class="form-wrap">
+                                                                        <form action="{{ route('account.post-image') }}" method="post" enctype="multipart/form-data">
+                                                                            <div class="form-body overflow-hide">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label mb-10" for="first_name">Choose your photo</label>
+
+                                                                                    <input name="image" id="input-id" type="file" class="dropify" data-preview-file-type="text">
+
+                                                                                </div>                                                    
                                                                             </div>
-                                                                        </div>
+                                                                            <div class="form-actions mt-10">
+                                                                                <input type="hidden" value="{{ Session::token() }}" name="_token">
+                                                                                <button type="submit" class="btn btn-success mr-10 mb-30" onclick="this.disabled=true;this.form.submit();">Save</button>
+                                                                                <button type="button" class="btn btn-default mr-10 mb-30" data-dismiss="modal">Cancel</button>
+                                                                            </div>              
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -101,556 +99,337 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /.modal-content -->
                                         </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>  
-                                    <div class="social-info">
-                                        <div class="row">
-                                            <div class="col-xs-4 text-center txt-primary">
-                                                <a href="{{ route('user-post', ['user_id' => $user->id]) }}">
-                                                    <span class="counts block head-font"><span class="counter-anim txt-primary">{{count($posts)}}</span></span>
-                                                    <span class="counts-text block">post</span>
-                                                </a>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>  
+                            <div class="social-info">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center txt-primary">
+                                        <a href="{{ route('user-post', ['user_id' => $user->id]) }}">
+                                            <span class="counts block head-font"><span class="counter-anim txt-primary">{{count($posts)}}</span></span>
+                                            <span class="counts-text block">post</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <span class="counts block head-font"><span class="counter-anim">246</span></span>
+                                        <span class="counts-text block">followers</span>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <span class="counts block head-font"><span class="counter-anim">898</span></span>
+                                        <span class="counts-text block">tweets</span>
+                                    </div>
+                                </div>
+                                @if(Auth::user() && Auth::user()->id != $user->id)
+                                <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#"><i class="fa fa-plus"></i><span class="btn-text">Follow</span></button>
+                                <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('get.message', ['user_id' => $user->id]) }}"><i class="fa fa-inbox"></i><span class="btn-text">Send Message</span></a>
+                                @endif()
+                                @if(!Auth::user())
+                                <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="#" data-toggle="modal" data-target="#register-first"><i class="fa fa-inbox"></i><span class="btn-text" title="Please register to send a message.">Send Message</span></a>
+                                @endif()
+                                <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('account.review', ['user_id' => $user->id]) }}"><i class="fa fa-book"></i><span class="btn-text">Reviews ({{ count($reviews)  }})</span></a>
+                                @if(Auth::user() && Auth::user()->id == $user->id)
+                                <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">edit profile</span></button>
+                                <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h5 class="modal-title" id="myModalLabel">Edit Profile</h5>
                                             </div>
-                                            <div class="col-xs-4 text-center">
-                                                <span class="counts block head-font"><span class="counter-anim">246</span></span>
-                                                <span class="counts-text block">followers</span>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <span class="counts block head-font"><span class="counter-anim">898</span></span>
-                                                <span class="counts-text block">tweets</span>
-                                            </div>
-                                        </div>
-                                        @if(Auth::user() && Auth::user()->id != $user->id)
-                                            <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#"><i class="fa fa-plus"></i><span class="btn-text">Follow</span></button>
-                                            <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('get.message', ['user_id' => $user->id]) }}"><i class="fa fa-inbox"></i><span class="btn-text">Send Message</span></a>
-                                        @endif()
-                                        @if(!Auth::user())
-                                            <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="#" data-toggle="modal" data-target="#register-first"><i class="fa fa-inbox"></i><span class="btn-text" title="Please register to send a message.">Send Message</span></a>
-                                        @endif()
-                                        <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('account.review', ['user_id' => $user->id]) }}"><i class="fa fa-book"></i><span class="btn-text">Reviews ({{ count($reviews)  }})</span></a>
-                                        @if(Auth::user() && Auth::user()->id == $user->id)
-                                            <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">edit profile</span></button>
-                                            <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                            <h5 class="modal-title" id="myModalLabel">Edit Profile</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <!-- Row -->
-                                                            <div class="row">
-                                                                <div class="col-lg-12">
-                                                                    <div class="">
-                                                                        <div class="panel-wrapper collapse in">
-                                                                            <div class="panel-body pa-0">
-                                                                                <div class="col-sm-12 col-xs-12">
-                                                                                    <div class="form-wrap">
-                                                                                        <form action="{{ route('account.save') }}" method="post">
-                                                                                            <div class="form-body overflow-hide">
-                                                                                                <div class="form-group">
-                                                                                                    <label class="control-label mb-10" for="first_name">First Name</label>
-                                                                                                    <div class="input-group">
-                                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="" value="{{ $user->first_name }}">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                    <label class="control-label mb-10" for="last_name">Last Name</label>
-                                                                                                    <div class="input-group">
-                                                                                                        <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                                                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="" value="{{ $user->last_name }}">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                    <label class="control-label mb-10" for="email">Email address</label>
-                                                                                                    <div class="input-group">
-                                                                                                        <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-                                                                                                        <input type="email" class="form-control" id="email" name="email" placeholder="xyz@gmail.com" value="{{ $user->email }}">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                    <label class="control-label mb-10" for="mobile_no">Contact number</label>
-                                                                                                    <div class="input-group">
-                                                                                                        <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                                                                        <input type="text" class="form-control" id="mobile_no" name="mobile_no" placeholder="09051234567" value="{{ $user->mobile_no }}">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                        {{-- <div class="form-group">
-                                                                                                            <label class="control-label mb-10" for="exampleInputpwd_1">Password</label>
-                                                                                                            <div class="input-group">
-                                                                                                                <div class="input-group-addon"><i class="icon-lock"></i></div>
-                                                                                                                <input type="password" class="form-control" id="exampleInputpwd_1" placeholder="Enter pwd" value="password">
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="form-group">
-                                                                                                            <label class="control-label mb-10">Gender</label>
-                                                                                                            <div>
-                                                                                                                <div class="radio">
-                                                                                                                    <input type="radio" name="radio1" id="radio_1" value="option1" checked="">
-                                                                                                                    <label for="radio_1">
-                                                                                                                    M
-                                                                                                                    </label>
-                                                                                                                </div>
-                                                                                                                <div class="radio">
-                                                                                                                    <input type="radio" name="radio1" id="radio_2" value="option2">
-                                                                                                                    <label for="radio_2">
-                                                                                                                    F
-                                                                                                                    </label>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="form-group">
-                                                                                                            <label class="control-label mb-10">Country</label>
-                                                                                                            <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                                                                                <option value="Category 1">USA</option>
-                                                                                                                <option value="Category 2">Austrailia</option>
-                                                                                                                <option value="Category 3">India</option>
-                                                                                                                <option value="Category 4">UK</option>
-                                                                                                            </select>
-                                                                                                        </div> --}}
-                                                                                                    </div>
-                                                                                                    <div class="form-actions mt-10">
-                                                                                                        <input type="hidden" value="{{ Session::token() }}" name="_token">
-                                                                                                        <button type="submit" class="btn btn-success mr-10 mb-30">Update profile</button>
-                                                                                                        <button type="button" class="btn btn-default mr-10 mb-30" data-dismiss="modal">Cancel</button>
-                                                                                                    </div>              
-                                                                                                </form>
-                                                                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Row -->
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="">
+                                                            <div class="panel-wrapper collapse in">
+                                                                <div class="panel-body pa-0">
+                                                                    <div class="col-sm-12 col-xs-12">
+                                                                        <div class="form-wrap">
+                                                                            <form action="{{ route('account.save') }}" method="post">
+                                                                                <div class="form-body overflow-hide">
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label mb-10" for="first_name">First Name</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="" value="{{ $user->first_name }}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label mb-10" for="last_name">Last Name</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                                                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="" value="{{ $user->last_name }}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label mb-10" for="email">Email address</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+                                                                                            <input type="email" class="form-control" id="email" name="email" placeholder="xyz@gmail.com" value="{{ $user->email }}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label mb-10" for="mobile_no">Contact number</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-addon"><i class="icon-phone"></i></div>
+                                                                                            <input type="text" class="form-control" id="mobile_no" name="mobile_no" placeholder="09051234567" value="{{ $user->mobile_no }}">
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
+                                                                                <div class="form-actions mt-10">
+                                                                                    <input type="hidden" value="{{ Session::token() }}" name="_token">
+                                                                                    <button type="submit" class="btn btn-success mr-10 mb-30">Update profile</button>
+                                                                                    <button type="button" class="btn btn-default mr-10 mb-30" data-dismiss="modal">Cancel</button>
+                                                                                </div>              
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                {{-- <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-success waves-effect" data-dismiss="modal">Save</button>
-                                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
-                                                                </div> --}}
                                                             </div>
-                                                            <!-- /.modal-content -->
                                                         </div>
-                                                        <!-- /.modal-dialog -->
                                                     </div>
-                                                @endif()
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- /.modal-content -->
                                     </div>
+                                    <!-- /.modal-dialog -->
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-xs-12">
-                            <div class="panel panel-default card-view pa-0">
-                                <div class="panel-wrapper collapse in">
-                                    <div  class="panel-body pb-0">
-                                        <div  class="tab-struct custom-tab-1">
-                                            <ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
-                                                <li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>profile</span></a></li>
-                                                <li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>followers<span class="inline-block">(246)</span></span></a></li>
-                                                <li role="presentation" class=""><a  data-toggle="tab" id="photos_tab_8" role="tab" href="#photos_8" aria-expanded="false"><span>photos</span></a></li>
-                                                <li role="presentation" class=""><a  data-toggle="tab" id="earning_tab_8" role="tab" href="#earnings_8" aria-expanded="false"><span>earnings</span></a></li>
-                                                @if(Auth::user() && Auth::user()->id == $user->id)
-                                                    <li role="presentation" class=""><a  data-toggle="tab" id="settings_tab_8" role="tab" href="#settings_8" aria-expanded="false"><span>settings</span></a></li>
-                                                @endif()
-                                                <li class="dropdown" role="presentation">
-                                                    <a  data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop_7" href="#" aria-expanded="false"><span>More</span> <span class="caret"></span></a>
-                                                    <ul id="myTabDrop_7_contents"  class="dropdown-menu">
-                                                        <li class=""><a  data-toggle="tab" id="dropdown_13_tab" role="tab" href="#dropdown_13" aria-expanded="true">About</a></li>
-                                                        <li class=""><a  data-toggle="tab" id="dropdown_14_tab" role="tab" href="#dropdown_14" aria-expanded="false">Followings</a></li>
-                                                        <li class=""><a  data-toggle="tab" id="dropdown_15_tab" role="tab" href="#dropdown_15" aria-expanded="false">Likes</a></li>
-                                                        <li class=""><a  data-toggle="tab" id="dropdown_16_tab" role="tab" href="#dropdown_16" aria-expanded="false">Reviews</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content" id="myTabContent_8">
-                                                <div  id="profile_8" class="tab-pane fade active in" role="tabpanel">
-                                                    <div class="col-md-12">
-                                                        <div class="pt-20">
-                                                            <div class="streamline user-activity">
-                                                                <div class="sl-item">
-                                                                    <a href="javascript:void(0)">
-                                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                                            <img class="img-responsive img-circle" src="dist/img/user.png" alt="avatar"/>
-                                                                        </div>
-                                                                        <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Maan Dyosa</span><span>invited to join the meeting in the conference room at 9.45 am</span></p>
-                                                                            <span class="block txt-grey font-12 capitalize-font">3 Min</span>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-
-                                                                <div class="sl-item">
-                                                                    <a href="javascript:void(0)">
-                                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                                            <img class="img-responsive img-circle" src="dist/img/user1.png" alt="avatar"/>
-                                                                        </div>
-                                                                        <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Jow Jow</span><span>added three new photos in the library</span></p>
-                                                                            <div class="activity-thumbnail">
-                                                                                <img src="dist/img/thumb-1.jpg" alt="thumbnail"/>
-                                                                                <img src="dist/img/thumb-2.jpg" alt="thumbnail"/>
-                                                                                <img src="dist/img/thumb-3.jpg" alt="thumbnail"/>
-                                                                            </div>
-                                                                            <span class="block txt-grey font-12 capitalize-font">8 Min</span>
-                                                                        </div>
-                                                                    </a>    
-                                                                </div>
-
-                                                                <div class="sl-item">
-                                                                    <a href="javascript:void(0)">
-                                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                                            <img class="img-responsive img-circle" src="dist/img/user2.png" alt="avatar"/>
-                                                                        </div>
-                                                                        <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">{{ $user->first_name }} {{ $user->last_name }}</span><span>assigned a new task</span></p>
-                                                                            <span class="block txt-grey font-12 capitalize-font">28 Min</span>
-                                                                        </div>
-                                                                    </a>    
-                                                                </div>
-
-                                                                <div class="sl-item">
-                                                                    <a href="javascript:void(0)">
-                                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                                            <img class="img-responsive img-circle" src="dist/img/user3.png" alt="avatar"/>
-                                                                        </div>
-                                                                        <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Batman</span><span>completed project wireframes</span></p>
-                                                                            <span class="block txt-grey font-12 capitalize-font">yesterday</span>
-                                                                        </div>
-                                                                    </a>    
-                                                                </div>
-                                                                
-                                                                <div class="sl-item">
-                                                                    <a href="javascript:void(0)">
-                                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                                            <img class="img-responsive img-circle" src="dist/img/user4.png" alt="avatar"/>
-                                                                        </div>
-                                                                        <div class="sl-content">
-                                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">superman</span><span>created a group 'Hencework' in the discussion forum</span></p>
-                                                                            <span class="block txt-grey font-12 capitalize-font">18 feb</span>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div  id="follo_8" class="tab-pane fade" role="tabpanel">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="followers-wrap">
-                                                                <ul class="followers-list-wrap">
-                                                                    <li class="follow-list">
-                                                                        <div class="follo-body">
-                                                                            <div class="follo-data">
-                                                                                <img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
-                                                                                <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Maan Dyosa</span>
-                                                                                    <span class="time block truncate txt-grey">No one saves us but ourselves.</span>
-                                                                                </div>
-                                                                                <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                            <div class="follo-data">
-                                                                                <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
-                                                                                <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Superman</span>
-                                                                                    <span class="time block truncate txt-grey">Unity is strength</span>
-                                                                                </div>
-                                                                                <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                            <div class="follo-data">
-                                                                                <img class="user-img img-circle"  src="dist/img/user2.png" alt="user"/>
-                                                                                <div class="user-data">
-                                                                                    <span class="name block capitalize-font">{{ $user->first_name }} {{ $user->last_name }}</span>
-                                                                                    <span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
-                                                                                </div>
-                                                                                <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                            <div class="follo-data">
-                                                                                <img class="user-img img-circle"  src="dist/img/user3.png" alt="user"/>
-                                                                                <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Batman</span>
-                                                                                    <span class="time block truncate txt-grey">I’m thankful.</span>
-                                                                                </div>
-                                                                                <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                            <div class="follo-data">
-                                                                                <img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
-                                                                                <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Spiderman</span>
-                                                                                    <span class="time block truncate txt-grey">Patience is bitter.</span>
-                                                                                </div>
-                                                                                <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                            <div class="follo-data">
-                                                                                <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
-                                                                                <div class="user-data">
-                                                                                    <span class="name block capitalize-font">Captain America</span>
-                                                                                    <span class="time block truncate txt-grey">Genius is eternal patience.</span>
-                                                                                </div>
-                                                                                <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div  id="photos_8" class="tab-pane fade" role="tabpanel">
-                                                    <div class="col-md-12 pb-20">
-                                                        <div class="gallery-wrap">
-                                                            <div class="portfolio-wrap project-gallery">
-                                                                <ul id="portfolio_1" class="portf auto-construct  project-gallery" data-col="4">
-                                                                    <li  class="item"   data-src="dist/img/gallery/equal-size/mock1.jpg" data-sub-html="<h6>Bagwati</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" >
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock1.jpg"  alt="Image description" />
-                                                                            <span class="hover-cap">Bagwati</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock2.jpg"   data-sub-html="<h6>Not a Keyboard</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock2.jpg"  alt="Image description" />
-                                                                            <span class="hover-cap">Not a Keyboard</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock3.jpg" data-sub-html="<h6>Into the Woods</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock3.jpg"  alt="Image description" />
-                                                                            <span class="hover-cap">Into the Woods</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock4.jpg"  data-sub-html="<h6>Ultra Saffire</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock4.jpg"  alt="Image description" />
-                                                                            <span class="hover-cap"> Ultra Saffire</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    
-                                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock5.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock5.jpg"  alt="Image description" /> 
-                                                                            <span class="hover-cap">Happy Puppy</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock6.jpg"  data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock6.jpg"  alt="Image description" />
-                                                                            <span class="hover-cap">Wooden Closet</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock7.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock7.jpg"  alt="Image description" /> 
-                                                                            <span class="hover-cap">Happy Puppy</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock8.jpg"  data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
-                                                                        <a href="">
-                                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock8.jpg"  alt="Image description" />
-                                                                            <span class="hover-cap">Wooden Closet</span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>  
-                                                </div>
-                                                <div  id="earnings_8" class="tab-pane fade" role="tabpanel">
-                                                    <!-- Row -->
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <form id="example-advanced-form" action="#">
-                                                                <div class="table-wrap">
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-striped display product-overview" id="datable_1">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th>Date</th>
-                                                                                    <th>Item Sales Colunt</th>
-                                                                                    <th>Earnings</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tfoot>
-                                                                                <tr>
-                                                                                    <th colspan="2">total:</th>
-                                                                                    <th></th>
-                                                                                </tr>
-                                                                            </tfoot>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td>monday, 12</td>
-                                                                                    <td>
-                                                                                     3
-                                                                                 </td>
-                                                                                 <td>$400</td>
-                                                                             </tr>
-                                                                             <tr>
-                                                                                <td>tuesday, 13</td>
-                                                                                <td>
-                                                                                 2
-                                                                             </td>
-                                                                             <td>$400</td>
-                                                                         </tr>
-                                                                         <tr>
-                                                                            <td>wednesday, 14</td>
-                                                                            <td>
-                                                                             3
-                                                                         </td>
-                                                                         <td>$420</td>
-                                                                     </tr>
-                                                                     <tr>
-                                                                        <td>thursday, 15</td>
-                                                                        <td>
-                                                                         5
-                                                                     </td>
-                                                                     <td>$500</td>
-                                                                 </tr>
-                                                                 <tr>
-                                                                    <td>friday, 15</td>
-                                                                    <td>
-                                                                     3
-                                                                 </td>
-                                                                 <td>$400</td>
-                                                             </tr>
-                                                             <tr>
-                                                                <td>saturday, 16</td>
-                                                                <td>
-                                                                 3
-                                                             </td>
-                                                             <td>$400</td>
-                                                         </tr>
-                                                         <tr>
-                                                            <td>sunday, 17</td>
-                                                            <td>
-                                                             3
-                                                         </td>
-                                                         <td>$400</td>
-                                                     </tr>
-                                                     <tr>
-                                                        <td>monday, 18</td>
-                                                        <td>
-                                                         3
-                                                     </td>
-                                                     <td>$500</td>
-                                                 </tr>
-                                                 <tr>
-                                                    <td>tuesday, 19</td>
-                                                    <td>
-                                                     3
-                                                 </td>
-                                                 <td>$400</td>
-                                             </tr>
-                                         </tbody>
-                                     </table>
-                                 </div>
-                             </div>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-             <div  id="settings_8" class="tab-pane fade" role="tabpanel">
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="">
-                            <div class="panel-wrapper collapse in">
-                                <div class="panel-body pa-0">
-                                    <div class="col-sm-12 col-xs-12">
-                                        <div class="form-wrap">
-                                            <form action="#">
-                                                <div class="form-body overflow-hide">
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10" for="exampleInputuname_01">Name</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon"><i class="icon-user"></i></div>
-                                                            <input type="text" class="form-control" id="exampleInputuname_01" placeholder="willard bryant">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10" for="exampleInputEmail_01">Email address</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
-                                                            <input type="email" class="form-control" id="exampleInputEmail_01" placeholder="xyz@gmail.com">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10" for="exampleInputContact_01">Contact number</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                                            <input type="email" class="form-control" id="exampleInputContact_01" placeholder="+102 9388333">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10" for="exampleInputpwd_01">Password</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon"><i class="icon-lock"></i></div>
-                                                            <input type="password" class="form-control" id="exampleInputpwd_01" placeholder="Enter pwd" value="password">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10">Gender</label>
-                                                        <div>
-                                                            <div class="radio">
-                                                                <input type="radio" name="radio1" id="radio_01" value="option1" checked="">
-                                                                <label for="radio_01">
-                                                                    M
-                                                                </label>
-                                                            </div>
-                                                            <div class="radio">
-                                                                <input type="radio" name="radio1" id="radio_02" value="option2">
-                                                                <label for="radio_02">
-                                                                    F
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label mb-10">Country</label>
-                                                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="Category 1">USA</option>
-                                                            <option value="Category 2">Austrailia</option>
-                                                            <option value="Category 3">India</option>
-                                                            <option value="Category 4">UK</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-actions mt-10">            
-                                                    <button type="submit" class="btn btn-success mr-10 mb-30">Update profile</button>
-                                                </div>              
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endif()
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-lg-9 col-xs-12">
+            <div class="panel panel-default card-view pa-0">
+                <div class="panel-wrapper collapse in">
+                    <div  class="panel-body pb-0">
+                        <div  class="tab-struct custom-tab-1">
+                            <ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
+                                <li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>profile</span></a></li>
+                                <li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>followers<span class="inline-block">(246)</span></span></a></li>
+                                <li role="presentation" class=""><a  data-toggle="tab" id="photos_tab_8" role="tab" href="#photos_8" aria-expanded="false"><span>photos</span></a></li>                                
+                            </ul>
+                            <div class="tab-content" id="myTabContent_8">
+                                <div  id="profile_8" class="tab-pane fade active in" role="tabpanel">
+                                    <div class="col-md-12">
+                                        <div class="pt-20">
+                                            <div class="streamline user-activity">
+                                                <div class="sl-item">
+                                                    <a href="javascript:void(0)">
+                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
+                                                            <img class="img-responsive img-circle" src="dist/img/user.png" alt="avatar"/>
+                                                        </div>
+                                                        <div class="sl-content">
+                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Maan Dyosa</span><span>invited to join the meeting in the conference room at 9.45 am</span></p>
+                                                            <span class="block txt-grey font-12 capitalize-font">3 Min</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+
+                                                <div class="sl-item">
+                                                    <a href="javascript:void(0)">
+                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
+                                                            <img class="img-responsive img-circle" src="dist/img/user1.png" alt="avatar"/>
+                                                        </div>
+                                                        <div class="sl-content">
+                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Jow Jow</span><span>added three new photos in the library</span></p>
+                                                            <div class="activity-thumbnail">
+                                                                <img src="dist/img/thumb-1.jpg" alt="thumbnail"/>
+                                                                <img src="dist/img/thumb-2.jpg" alt="thumbnail"/>
+                                                                <img src="dist/img/thumb-3.jpg" alt="thumbnail"/>
+                                                            </div>
+                                                            <span class="block txt-grey font-12 capitalize-font">8 Min</span>
+                                                        </div>
+                                                    </a>    
+                                                </div>
+
+                                                <div class="sl-item">
+                                                    <a href="javascript:void(0)">
+                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
+                                                            <img class="img-responsive img-circle" src="dist/img/user2.png" alt="avatar"/>
+                                                        </div>
+                                                        <div class="sl-content">
+                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">{{ $user->first_name }} {{ $user->last_name }}</span><span>assigned a new task</span></p>
+                                                            <span class="block txt-grey font-12 capitalize-font">28 Min</span>
+                                                        </div>
+                                                    </a>    
+                                                </div>
+
+                                                <div class="sl-item">
+                                                    <a href="javascript:void(0)">
+                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
+                                                            <img class="img-responsive img-circle" src="dist/img/user3.png" alt="avatar"/>
+                                                        </div>
+                                                        <div class="sl-content">
+                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Batman</span><span>completed project wireframes</span></p>
+                                                            <span class="block txt-grey font-12 capitalize-font">yesterday</span>
+                                                        </div>
+                                                    </a>    
+                                                </div>
+
+                                                <div class="sl-item">
+                                                    <a href="javascript:void(0)">
+                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
+                                                            <img class="img-responsive img-circle" src="dist/img/user4.png" alt="avatar"/>
+                                                        </div>
+                                                        <div class="sl-content">
+                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">superman</span><span>created a group 'Hencework' in the discussion forum</span></p>
+                                                            <span class="block txt-grey font-12 capitalize-font">18 feb</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div  id="follo_8" class="tab-pane fade" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="followers-wrap">
+                                                <ul class="followers-list-wrap">
+                                                    <li class="follow-list">
+                                                        <div class="follo-body">
+                                                            <div class="follo-data">
+                                                                <img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
+                                                                <div class="user-data">
+                                                                    <span class="name block capitalize-font">Maan Dyosa</span>
+                                                                    <span class="time block truncate txt-grey">No one saves us but ourselves.</span>
+                                                                </div>
+                                                                <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="follo-data">
+                                                                <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
+                                                                <div class="user-data">
+                                                                    <span class="name block capitalize-font">Superman</span>
+                                                                    <span class="time block truncate txt-grey">Unity is strength</span>
+                                                                </div>
+                                                                <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="follo-data">
+                                                                <img class="user-img img-circle"  src="dist/img/user2.png" alt="user"/>
+                                                                <div class="user-data">
+                                                                    <span class="name block capitalize-font">{{ $user->first_name }} {{ $user->last_name }}</span>
+                                                                    <span class="time block truncate txt-grey">Respect yourself if you would have others respect you.</span>
+                                                                </div>
+                                                                <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="follo-data">
+                                                                <img class="user-img img-circle"  src="dist/img/user3.png" alt="user"/>
+                                                                <div class="user-data">
+                                                                    <span class="name block capitalize-font">Batman</span>
+                                                                    <span class="time block truncate txt-grey">I’m thankful.</span>
+                                                                </div>
+                                                                <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="follo-data">
+                                                                <img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
+                                                                <div class="user-data">
+                                                                    <span class="name block capitalize-font">Spiderman</span>
+                                                                    <span class="time block truncate txt-grey">Patience is bitter.</span>
+                                                                </div>
+                                                                <button class="btn btn-success pull-right btn-xs fixed-btn">Follow</button>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="follo-data">
+                                                                <img class="user-img img-circle"  src="dist/img/user1.png" alt="user"/>
+                                                                <div class="user-data">
+                                                                    <span class="name block capitalize-font">Captain America</span>
+                                                                    <span class="time block truncate txt-grey">Genius is eternal patience.</span>
+                                                                </div>
+                                                                <button class="btn btn-success btn-outline pull-right btn-xs fixed-btn">following</button>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div  id="photos_8" class="tab-pane fade" role="tabpanel">
+                                    <div class="col-md-12 pb-20">
+                                        <div class="gallery-wrap">
+                                            <div class="portfolio-wrap project-gallery">
+                                                <ul id="portfolio_1" class="portf auto-construct  project-gallery" data-col="4">
+                                                    <li  class="item"   data-src="dist/img/gallery/equal-size/mock1.jpg" data-sub-html="<h6>Bagwati</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" >
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock1.jpg"  alt="Image description" />
+                                                            <span class="hover-cap">Bagwati</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock2.jpg"   data-sub-html="<h6>Not a Keyboard</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock2.jpg"  alt="Image description" />
+                                                            <span class="hover-cap">Not a Keyboard</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock3.jpg" data-sub-html="<h6>Into the Woods</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock3.jpg"  alt="Image description" />
+                                                            <span class="hover-cap">Into the Woods</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock4.jpg"  data-sub-html="<h6>Ultra Saffire</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock4.jpg"  alt="Image description" />
+                                                            <span class="hover-cap"> Ultra Saffire</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock5.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock5.jpg"  alt="Image description" /> 
+                                                            <span class="hover-cap">Happy Puppy</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock6.jpg"  data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock6.jpg"  alt="Image description" />
+                                                            <span class="hover-cap">Wooden Closet</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock7.jpg" data-sub-html="<h6>Happy Puppy</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock7.jpg"  alt="Image description" /> 
+                                                            <span class="hover-cap">Happy Puppy</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item" data-src="dist/img/gallery/equal-size/mock8.jpg"  data-sub-html="<h6>Wooden Closet</h6><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+                                                        <a href="">
+                                                            <img class="img-responsive" src="dist/img/gallery/equal-size/mock8.jpg"  alt="Image description" />
+                                                            <span class="hover-cap">Wooden Closet</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
     </div>
-</div>
-</div>
-</div>
+    <!-- /Row -->
 
-
-</div>
-</div>
-<!-- /Row -->
-
-<!-- Row -->
-<div class="row">
-    @if(Auth::user() && Auth::user()->id == $user->id)
+    <!-- Row -->
+    <div class="row">
+        @if(Auth::user() && Auth::user()->id == $user->id)
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-default border-panel card-view">
                 <div class="panel-heading">
@@ -979,56 +758,56 @@
                   </div>
               </div>
           </div>  
-        </div>
-    @endif()
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-    <div class="panel panel-default card-view bg-twitter">
-        <div class="panel-wrapper collapse in">
-            <div  class="panel-body">
-                <div class="twitter-icon-wrap text-center mb-15">
-                    <i class="fa fa-twitter"></i>
-                </div>
-                <!-- START carousel-->
-                <div id="twitter_slider" data-ride="carousel" class="carousel slide twitter-slider-wrap text-slider">
-                    <ol class="carousel-indicators">
-                       <li data-target="#twitter_slider" data-slide-to="0" class="active"></li>
-                       <li data-target="#twitter_slider" data-slide-to="1"></li>
-                   </ol>
-                   <div role="listbox" class="carousel-inner mb-50">
-                    <div class="item active"> 
-                        <div class="twitter-wrap text-center">
-                            <p class="tweet font-16 txt-light mb-30">Envato Elements just got even better with its awesome new web template category! Check it out at <a class="txt-light" href="https://t.co/JuKPZ0cDfb" target="_blank">enva.to/4_m8D.</a></p>
-                            <span class="date-posted block font-12 txt-light">Posted on 26 Sep</span>
-                        </div>
+      </div>
+      @endif()
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-default card-view bg-twitter">
+            <div class="panel-wrapper collapse in">
+                <div  class="panel-body">
+                    <div class="twitter-icon-wrap text-center mb-15">
+                        <i class="fa fa-twitter"></i>
                     </div>
-                    <div class="item"> 
-                        <div class="twitter-wrap text-center">
-                            <p class="tweet font-16 txt-light mb-30">Super excited to be hosting an Envato Meetup in Philadelphia.  Come join us in December <a class="txt-light" href="https://t.co/OMAlcRluGx" target="_blank">https://nvite.com/EnvatoMeetupPHL/b338 … #envatomeetupPHL...</a></p>
-                            <span class="date-posted block font-12 txt-light">Posted on 19 Oct</span>
+                    <!-- START carousel-->
+                    <div id="twitter_slider" data-ride="carousel" class="carousel slide twitter-slider-wrap text-slider">
+                        <ol class="carousel-indicators">
+                           <li data-target="#twitter_slider" data-slide-to="0" class="active"></li>
+                           <li data-target="#twitter_slider" data-slide-to="1"></li>
+                       </ol>
+                       <div role="listbox" class="carousel-inner mb-50">
+                        <div class="item active"> 
+                            <div class="twitter-wrap text-center">
+                                <p class="tweet font-16 txt-light mb-30">Envato Elements just got even better with its awesome new web template category! Check it out at <a class="txt-light" href="https://t.co/JuKPZ0cDfb" target="_blank">enva.to/4_m8D.</a></p>
+                                <span class="date-posted block font-12 txt-light">Posted on 26 Sep</span>
+                            </div>
                         </div>
-                    </div>
+                        <div class="item"> 
+                            <div class="twitter-wrap text-center">
+                                <p class="tweet font-16 txt-light mb-30">Super excited to be hosting an Envato Meetup in Philadelphia.  Come join us in December <a class="txt-light" href="https://t.co/OMAlcRluGx" target="_blank">https://nvite.com/EnvatoMeetupPHL/b338 … #envatomeetupPHL...</a></p>
+                                <span class="date-posted block font-12 txt-light">Posted on 19 Oct</span>
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
+                <!-- END carousel-->
             </div>
-            <!-- END carousel-->
         </div>
     </div>
-</div>
-<div class="panel panel-default card-view">
-    <div class="panel-heading">
-        <div class="pull-left">
-            <h6 class="panel-title txt-dark">{{ $user->first_name }} {{ $user->last_name }}</h6>
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h6 class="panel-title txt-dark">{{ $user->first_name }} {{ $user->last_name }}</h6>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="panel-wrapper collapse in">
-        <div  class="panel-body row pa-0">
-            <!--Instagram-->
-            <ul class="instagram-lite"></ul>
-            <!--/Instagram-->
+        <div class="panel-wrapper collapse in">
+            <div  class="panel-body row pa-0">
+                <!--Instagram-->
+                <ul class="instagram-lite"></ul>
+                <!--/Instagram-->
+            </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 <!-- /Row -->
@@ -1037,77 +816,77 @@
 @endsection()
 
 @section('script')
-    <!-- JavaScript -->
-    
-    <!-- jQuery -->
-    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- JavaScript -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-    <!-- Vector Maps JavaScript -->
-    <script src="vendors/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="dist/js/vectormap-data.js"></script>
-    
-    <!-- Calender JavaScripts -->
-    <script src="vendors/bower_components/moment/min/moment.min.js"></script>
-    <script src="vendors/jquery-ui.min.js"></script>
-    <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script src="dist/js/fullcalendar-data.js"></script>
-    
-    <!-- Counter Animation JavaScript -->
-    <script src="vendors/bower_components/waypoints/lib/jquery.waypoints.min.js"></script>
-    <script src="vendors/bower_components/jquery.counterup/jquery.counterup.min.js"></script>
-    
-    <!-- Data table JavaScript -->
-    <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    
-    <!-- Slimscroll JavaScript -->
-    <script src="dist/js/jquery.slimscroll.js"></script>
-    
-    <!-- Fancy Dropdown JS -->
-    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
-    
-    <!-- Sparkline JavaScript -->
-    <script src="vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
-    
-    <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-    <script src="dist/js/skills-counter-data.js"></script>
-    
-    <!-- Morris Charts JavaScript -->
-    <script src="vendors/bower_components/raphael/raphael.min.js"></script>
-    <script src="vendors/bower_components/morris.js/morris.min.js"></script>
-    <script src="dist/js/morris-data.js"></script>
-    
-    <!-- Owl JavaScript -->
-    <script src="vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
-    
-    <!-- Switchery JavaScript -->
-    <script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
-    
-    <!-- Data table JavaScript -->
-    <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-        
-    <!-- Gallery JavaScript -->
-    <script src="dist/js/isotope.js"></script>
-    <script src="dist/js/lightgallery-all.js"></script>
-    <script src="dist/js/froogaloop2.min.js"></script>
-    <script src="dist/js/gallery-data.js"></script>
-    
-    <!-- Spectragram JavaScript -->
-    <script src="dist/js/spectragram.min.js"></script>
-    
-    <!-- Init JavaScript -->
-    <script src="dist/js/init.js"></script>
-    <script src="dist/js/widgets-data.js"></script>
+<!-- jQuery -->
+<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- Form Flie Upload Data JavaScript -->
-    <script src="dist/js/form-file-upload-data.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Daterangepicker JavaScript -->
-    <script src="vendors/bower_components/dropify/dist/js/dropify.min.js"></script>
+<!-- Vector Maps JavaScript -->
+<script src="vendors/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="dist/js/vectormap-data.js"></script>
 
-    @include('includes.message-block')
-    @include('includes.register-first')
+<!-- Calender JavaScripts -->
+<script src="vendors/bower_components/moment/min/moment.min.js"></script>
+<script src="vendors/jquery-ui.min.js"></script>
+<script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="dist/js/fullcalendar-data.js"></script>
+
+<!-- Counter Animation JavaScript -->
+<script src="vendors/bower_components/waypoints/lib/jquery.waypoints.min.js"></script>
+<script src="vendors/bower_components/jquery.counterup/jquery.counterup.min.js"></script>
+
+<!-- Data table JavaScript -->
+<script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+
+<!-- Slimscroll JavaScript -->
+<script src="dist/js/jquery.slimscroll.js"></script>
+
+<!-- Fancy Dropdown JS -->
+<script src="dist/js/dropdown-bootstrap-extended.js"></script>
+
+<!-- Sparkline JavaScript -->
+<script src="vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
+
+<script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+<script src="dist/js/skills-counter-data.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="vendors/bower_components/raphael/raphael.min.js"></script>
+<script src="vendors/bower_components/morris.js/morris.min.js"></script>
+<script src="dist/js/morris-data.js"></script>
+
+<!-- Owl JavaScript -->
+<script src="vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+<!-- Switchery JavaScript -->
+<script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+<!-- Data table JavaScript -->
+<script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+
+<!-- Gallery JavaScript -->
+<script src="dist/js/isotope.js"></script>
+<script src="dist/js/lightgallery-all.js"></script>
+<script src="dist/js/froogaloop2.min.js"></script>
+<script src="dist/js/gallery-data.js"></script>
+
+<!-- Spectragram JavaScript -->
+<script src="dist/js/spectragram.min.js"></script>
+
+<!-- Init JavaScript -->
+<script src="dist/js/init.js"></script>
+<script src="dist/js/widgets-data.js"></script>
+
+<!-- Form Flie Upload Data JavaScript -->
+<script src="dist/js/form-file-upload-data.js"></script>
+
+<!-- Bootstrap Daterangepicker JavaScript -->
+<script src="vendors/bower_components/dropify/dist/js/dropify.min.js"></script>
+
+@include('includes.message-block')
+@include('includes.register-first')
 @endsection()
