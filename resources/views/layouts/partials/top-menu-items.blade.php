@@ -251,6 +251,23 @@
 	</nav>
 <!-- /Top Menu Items -->
 
+<!-- Modal -->
+<div id="sendMessageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">      
+      <div class="modal-body">
+        <embed id="getTopMessage" src="" style="height:610px; width:100%;"></embed>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- jQuery -->
 <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
 

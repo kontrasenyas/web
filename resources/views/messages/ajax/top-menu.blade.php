@@ -77,3 +77,15 @@
         </a>
 @endif()
 @endforeach()
+
+<script type="text/javascript">
+	$('.message-link').on('click', function(e) {
+        e.preventDefault();
+        var messageLink = $(this).attr('href');
+        var embedMessage = document.getElementById("getTopMessage");
+        var clone = embedMessage.cloneNode(true);
+        clone.setAttribute('src', messageLink);
+        embedMessage.parentNode.replaceChild(clone, embedMessage);
+		$("#sendMessageModal").modal()
+    });
+</script>

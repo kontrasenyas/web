@@ -124,7 +124,7 @@
                                 </div>
                                 @if(Auth::user() && Auth::user()->id != $user->id)
                                 <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#"><i class="fa fa-plus"></i><span class="btn-text">Follow</span></button>
-                                <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('get.message', ['user_id' => $user->id]) }}"><i class="fa fa-inbox"></i><span class="btn-text">Send Message</span></a>
+                                <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('get.message', ['user_id' => $user->id]) }}" id="btnSendMessage"><i class="fa fa-inbox"></i><span class="btn-text">Send Message</span></a>
                                 @endif()
                                 @if(!Auth::user())
                                 <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="#" data-toggle="modal" data-target="#register-first"><i class="fa fa-inbox"></i><span class="btn-text" title="Please register to send a message.">Send Message</span></a>
@@ -889,4 +889,16 @@
 
 @include('includes.message-block')
 @include('includes.register-first')
+
+<script type="text/javascript">
+    $('#btnSendMessage').on('click', function(e) {
+        e.preventDefault();
+        var messageLink = $(this).attr('href');
+        var embedMessage = document.getElementById("getTopMessage");
+        var clone = embedMessage.cloneNode(true);
+        clone.setAttribute('src', messageLink);
+        embedMessage.parentNode.replaceChild(clone, embedMessage);
+        $("#sendMessageModal").modal()
+    });
+</script>
 @endsection()

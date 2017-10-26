@@ -53,7 +53,7 @@ Dashboard
 											<input type="text" class="form-control" placeholder="Contact No (Eg. 09051234567)" aria-describedby="basic-addon2" name="contact_no" id="contact_no" value="{{ Request::old('contact_no') }}" required="">
 										</div>
 										<div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
-											<input type="text" class="form-control" placeholder="Destination" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="off" required="">
+											<input type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="off" required="">
 										</div>
 										<div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
 											<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Other details (Eg. Toyota Hiace, Trip to Tagaytay.)" required="">{{ Request::old('body') }}</textarea>				
