@@ -18,7 +18,7 @@ Route::group(['middleware' => ['web']],function(){
 	    'uses' => 'HomeController@getAbout',
         'as' => 'about'
     ]);
-	Route::get('/contact', [
+	Route::get('/contact_us', [
 	   'uses' => 'HomeController@getContact',
         'as' => 'contact'
     ]);

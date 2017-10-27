@@ -24,7 +24,7 @@
 			<a class="" href="{{ route('about') }}" id="about"><div class="pull-left"><i class="zmdi zmdi-info mr-20"></i><span class="right-nav-text">About Us</span></div><div class="clearfix"></div></a>
 		</li>
 		<li>
-			<a class="" href="{{ route('contact') }}" id="contact"><div class="pull-left"><i class="zmdi zmdi-account-box-phone mr-20"></i><span class="right-nav-text">Contact Us</span></div><div class="clearfix"></div></a>
+			<a class="" href="{{ route('contact') }}" id="contact_us"><div class="pull-left"><i class="zmdi zmdi-account-box-phone mr-20"></i><span class="right-nav-text">Contact Us</span></div><div class="clearfix"></div></a>
 		</li>
 		<li>
 			<a class="" href="{{ route('help') }}" id="help"><div class="pull-left"><i class="zmdi zmdi-pin-help mr-20"></i><span class="right-nav-text">Help</span></div><div class="clearfix"></div></a>
@@ -51,7 +51,7 @@
 			<a class="" href="{{ route('about') }}" id="about"><div class="pull-left"><i class="zmdi zmdi-info mr-20"></i><span class="right-nav-text">About Us</span></div><div class="clearfix"></div></a>
 		</li>
 		<li>
-			<a class="" href="{{ route('contact') }}" id="contact"><div class="pull-left"><i class="zmdi zmdi-account-box-phone mr-20"></i><span class="right-nav-text">Contact Us</span></div><div class="clearfix"></div></a>
+			<a class="" href="{{ route('contact') }}" id="contact_us"><div class="pull-left"><i class="zmdi zmdi-account-box-phone mr-20"></i><span class="right-nav-text">Contact Us</span></div><div class="clearfix"></div></a>
 		</li>
 		<li>
 			<a class="" href="{{ route('help') }}" id="help"><div class="pull-left"><i class="zmdi zmdi-pin-help mr-20"></i><span class="right-nav-text">Help</span></div><div class="clearfix"></div></a>
