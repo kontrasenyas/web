@@ -133,35 +133,12 @@
 						<div  class="tab-struct custom-tab-1 product-desc-tab">
 							<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_7">
 								<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="descri_tab" href="#descri_tab_detail"><span>Description</span></a></li>
-								<li role="presentation" class="next"><a  data-toggle="tab" id="adi_info_tab" role="tab" href="#adi_info_tab_detail" aria-expanded="false"><span>Aditional information</span></a></li>
 								<li role="presentation" class=""><a  data-toggle="tab" id="review_tab" role="tab" href="#review_tab_detail" aria-expanded="false"><span>Review<span class="inline-block">(<span class="review-count">0</span>)</span></span></a></li>
 							</ul>
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="descri_tab_detail" class="tab-pane fade active in pt-0" role="tabpanel">
 									<p class="pt-15">Activist, criteria planned giving dignity, committed democratizing the global financial system progressive. Nelson Mandela equal opportunity change accelerate pathway to a better life invest our ambitions catalyst. Making progress contribution compassion Ford Foundation, cross-agency coordination Bill and Melinda Gates development. Overcome injustice tackling activism, promising development equality hack meaningful working families. Foundation; open source; organization volunteer, replicable think tank carbon emissions reductions.</p>
-								</div>
-								<div  id="adi_info_tab_detail" class="tab-pane pt-0 fade" role="tabpanel">
-									<div class="table-wrap">
-										<div class="table-responsive">
-											<table class="table  mb-0">
-												<tbody>
-													<tr>
-														<td class="border-none">SIZE</td>
-														<td class="border-none">31, 32, 33, 34, 35</td>
-													</tr>
-													<tr>
-														<td>COLOR</td>
-														<td>blue, red, rosa, white</td>
-													</tr>
-													<tr>
-														<td>TAGS</td>
-														<td>Diesel, shoe, stars</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
+								</div>							
 								<div  id="review_tab_detail" class="tab-pane pt-0 fade" role="tabpanel">
 									<p class="muted review-tag pt-15">No reviews yet.</p>
 									<div class="row mt-40">
