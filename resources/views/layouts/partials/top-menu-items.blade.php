@@ -20,7 +20,7 @@
 				</span>				
 			</div>
 		</form>
-		<div class="form-group mb-0 pull-right">
+		<div class="form-group mb-0 pull-right hidden-sm hidden-xs">
 			<a class="inline-block pl-10 text-primary" href="{{ route('search-index') }}">Advance Search</a>
 		</div>
 	</div>
