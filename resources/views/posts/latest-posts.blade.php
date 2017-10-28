@@ -55,7 +55,7 @@
         @if(!Auth::user() || (Auth::user() && (Auth::user()->id != $post->user->id) ))
             @if(Auth::user())
             <div class="text-center">
-                <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}">
+                <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}" class="sendMessagePost">
                     <div class="btn btn-primary btn-anim">
                         <i class="fa fa-envelope"></i><span class="btn-text" title="Send message to this user.">Send a message</span>
                     </div>
@@ -114,3 +114,15 @@
         background-image: url('empty.gif');*/
     }   
 </style>
+
+<script type="text/javascript">
+    $('.sendMessagePost').on('click', function(e) {
+        e.preventDefault();
+        var messageLink = $(this).attr('href');
+        var embedMessage = document.getElementById("getTopMessage");
+        var clone = embedMessage.cloneNode(true);
+        clone.setAttribute('src', messageLink);
+        embedMessage.parentNode.replaceChild(clone, embedMessage);
+        $("#sendMessageModal").modal()
+    });
+</script>

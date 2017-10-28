@@ -26,10 +26,15 @@
 </head>
 
 <body>
+    <!--Preloader-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/Preloader-->
     <!-- #wrapper -->
     <div class="wrapper theme-1-active pimary-color-red ma-0 pa-0">
         <!-- Main Content -->
-        <div class="page-wrapper pa-0 ma-0  ">
+        <div class="page-wrapper pa-0 ma-0" style="background-color: white;">
             {{-- @yield('content') --}}
             <!-- Row -->
             <div class="row">
