@@ -155,6 +155,9 @@ class PostController extends Controller
 	}
 	public function postUpdateImage(Request $request)
 	{
+		$this->validate($request, [
+			'image' => 'required | image'
+		],  ['image.image' => 'Photo must be a valid image file.']);
 		$post_id = $request['post_id'];
 		$file = $request->file('image');
 		$filename = uniqid() . '.jpg';

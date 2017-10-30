@@ -11,6 +11,8 @@
 	<!-- bootstrap-touchspin CSS -->
 	<link href="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
 
+	<link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
