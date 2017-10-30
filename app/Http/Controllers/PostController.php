@@ -157,7 +157,8 @@ class PostController extends Controller
 	{
 		$this->validate($request, [
 			'image' => 'required | image'
-		],  ['image.image' => 'Photo must be a valid image file.']);
+			], ['image.image' => 'Photo must be a valid image file.'
+		]);
 		$post_id = $request['post_id'];
 		$file = $request->file('image');
 		$filename = uniqid() . '.jpg';

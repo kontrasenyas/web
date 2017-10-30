@@ -6367,6 +6367,8 @@ button.fc-agendaWeek-button {
     margin-left: 30px; }
     .sl-item .sl-content p {
       margin: 0; }
+      .active-user {
+      background: rgba(33, 33, 33, 0.05); }
 
 .user-activity .sl-item .sl-content {
   border-bottom: 1px solid rgba(33, 33, 33, 0.05);
