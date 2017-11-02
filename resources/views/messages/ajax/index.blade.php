@@ -1,7 +1,7 @@
 @if(count($list) == 0)
     <div class="input-group pa-5"><p>There is no message. Please start conversation with others.</p></div>
 @endif()
-{{-- <a  href="javascript:void(0)">
+<!-- <a  href="javascript:void(0)">
 <div class="chat-data active-user">
     <img class="user-img img-circle"  src="dist/img/user.png" alt="user"/>
     <div class="user-data">
@@ -11,7 +11,7 @@
     <div class="status away"></div>
     <div class="clearfix"></div>
 </div>
-</a> --}}
+</a> -->
 @foreach($list as $each)
 @if($each->user_one == Auth::user()->id)
 <a href="{{ route('get.message', ['user_id' => $each->user_two]) }}" class="message-link">
@@ -81,7 +81,6 @@
 @endif()
 @endforeach()
 
-
 <script type="text/javascript">
     $('.message-link').on('click', function(e) {
         e.preventDefault();
@@ -91,4 +90,5 @@
         clone.setAttribute('src', messageLink);
         embedMessage.parentNode.replaceChild(clone, embedMessage)
     });
+    $('.chatapp-nicescroll-bar').slimscroll({height:'543px',size: '4px',color: '#878787',disableFadeOut : true,borderRadius:0});
 </script>
