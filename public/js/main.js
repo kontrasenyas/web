@@ -47,8 +47,17 @@ $('#modal-save').on('click', function() {
 		$(postCapacityElement).text(msg['new_capacity']);
 		$(postContactElement).text(msg['new_contact']);
 		$(postLocationElement).text(msg['new_location']);
-		$(postElement).effect("highlight", {color: '#eff0f1'}, 5000);
+		//$(postElement).effect("highlight", {color: '#eff0f1'}, 5000);
 		$('#edit-modal').modal('hide');
+		$.toast({
+            //heading: 'Welcome to Magilla',
+            text: 'Post successfully updated',
+            position: 'top-right',
+            loaderBg:'#f2b701',
+            icon: 'success',
+            hideAfter: 3500, 
+            stack: 6
+          });
 		//$('.body').effect("highlight", {color: '#eff0f1'}, 5000);
 		//$( "div" ).effect( "bounce", "slow" );
 		//postBodyElement.effect = ["highlight", {color: '#eff0f1'}, 5000];

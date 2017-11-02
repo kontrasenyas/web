@@ -18,6 +18,12 @@
 
 	<!-- File Upload CSS -->
 	<link href="{{ URL::to('plugins/file-upload/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" />
+
+	<style type="text/css">
+		#body {
+		    white-space: pre;
+		}
+	</style>
 @endsection()
 
 @section('content')
@@ -30,7 +36,7 @@
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 			<ol class="breadcrumb">
-				<li><a href="index.html">Dashboard</a></li>
+				<li><a href="{{ route('home') }}">Home</a></li>
 				<li><a href="#"><span>post</span></a></li>
 				<li class="active"><span>post detail</span></li>
 			</ol>
@@ -91,7 +97,7 @@
 									<div class="mb-20 info">Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a> on {{ $post->created_at->diffForHumans() }}﻿</div>
 
 									<div class="mb-20" id="details">
-										<p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p>
+										<!-- <p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p> -->
 										<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
 										<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
 										<p><strong>Destination: </strong><span id="location">{{ $post->location }}</span></p>
@@ -139,7 +145,8 @@
 							</ul>
 							<div class="tab-content" id="myTabContent_7">
 								<div  id="descri_tab_detail" class="tab-pane fade active in pt-0" role="tabpanel">
-									<p class="pt-15">Activist, criteria planned giving dignity, committed democratizing the global financial system progressive. Nelson Mandela equal opportunity change accelerate pathway to a better life invest our ambitions catalyst. Making progress contribution compassion Ford Foundation, cross-agency coordination Bill and Melinda Gates development. Overcome injustice tackling activism, promising development equality hack meaningful working families. Foundation; open source; organization volunteer, replicable think tank carbon emissions reductions.</p>
+									<!-- <p class="pt-15" id="body">{!! nl2br(e($post->body)) !!}</p> -->
+									<p class="pt-15" id="body">{{ $post->body }}</p>
 								</div>							
 								<div  id="review_tab_detail" class="tab-pane pt-0 fade" role="tabpanel">
 									<p class="muted review-tag pt-15">No reviews yet.</p>
