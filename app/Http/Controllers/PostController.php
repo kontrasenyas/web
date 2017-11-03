@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -163,10 +164,13 @@ class PostController extends Controller
 		$file = $request->file('image');
 		$filename = uniqid() . '.jpg';
 
+		$image_resize = Image::make($file->getRealPath());              
+    	$image_resize->resize(920, 1000);
+
 		$post = Post::find($post_id);
 
 		if ($file) {
-			Storage::disk('local')->put('post-photos/' . $filename, File::get($file));
+			Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
 
 			$post->image_name = $filename;
 		}
