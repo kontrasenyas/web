@@ -22,9 +22,8 @@ Messages
                     <!-- Breadcrumb -->
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                       <ol class="breadcrumb">
-                        <li><a href="index.html">Dashboard</a></li>
-                        <li><a href="#"><span>apps</span></a></li>
-                        <li class="active"><span>chats</span></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li class="active"><span>messages</span></li>
                       </ol>
                     </div>
                     <!-- /Breadcrumb -->
