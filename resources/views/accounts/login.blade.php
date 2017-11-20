@@ -71,7 +71,7 @@ Login
                       </div>
                     </form>
                     <form class="form-group text-center" action="{{ route('login.facebook') }}">
-                      <button class="loginBtn loginBtn--facebook" type="submit">Login with facebook</button>
+                      <button class="loginBtn loginBtn--facebook" type="submit" onclick="this.disabled=true;this.form.submit();">Login with facebook</button>
                       <input type="hidden" name="_token" value="{{ Session::token() }}"> 
                     </form>
                   </div>

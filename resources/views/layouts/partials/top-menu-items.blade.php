@@ -210,6 +210,9 @@
 								<a href="{{ route('account.profile', Auth::user()->id) }}"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
 							</li>
 							<li>
+								<a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}"><i class="zmdi zmdi-archive"></i><span>my posts</span></a>
+							</li>
+							<li>
 								<a href="{{ route('moments.user', Auth::user()->id) }}"><i class="zmdi zmdi-card"></i><span>my moments</span></a>
 							</li>
 							<li>

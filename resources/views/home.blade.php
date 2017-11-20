@@ -117,7 +117,7 @@ Libot Philippines
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-6 text-left pl-0 pr-0 data-wrap-left">
-										<span class="txt-dark block counter"><span class="counter-anim">142,357</span></span>
+										<span class="txt-dark block counter"><span class="counter-anim">{{ $posts->total() }}</span></span>
 										<span class="block"><span class="weight-500 uppercase-font txt-grey font-13">Posts</span><i class="zmdi zmdi-caret-down txt-danger font-21 ml-5 vertical-align-middle"></i></span>
 									</div>
 									<div class="col-xs-6 text-left  pl-0 pr-0 pt-25 data-wrap-right">
