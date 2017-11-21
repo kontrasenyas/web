@@ -6,7 +6,7 @@ Login
 
 @section('meta_content')
   <meta name="description" content="Libot Philippines login page." />
-  <meta name="keywords" content="libot, libot philippines, login, libot login, libot philippines login" />
+  <meta name="keywords" content="libot, libot philippines, login, libot login, libot philippines login, signin, sign in" />
   <meta name="author" content="libot"/>
 @endsection()
 

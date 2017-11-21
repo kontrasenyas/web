@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@section('meta')
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Libot Philippines contact page. For general inquiries and further information you can contact us." />
+    <meta name="keywords" content="libot, libot philippines, travel, libot travel, rent, contact page, contact us" />
+    <meta name="author" content="libot-ph"/>
+@endsection()
+
 @section('title')
 Contact Us
 @endsection

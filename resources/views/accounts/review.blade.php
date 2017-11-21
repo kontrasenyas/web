@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@section('meta')
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Libot Philippines - Feedback for {{ $user->first_name }}" />
+    <meta name="keywords" content="libot, libot philippines, travel, libot travel, rent, feedback, reviews, Feedback for {{ $user->first_name }}" />
+    <meta name="author" content="libot-ph"/>
+@endsection()
+
 @section('title')
 Feedback for {{ $user->first_name }}
 @endsection
