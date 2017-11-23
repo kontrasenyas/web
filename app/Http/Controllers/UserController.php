@@ -185,6 +185,20 @@ class UserController extends Controller
 		return redirect()->back()->with(['message' => 'Account successfully updated.']);
 	}
 
+	public function postSaveMobile(Request $request)
+	{
+		$user = Auth::user();
+
+		$this->validate($request, [
+			'mobile_no' => 'required|regex:/(09)[0-9]{9}/|unique:users,mobile_no,'. Auth::id()
+		]);
+
+		$user->mobile_no = $request['mobile_no'];
+
+		$user->update();
+		return redirect()->back()->with(['message' => 'Account successfully updated.']);
+	}
+
 	public function getUserImage($filename)
 	{
 		$file = Storage::disk('local')->get('profile_picture/' . $filename);

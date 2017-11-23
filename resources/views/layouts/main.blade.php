@@ -31,6 +31,8 @@
 
     @yield('css')
 
+    <link href="{{ URL::to('css/modal-center.css')}}" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -45,9 +47,10 @@
     	@include('layouts.partials.top-menu-items')
     	@include('layouts.partials.right-sidebar')
     	@include('layouts.partials.left-sidebar')
-
+<!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>
     	<!-- Main Content -->
-    	<div class="page-wrapper" style="padding-bottom: 40px;">
+        <div class="page-wrapper" style="padding-bottom: 40px;">
     		@yield('content')
 
     		<!-- Footer -->
@@ -59,10 +62,12 @@
 			    </div>
 			</footer>
 			<!-- /Footer -->
-
     	</div>
     	<!-- /Main Content -->
     </div>
+
+    @include('includes.modal-update-mobile');
+
 	<!-- /#wrapper -->
     @yield('script')
     {{-- For message count in header.blade.php --}}
@@ -84,6 +89,18 @@
         </script>
         @endif
     {{-- End --}}
-</body>
+    {{-- For facebook login, update mobile number from 00000000000 to valid mobile number --}}
+        @if(Auth::check())
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var mobileNo = '{{ Auth::user()->mobile_no }}';
 
+                if (mobileNo == '00000000000') {
+                    $("#mobileModal").modal('show');
+                }
+            });
+        </script>
+        @endif
+    {{-- End --}}
+</body>
 </html>

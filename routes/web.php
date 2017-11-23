@@ -117,6 +117,11 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'account.save',
 		'middleware' => 'auth'
 	]);
+	Route::post('/update-mobile', [
+		'uses' => 'UserController@postSaveMobile',
+		'as' => 'account.save-mobile',
+		'middleware' => 'auth'
+	]);
 
 	Route::get('/change-password', [
 		'uses' => 'UserController@getChangePassword',
