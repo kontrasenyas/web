@@ -14,7 +14,7 @@
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8604489693205973",
+        google_ad_client: "ca-pub-4164257023632356",
         enable_page_level_ads: true
       });
     </script>
