@@ -21,6 +21,7 @@
 					<div class="modal-footer">
 						<input type="hidden" value="{{ Session::token() }}" name="_token">
 						<button type="submit" class="btn btn-success">Update profile</button>
+						<a href="{{ route('logout') }}" class="btn btn-default">Cancel</a>
 					</div>
 				</form>
 			</div>
