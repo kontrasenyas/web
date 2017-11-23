@@ -56,6 +56,16 @@ Libot Philippines
                                                 </div>
                                             </div>
                                         </div>
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <ins class="adsbygoogle"
+                                             style="display:block"
+                                             data-ad-format="fluid"
+                                             data-ad-layout-key="-ej+6g-15-c4+qd"
+                                             data-ad-client="ca-pub-4164257023632356"
+                                             data-ad-slot="3192819023"></ins>
+                                        <script>
+                                             (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
                                 </div>
                             </form>
                         </div>
