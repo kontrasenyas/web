@@ -119,6 +119,25 @@ Libot Philippines
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+			<div class="panel panel-default card-view pt-0">
+				<div class="panel-wrapper collapse in">
+					<div class="panel-body pa-0">
+						<div class="sm-data-box bg-white">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-6 text-left pl-0 pr-0 data-wrap-left">
+										<div class="col-md-12 text-center">
+                                        	<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Flibotph%2F&tabs&width=340&height=154&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1428793614008809" width="340" height="154" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                                        </div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- /Row -->
 	
