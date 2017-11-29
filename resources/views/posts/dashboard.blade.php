@@ -17,10 +17,13 @@ Dashboard
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
 	<!-- File Upload CSS -->
-	<link href="{{ URL::to('plugins/file-upload/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" />
+	{{-- <link href="{{ URL::to('plugins/file-upload/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" /> --}}
 
 	<!-- Post image style -->
 	<link href="{{ URL::to('css/post.css')}}" media="all" rel="stylesheet" type="text/css" />
+
+	<!-- Bootstrap Dropify CSS -->
+    <link href="vendors/bower_components/dropify/dist/css/dropify.min.css" rel="stylesheet" type="text/css"/>
 
 @endsection()
 
@@ -61,7 +64,8 @@ Dashboard
 										<div class="form-group">
 											<label for="input-id">Photo (must be a valid image file)</label>
 											{{-- <input type="file" name="image" class="form-control" id="image"> --}}
-											<input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
+											<input name="image" id="input-id" type="file" class="dropify" data-preview-file-type="text">
+											{{-- <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text"> --}}
 										</div>
 										{{-- onclick="this.disabled=true;this.form.submit();" --}}
 										<button type="submit" class="btn btn-success pull-left">Create Post</button>
@@ -276,10 +280,16 @@ Dashboard
 	<script src="dist/js/dashboard-data.js"></script>
 
 	<!-- File Upload -->
-	<script src="{{ URL::to('plugins/file-upload/js/plugins/piexif.min.js')}}" type="text/javascript"></script>
+{{-- 	<script src="{{ URL::to('plugins/file-upload/js/plugins/piexif.min.js')}}" type="text/javascript"></script>
 	<script src="{{ URL::to('plugins/file-upload/js/plugins/sortable.min.js')}}" type="text/javascript"></script>
 	<script src="{{ URL::to('plugins/file-upload/js/plugins/purify.min.js')}}" type="text/javascript"></script>
-	<script src="{{ URL::to('plugins/file-upload/js/fileinput.min.js')}}" type="text/javascript"></script>
+	<script src="{{ URL::to('plugins/file-upload/js/fileinput.min.js')}}" type="text/javascript"></script> --}}
+
+	<!-- Form Flie Upload Data JavaScript -->
+    <script src="dist/js/form-file-upload-data.js"></script>
+    
+    <!-- Bootstrap Daterangepicker JavaScript -->
+    <script src="vendors/bower_components/dropify/dist/js/dropify.min.js"></script>
 
 	@include('includes.message-block')
 	@include('includes.places-autocomplete')

@@ -53,8 +53,11 @@ class PostController extends Controller
 		$file = $request->file('image');
 		$filename = uniqid() . '.jpg';
 
+		$image_resize = Image::make($file->getRealPath());              
+    	$image_resize->resize(920, 1000);
+
 		if ($file) {
-			Storage::disk('local')->put('post-photos/' . $filename, File::get($file));
+			Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
 
 			$post->image_name = $filename;
 		}

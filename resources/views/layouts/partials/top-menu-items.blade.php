@@ -110,7 +110,7 @@
 						</ul>
 					</li>
 				<li class="dropdown alert-drp">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Notifications"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="top-nav-icon-badge">5</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Notifications"><i class="zmdi zmdi-notifications top-nav-icon"></i><span class="top-nav-icon-badge hidden">5</span></a>
 					<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
 						<li>
 							<div class="notification-box-head-wrap">
