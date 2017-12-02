@@ -39,8 +39,6 @@
     	@include('layouts.partials.top-menu-items')
     	@include('layouts.partials.right-sidebar')
     	@include('layouts.partials.left-sidebar')
-<!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>
     	<!-- Main Content -->
         <div class="page-wrapper" style="padding-bottom: 40px;">
     		@yield('content')
