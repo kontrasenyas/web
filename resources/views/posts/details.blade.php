@@ -125,10 +125,30 @@
 
 									{{-- <input class="vertical-spin" type="text" data-bts-button-down-class="btn btn-default"   data-bts-button-up-class="btn btn-default" value="1" name="vertical-spin"> --}}
 									@if(Auth::user() != $post->user)
-									<div class="btn-group wishlist mb-20">
+									{{-- <div class="btn-group wishlist mb-20">
 										<button class="btn btn-warning btn-outline btn-anim"><i class="icon-heart"></i><span class="btn-text">add to wishlist</span></button>
-									</div>
+									</div> --}}
 									@endif()
+									@if(!Auth::user() || (Auth::user() && (Auth::user()->id != $post->user->id) ))
+							            @if(Auth::user())
+							            <div class="btn-group wishlist mb-20">
+							                <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}" class="sendMessagePost">
+							                    <div class="btn btn-primary btn-anim">
+							                        <i class="fa fa-envelope"></i><span class="btn-text" title="Send message to this user.">Send a message</span>
+							                    </div>
+							                </a>
+							            </div>
+							            @endif    
+							            @if(!Auth::user())
+							            <div class="btn-group wishlist mb-20">
+							                <a href="#" data-toggle="modal" data-target="#register-first">
+							                    <div class="btn btn-primary btn-anim">
+							                        <i class="fa fa-envelope"></i><span class="btn-text" title="Please register to send a message.">Send a message</span>
+							                    </div>
+							                </a>
+							            </div>
+							            @endif
+							        @endif
 									<p class="text-muted">{{ $post->view_count }} views</p>
 								</div>
 							</div>
@@ -309,6 +329,19 @@
 	});
 	</script>
 
+	<script type="text/javascript">
+    $('.sendMessagePost').on('click', function(e) {
+        e.preventDefault();
+        var messageLink = $(this).attr('href');
+        var embedMessage = document.getElementById("getTopMessage");
+        var clone = embedMessage.cloneNode(true);
+        clone.setAttribute('src', messageLink);
+        embedMessage.parentNode.replaceChild(clone, embedMessage);
+        $("#sendMessageModal").modal()
+    });
+	</script>
+	
+	@include('includes.register-first')
 	@include('includes.message-block')
 	@include('includes.places-autocomplete')
 @endsection()
