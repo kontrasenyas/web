@@ -50,7 +50,9 @@ About Us
 								<hr class="light-grey-hr mb-10"/>
 								<div  class="panel-wrapper collapse in">
 									<div  class="panel-body text-center pl-15">
+										<p>Do you want to find travel packages, but don't have an idea where to start? Don't have available cars for your next drive? And also, do you want to help others to start their dream to travel?</p>
 										<p>With Libot Philippines, we creates socially responsible travel experiences thus, making it more convenient to find travel packages for everyone.</p>
+										<p>Today, it's hard to find a service related to travel using social media like rent/hire a car/van or travel packages, with the help of Libot Philippines you can easily search what you are looking for.</p>
         								<p>Founded: May 06, 2017</p>
 									</div>
 								</div>
