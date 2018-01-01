@@ -234,6 +234,11 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'post.image'
 	]);
 
+	Route::get('/post-image-delete/{filename}', [
+		'uses' => 'PostController@deletePostImage',
+		'as' => 'post.image-delete'
+	]);
+
 	Route::post('/post-image', [
 		'uses' => 'PostController@postUpdateImage',
 		'as' => 'post.image-update',

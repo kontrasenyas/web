@@ -40,7 +40,7 @@ class UserController extends Controller
 	        Auth::login($findUser);
     	}
     	else {
-    		$name = explode(' ', $userSocial->name . ' C. Alcantara');
+    		$name = explode(' ', $userSocial->name);
 
 	        // Remove middle initial
 			foreach($name as $key => $one) {

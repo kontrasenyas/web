@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Like;
+use App\PostPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -50,21 +51,42 @@ class PostController extends Controller
 		$post->location = $request['location'];
 		$message = 'There was an error';
 
-		$file = $request->file('image');
-		$filename = uniqid() . '.jpg';
+		// $file = $request->file('image');
+		// $filename = uniqid() . '.jpg';
 
-		$image_resize = Image::make($file->getRealPath());              
-    	$image_resize->resize(920, 1000);
+		// $image_resize = Image::make($file->getRealPath());
+  		// $image_resize->resize(920, 1000);
 
-		if ($file) {
-			Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
+		// if ($file) {
+		// 	Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
 
-			$post->image_name = $filename;
-		}
+		// 	$post->image_name = $filename;
+		// }
 
 		if ($request->user()->posts()->save($post)) {
 			$message = 'Post succesfully created!';
 		}
+
+		$count = 0;
+
+		foreach ($request->images as $image) {
+			$filename = uniqid() . '.jpg';
+			$image_resize = Image::make($image->getRealPath());
+    		$image_resize->resize(920, 1000);
+
+    		Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
+    		PostPhoto::create([
+                'post_id' => $post->id,
+                'filename' => $filename
+            ]);
+
+    		if ($count == 0) {
+    			$post->image_name = $filename;
+    		}
+    		$count++;
+		}
+
+		$post->update();
 
 		return redirect()->route('dashboard')->with(['message' => $message]);
 	}
@@ -72,11 +94,12 @@ class PostController extends Controller
 	public function getDeletePost($post_id)
 	{
 		$post = Post::where('id', $post_id)->first();
+		$post_photos = PostPhoto::where('post_id', $post_id);
 		
 		if (Auth::user() != $post->user) {
 			return redirect()->back();
 		}
-
+		$post_photos->delete();
 		$post->delete();
 
 		return redirect()->route('dashboard')->with(['message' => 'Succesfully deleted']); 
@@ -145,11 +168,13 @@ class PostController extends Controller
 	public function getPostDetails($post_id)
 	{
         $post = Post::where('id', $post_id)->first();
+        $post_photos = PostPhoto::where('post_id', $post->id)->get();
+
         if (is_null($post)) {
         	abort(404);
         }
         Post::where('id', $post_id)->increment('view_count');
-		return view('posts.details', ['post' => $post]);
+		return view('posts.details', ['post' => $post, 'post_photos' => $post_photos]);
 	}
 
 	public function getPostImage($filename)
@@ -157,29 +182,79 @@ class PostController extends Controller
 		$file = Storage::disk('local')->get('post-photos/' . $filename);
 		return new Response($file, 200);
 	}
-	public function postUpdateImage(Request $request)
+
+	public function deletePostImage($filename)
 	{
-		$this->validate($request, [
-			'image' => 'required | image'
-			], ['image.image' => 'Photo must be a valid image file.'
-		]);
-		$post_id = $request['post_id'];
-		$file = $request->file('image');
-		$filename = uniqid() . '.jpg';
+		// Delete photo
+		$post_photo = PostPhoto::where('filename', $filename)->first();
 
-		$image_resize = Image::make($file->getRealPath());              
-    	$image_resize->resize(920, 1000);
+		if (Auth::user() != $post_photo->post()->first()->user) {
+			return redirect()->back();
+		}
 
-		$post = Post::find($post_id);
+		$post_photo->delete();
+		Storage::disk('local')->delete('post-photos/'. $filename);
 
-		if ($file) {
-			Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
+		// Update default post photo
+		$change_photo = PostPhoto::where('post_id', $post_photo->post_id)->first();
+		$post = Post::where('id', $post_photo->post_id)->first();
 
-			$post->image_name = $filename;
+		if($change_photo)
+		{			
+			$post->image_name = $change_photo->filename;		
+		}
+		else 
+		{
+			$post->image_name = 'default.jpg';
 		}
 
 		$post->update();
+
+		return redirect()->back()->with(['message' => 'Succesfully deleted']); 
+	}
+
+	public function postUpdateImage(Request $request)
+	{
+		$this->validate($request, [
+			'image' => 'image'
+			], ['image.image' => 'Photo must be a valid image file.'
+		]);
+		$post_id = $request['post_id'];
+		// $file = $request->file('image');
+		// $filename = uniqid() . '.jpg';
+
+		// $image_resize = Image::make($file->getRealPath());              
+  //   	$image_resize->resize(920, 1000);
+
+		$post = Post::find($post_id);
+
+		// if ($file) {
+		// 	Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
+
+		// 	$post->image_name = $filename;
+		// }
+
+		// $post->update();
 		$message = 'Photo succesfully changed!';
+
+		$count = 0;
+
+		foreach ($request->images as $image) {
+			$filename = uniqid() . '.jpg';
+			$image_resize = Image::make($image->getRealPath());
+    		$image_resize->resize(920, 1000);
+
+    		Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
+    		PostPhoto::create([
+                'post_id' => $post->id,
+                'filename' => $filename
+            ]);
+
+    		if ($count == 0) {
+    			$post->image_name = $filename;
+    		}
+    		$count++;
+		}
 
 		return redirect()->back()->with(['message' => $message]);
 	}

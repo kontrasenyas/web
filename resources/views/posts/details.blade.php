@@ -65,34 +65,57 @@
 									<!-- START carousel-->
 									<div id="carousel-example-captions-1" data-ride="carousel" class="carousel slide">
 										<ol class="carousel-indicators">
-											<li data-target="#carousel-example-captions-1" data-slide-to="0" class="active"></li>
-											<li data-target="#carousel-example-captions-1" data-slide-to="1"></li>
+											@foreach($post_photos as $post_photo)
+												@if($loop->first)
+													<li data-target="#carousel-example-captions-1" data-slide-to="{{$loop->index}}" class="active"></li>
+												@endif()
+												@if(!$loop->first)
+													<li data-target="#carousel-example-captions-1" data-slide-to="{{$loop->index}}"></li>
+												@endif()
+											@endforeach
 										</ol>
 										<div role="listbox" class="carousel-inner">
-											<div class="item active"> <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="First slide image"> </div>
-											<div class="item"> <img src="dist/img/gallery/mock4.jpg" alt="Second slide image"> </div>
+											@if(count($post_photos) == 0)
+												<div class="item active"> <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt="First slide image"> </div>
+											@endif()
+											@foreach($post_photos as $post_photo)
+												@if($loop->first)
+													<div class="item active">
+														@if(Auth::user() == $post->user)
+															<div style="position:absolute;right:0;top:0;">
+																<form action="{{ route('post.image-delete', ['filename' => $post_photo->filename]) }}" method="get">
+																	<button class="btn btn-info btn-icon-anim btn-circle" href="{{ route('post.image-delete', ['filename' => $post_photo->filename]) }}" class="btn btn-danger btn-anim" onclick="return confirm('Are you sure?')" title="Delete this photo">
+																	<i class="icon-trash"></i>
+																	</button>
+																	<input type="hidden" name="_token" value="{{ Session::token() }}">
+																</form>
+															</div>
+														@endif()
+														<img src="{{ route('post.image', ['filename' => $post_photo->filename]) }}" alt="{{ $post->title }}">
+													</div>
+												@endif
+												@if(!$loop->first)
+													<div class="item">
+														@if(Auth::user() == $post->user)
+															<div style="position:absolute;right:0;top:0;">
+																<form action="{{ route('post.image-delete', ['filename' => $post_photo->filename]) }}" method="get">
+																	<button class="btn btn-info btn-icon-anim btn-circle" class="btn btn-danger btn-anim" onclick="return confirm('Are you sure?')" title="Delete this photo">
+																	<i class="icon-trash"></i>
+																	</button>
+																	<input type="hidden" name="_token" value="{{ Session::token() }}">
+																</form>
+															</div>
+														@endif()
+														<img src="{{ route('post.image', ['filename' => $post_photo->filename]) }}" alt="{{ $post->title }}">
+													</div>
+												@endif
+											@endforeach
 										</div>
 									</div>
 									<!-- END carousel-->
-									@if(Auth::user() == $post->user)
-									<div class="form-group text-center">
-										<form action="{{ route('post.image-update') }}" method="post"  enctype="multipart/form-data">
-											<div class="form-group">
-												<label for="input-id" class="info">Change photo (must be a valid image file)</label>
-											</div>
-											<div class="form-group">
-												<input name="image" id="input-id" type="file" class="file" data-preview-file-type="text">
-											</div>
-											<input type="post_id" name="post_id" hidden value="{{ $post->id }}">
-											<div class="form-group">
-												<button type="submit" class="btn btn-primary hidden" onclick="this.disabled=true;this.form.submit();">Save Image</button>
-											</div>
-											<input type="hidden" name="_token" value="{{ Session::token() }}">
-										</form>
-									</div>
-									@endif
+
 								</div>
-							</div>
+							</div>	
 
 							<div class="col-md-9">
 								<div class="product-detail-wrap post" data-postid="{{ $post->id }}">
@@ -152,6 +175,16 @@
 									<p class="text-muted">{{ $post->view_count }} views</p>
 								</div>
 							</div>
+							<div class="col-md-12 mt-10">
+								@if(Auth::user() == $post->user)
+									<div class="form-group text-center">										
+										<div class="form-group col-md-3">
+											<a href="#" class="info text-primary" data-toggle="modal" data-target="#modalPhotos">Add more photos</a>
+										</div>											
+									</div>
+									@endif
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -159,6 +192,35 @@
 		</div>
 	</div>
 	<!-- Row -->
+
+	<!-- Modal Photos-->
+	<div id="modalPhotos" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Add more photos</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form action="{{ route('post.image-update') }}" method="post"  enctype="multipart/form-data">
+	        	<div class="form-group">
+					{{-- <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text"> --}}
+					<input name="images[]" id="input-id" type="file" class="file" style="width: 40px;" data-preview-file-type="text" multiple>
+				</div>
+				<input type="post_id" name="post_id" hidden value="{{ $post->id }}">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary hidden" onclick="this.disabled=true;this.form.submit();">Save Image</button>
+				</div>
+				<input type="hidden" name="_token" value="{{ Session::token() }}">
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	<!-- Row -->
 	<div class="row">

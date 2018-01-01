@@ -17,7 +17,7 @@ Dashboard
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
 	<!-- File Upload CSS -->
-	{{-- <link href="{{ URL::to('plugins/file-upload/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" /> --}}
+	<link href="{{ URL::to('plugins/file-upload/css/fileinput.min.css')}}" media="all" rel="stylesheet" type="text/css" />
 
 	<!-- Post image style -->
 	<link href="{{ URL::to('css/post.css')}}" media="all" rel="stylesheet" type="text/css" />
@@ -62,9 +62,9 @@ Dashboard
 											<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Other details (Eg. Toyota Hiace, Trip to Tagaytay.)" required="">{{ Request::old('body') }}</textarea>				
 										</div>
 										<div class="form-group">
-											<label for="input-id">Photo (must be a valid image file)</label>
+											<label for="input-id">Add photo (must be a valid image file)</label>
 											{{-- <input type="file" name="image" class="form-control" id="image"> --}}
-											<input name="image" id="input-id" type="file" class="dropify" data-preview-file-type="text">
+											<input name="images[]" id="input-id" type="file" class="file" data-preview-file-type="text" multiple>
 											{{-- <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text"> --}}
 										</div>
 										{{-- onclick="this.disabled=true;this.form.submit();" --}}
@@ -280,10 +280,10 @@ Dashboard
 	<script src="dist/js/dashboard-data.js"></script>
 
 	<!-- File Upload -->
-{{-- 	<script src="{{ URL::to('plugins/file-upload/js/plugins/piexif.min.js')}}" type="text/javascript"></script>
+	<script src="{{ URL::to('plugins/file-upload/js/plugins/piexif.min.js')}}" type="text/javascript"></script>
 	<script src="{{ URL::to('plugins/file-upload/js/plugins/sortable.min.js')}}" type="text/javascript"></script>
 	<script src="{{ URL::to('plugins/file-upload/js/plugins/purify.min.js')}}" type="text/javascript"></script>
-	<script src="{{ URL::to('plugins/file-upload/js/fileinput.min.js')}}" type="text/javascript"></script> --}}
+	<script src="{{ URL::to('plugins/file-upload/js/fileinput.min.js')}}" type="text/javascript"></script>
 
 	<!-- Form Flie Upload Data JavaScript -->
     <script src="dist/js/form-file-upload-data.js"></script>
