@@ -46,7 +46,7 @@
                         <div class="profile-box">
                             <div class="profile-cover-pic">
                                 @if(Auth::user() && Auth::user()->id == $user->id)
-                                <div class="fileupload btn btn-default">
+                                <div class="fileupload btn btn-default hidden">
                                     <span class="btn-text">edit</span>
                                     <input class="upload" type="file">
                                 </div>
