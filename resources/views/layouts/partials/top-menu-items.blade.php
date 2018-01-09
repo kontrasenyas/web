@@ -85,6 +85,11 @@
 					</ul>
 				</li> --}}
 				<li class="dropdown alert-drp">
+			            <div class="form-group mb-5 pull-top mt-15">
+							<span class="inline-block mt-0 mr-20"><a class="btn btn-success" href="{{ route('dashboard') }}">Create a post</a></span>
+						</div>
+				</li>
+				<li class="dropdown alert-drp">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Messages"><i class="zmdi zmdi-email top-nav-icon"></i><span class="top-nav-icon-badge" id="message_count"></span></a>
 					<ul  class="dropdown-menu alert-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 						<li>
