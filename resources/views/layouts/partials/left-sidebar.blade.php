@@ -76,6 +76,11 @@
 	var string = window.location.href;
 	substring = currentPage;
 	currentPage = (substring.split("/").pop());
+
+	// for facebook login appends #_=_
+	if (currentPage.match(/^dashboard.*$/)) {
+		currentPage = 'dashboard';
+	}
 	var active = document.getElementById(currentPage);
 
 	if (string.indexOf(substring) !== -1) {
@@ -84,7 +89,7 @@
 			active.className += 'active';
 		}
 		else {
-			active.className += 'active';	
+			active.className += 'active';
 		}		
-	}		
+	}
 </script>

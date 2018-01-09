@@ -67,23 +67,25 @@ class PostController extends Controller
 			$message = 'Post succesfully created!';
 		}
 
-		$count = 0;
+		if ($request->images[0]) {
+			$count = 0;
 
-		foreach ($request->images as $image) {
-			$filename = uniqid() . '.jpg';
-			$image_resize = Image::make($image->getRealPath());
-    		$image_resize->resize(920, 1000);
+			foreach ($request->images as $image) {
+				$filename = uniqid() . '.jpg';
+				$image_resize = Image::make($image->getRealPath());
+	    		$image_resize->resize(920, 1000);
 
-    		Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
-    		PostPhoto::create([
-                'post_id' => $post->id,
-                'filename' => $filename
-            ]);
+	    		Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
+	    		PostPhoto::create([
+	                'post_id' => $post->id,
+	                'filename' => $filename
+	            ]);
 
-    		if ($count == 0) {
-    			$post->image_name = $filename;
-    		}
-    		$count++;
+	    		if ($count == 0) {
+	    			$post->image_name = $filename;
+	    		}
+	    		$count++;
+			}
 		}
 
 		$post->update();
@@ -252,6 +254,7 @@ class PostController extends Controller
 
     		if ($count == 0) {
     			$post->image_name = $filename;
+    			$post->update();
     		}
     		$count++;
 		}
