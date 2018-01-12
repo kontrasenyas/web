@@ -45,7 +45,7 @@
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 			<ol class="breadcrumb">
 				<li><a href="{{ route('home') }}">Home</a></li>
-				<li><a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}"><span>post</span></a></li>
+				<li><a href="{{ route('user-post', ['user_id' => $post->user->id]) }}"><span>post</span></a></li>
 				<li class="active"><span>post detail</span></li>
 			</ol>
 		</div>
