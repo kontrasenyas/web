@@ -53,51 +53,7 @@ Libot Philippines
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-			<div class="panel panel-default card-view panel-refresh">
-				<div class="refresh-container">
-					<div class="la-anim-1"></div>
-				</div>
-				<div class="panel-heading">
-					<div class="pull-left">
-						<h6 class="panel-title txt-dark">top 5 places</h6>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="panel-wrapper collapse in">
-					<div class="panel-body row">
-						<div class="col-sm-6 pa-0">
-							<canvas id="chart_7" height="164"></canvas>
-						</div>
-						<div class="col-sm-6 pr-0 pt-25">
-							<div class="label-chatrs">
-								<div class="mb-5">
-									<span class="clabels inline-block bg-yellow mr-5"></span>
-									<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Tagaytay City</span>
-								</div>
-								<div class="mb-5">
-									<span class="clabels inline-block bg-pink mr-5"></span>
-									<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Baguio City</span>
-								</div>
-								<div class="mb-5">
-									<span class="clabels inline-block bg-blue mr-5"></span>
-									<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Vigan City</span>
-								</div>
-								<div class="mb-5">
-									<span class="clabels inline-block bg-red mr-5"></span>
-									<span class="clabels-text font-12 inline-block txt-dark capitalize-font">Cebu City</span>
-								</div>	
-								<div class="">
-									<span class="clabels inline-block bg-green mr-5"></span>
-									<span class="clabels-text font-12 inline-block txt-dark capitalize-font">La Union</span>
-								</div>												
-							</div>
-						</div>										
-					</div>	
-				</div>
-			</div>
-		</div>
+		</div>		
 		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 			<div class="panel panel-default card-view pt-0">
 				<div class="panel-wrapper collapse in">
