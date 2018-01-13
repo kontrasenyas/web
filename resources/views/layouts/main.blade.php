@@ -42,6 +42,7 @@
     	<!-- Main Content -->
         <div class="page-wrapper" style="padding-bottom: 40px;">
     		@yield('content')
+            @include('includes.modal-update-mobile')
 
     		<!-- Footer -->
 			<footer class="footer container-fluid pl-30 pr-30">
@@ -56,7 +57,7 @@
     	<!-- /Main Content -->
     </div>
 
-    @include('includes.modal-update-mobile');
+    
 
 	<!-- /#wrapper -->
     @yield('script')
