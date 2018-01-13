@@ -54,5 +54,6 @@
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 
         @include('includes.message-block')
+        @yield('script')
 	</body>
 </html>

@@ -66,6 +66,31 @@ class UserController extends Controller
         return redirect()->route('dashboard');
 	}
 
+	public function getEmail($email)
+	{
+		$user = User::where('email', $email)->select('email')->first();
+
+		if (!$user) {
+			return 1;
+		}
+
+		else {
+			return 0;
+		}		
+	}
+	public function getMobileNo($mobileno)
+	{
+		$user = User::where('mobile_no', $mobileno)->select('mobile_no')->first();
+
+		if (!$user) {
+			return 1;
+		}
+
+		else {
+			return 0;
+		}		
+	}
+
 	public function postSignUp(Request $request)
 	{
         $this->validate($request, [

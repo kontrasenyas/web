@@ -49,11 +49,13 @@
 									<form action="{{ route('signup') }}" method="post">
 										<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
 											<label class="control-label mb-10" for="email">Email Address</label>
-											<input type="email" class="form-control" required="" id="email" name="email" placeholder="Enter email" value="{{ Request::old('email') }}">
+											<input type="email" class="form-control" required="" id="email" name="email" placeholder="Enter email" value="{{ Request::old('email') }}"><span id="email-availability-status"></span>
+											<span id="email-loader" style="display: none;">Checking availability ...</span>
 										</div>
 										<div class="form-group {{ $errors->has('mobile_no') ? 'has-error' : '' }}">
 											<label class="control-label mb-10" for="mobile_no">Mobile Number</label>
-											<input type="text" class="form-control" required="" id="mobile_no" name="mobile_no" placeholder="Enter mobile number" value="{{ Request::old('mobile_no') }}">
+											<input type="text" class="form-control" required="" id="mobile_no" name="mobile_no" placeholder="Enter mobile number" value="{{ Request::old('mobile_no') }}"><span id="mobile_no-availability-status"></span>
+											<span id="mobile_no-loader" style="display: none;">Checking availability ...</span>
 										</div>
 										<div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
 											<label class="pull-left control-label mb-10" for="password">Password</label>
@@ -163,6 +165,10 @@
 
 </div>
 <!-- /#wrapper -->
+@endsection()
+
+@section('script')
+	<script type="text/javascript" src="{{ URL::to('js/validation.js') }}"></script>
 @endsection()
 
 {{-- Facebook button --}}

@@ -86,6 +86,15 @@ Route::group(['middleware' => ['web']],function(){
 		return view('accounts.register');
 	})->name('register');
 
+	Route::get('/register/ajax/get-email/{email}', [
+		'uses' => 'UserController@getEmail',
+		'as' => 'ajax.get-email'
+	]);
+	Route::get('/register/ajax/get-mobileno/{mobileno}', [
+		'uses' => 'UserController@getMobileNo',
+		'as' => 'ajax.get-mobileno'
+	]);
+
 	Route::post('/signup',[
 		'uses'=>'UserController@postSignUp',
 		'as'=>'signup'
