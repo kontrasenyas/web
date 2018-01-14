@@ -49,25 +49,29 @@
 									<form action="{{ route('signup') }}" method="post">
 										<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
 											<label class="control-label mb-10" for="email">Email Address</label>
-											<input type="email" class="form-control" required="" id="email" name="email" placeholder="Enter email" value="{{ Request::old('email') }}"><span id="email-availability-status"></span>
+											<input type="email" class="form-control" required="" id="email" name="email" placeholder="Enter email" value="{{ Request::old('email') }}" autocomplete="off"><span id="email-availability-status"></span>
 											<span id="email-loader" style="display: none;">Checking availability ...</span>
 										</div>
 										<div class="form-group {{ $errors->has('mobile_no') ? 'has-error' : '' }}">
 											<label class="control-label mb-10" for="mobile_no">Mobile Number</label>
-											<input type="text" class="form-control" required="" id="mobile_no" name="mobile_no" placeholder="Enter mobile number" value="{{ Request::old('mobile_no') }}"><span id="mobile_no-availability-status"></span>
+											<input type="text" class="form-control" required="" id="mobile_no" name="mobile_no" placeholder="Enter mobile number" value="{{ Request::old('mobile_no') }}" autocomplete="off"><span id="mobile_no-availability-status"></span>
 											<span id="mobile_no-loader" style="display: none;">Checking availability ...</span>
 										</div>
 										<div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
 											<label class="pull-left control-label mb-10" for="password">Password</label>
-											<input type="password" class="form-control" required="" id="password" name="password" placeholder="Enter pwd" value="{{ Request::old('password') }}">
+											<input type="password" class="form-control" required="" id="password" name="password" placeholder="Enter password" value="{{ Request::old('password') }}" autocomplete="off">
+										</div>
+										<div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+											<label class="pull-left control-label mb-10" for="re-password">Confirm Password</label>
+											<input type="password" class="form-control" required="" id="re-password" name="re-password" placeholder="Re-enter password" autocomplete="off"><span id="re-enter-password-status"></span>
 										</div>
 										<div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
 											<label class="pull-left control-label mb-10" for="first_name">First Name</label>
-											<input type="text" class="form-control" required="" id="first_name" name="first_name" placeholder="Enter first name" value="{{ Request::old('first_name') }}">
+											<input type="text" class="form-control" required="" id="first_name" name="first_name" placeholder="Enter first name" value="{{ Request::old('first_name') }}" autocomplete="off">
 										</div>
 										<div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
 											<label class="pull-left control-label mb-10" for="first_name">Last Name</label>
-											<input type="text" class="form-control" required="" id="last_name" name="last_name" placeholder="Enter last name" value="{{ Request::old('last_name') }}">
+											<input type="text" class="form-control" required="" id="last_name" name="last_name" placeholder="Enter last name" value="{{ Request::old('last_name') }}" autocomplete="off">
 										</div>
 										<div align="center" class="g-recaptcha form-group" data-sitekey="6LfOYSAUAAAAAH-w85JaRA03LIOCowgsU3zInlhk"></div>
 										<div class="form-group">

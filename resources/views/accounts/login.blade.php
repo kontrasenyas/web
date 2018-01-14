@@ -49,13 +49,13 @@ Login
                     <form action="{{ route('signin') }}" method="post">
                       <div class="form-group">
                         <label class="control-label mb-10" for="mobile_no">Mobile Number</label>
-                        <input class="form-control" type="text" name="mobile_no" required="" id="mobile_no" placeholder="Enter mobile" value="{{ Request::old('mobile_no') }}">
+                        <input class="form-control" type="text" name="mobile_no" required="" id="mobile_no" placeholder="Enter mobile" value="{{ Request::old('mobile_no') }}" autocomplete="off" tabindex="1">
                       </div>
                       <div class="form-group">
                         <label class="pull-left control-label mb-10" for="password">Password</label>
                         <a class="capitalize-font txt-primary block mb-10 pull-right font-12" href="{{ route('account.forgot') }}">forgot password ?</a>
                         <div class="clearfix"></div>
-                        <input type="password" class="form-control" required="" id="password" name="password" placeholder="Enter pwd">
+                        <input type="password" class="form-control" required="" id="password" name="password" placeholder="Enter pwd" autocomplete="off" tabindex="2">
                       </div>
                       
                       <div class="form-group">
@@ -67,7 +67,7 @@ Login
                       </div>
                       <input type="hidden" name="_token" value="{{ Session::token() }}"> 
                       <div class="form-group text-center">
-                        <button type="submit" class="btn btn-info btn-rounded">sign in</button>
+                        <button type="submit" class="btn btn-info btn-rounded" tabindex="3">sign in</button>
                       </div>
                     </form>
                     <form class="form-group text-center" action="{{ route('login.facebook') }}">

@@ -91,3 +91,24 @@ $('#mobile_no').keyup(function(){
 		}
 	}
 });
+
+$('#re-password').keyup(function () {
+	var password = $('#password').val();
+	var rePassword = $('#re-password').val();
+
+	if (password != '') {
+		if (password != rePassword) {
+			$("#re-enter-password-status").removeClass();
+			$("#re-enter-password-status").addClass('text-danger'); 
+			$('#re-enter-password-status').html('Password does not match');
+		}
+		else {
+			$("#re-enter-password-status").removeClass();
+			$('#re-enter-password-status').html('');
+		}
+	}
+	else {
+		$("#re-enter-password-status").removeClass();
+		$('#re-enter-password-status').html('');
+	}
+});
