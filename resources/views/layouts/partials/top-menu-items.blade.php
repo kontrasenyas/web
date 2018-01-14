@@ -129,6 +129,17 @@
 							<div class="streamline message-nicescroll-bar">
 								<div class="sl-item">
 									<a href="javascript:void(0)">
+										<div class="sl-content">
+											<span class="inline-block capitalize-font text-center truncate head-notifications">You don't have notifications</span>												
+										</div>
+									</a>    
+								</div>
+							</div>
+						</li>
+						{{-- <li>
+							<div class="streamline message-nicescroll-bar">
+								<div class="sl-item">
+									<a href="javascript:void(0)">
 										<div class="icon bg-green">
 											<i class="zmdi zmdi-flag"></i>
 										</div>
@@ -198,7 +209,7 @@
 										</a>    
 									</div>
 								</div>
-							</li>
+							</li> --}}
 							<li>
 								<div class="notification-box-bottom-wrap">
 									<hr class="light-grey-hr ma-0"/>
