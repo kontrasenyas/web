@@ -32,7 +32,7 @@ Feedback for {{ $user->first_name }}
         <!-- Breadcrumb -->
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
-                <li><a href="{{ route('home') }}">Profile</a></li>
+                <li><a href="{{ route('account.profile', $user->id) }}">Profile</a></li>
                 <li class="active"><span>Review</span></li>
             </ol>
         </div>
@@ -71,7 +71,7 @@ Feedback for {{ $user->first_name }}
                                     <div class="form-group {{ $errors->has('comment') ? 'has-error' : '' }}">
                                         <label for="comment">Comment</label>
                                         <textarea class="form-control" type="text" name="comment" id="comment"
-                                        value="{{ Request::old('comment') }}"></textarea>
+                                        value="{{ Request::old('comment') }}">{{ Request::old('comment') }}</textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.form.submit();">Send
                                         Feedback
@@ -101,7 +101,8 @@ Feedback for {{ $user->first_name }}
                                         </a>
                                     </div>
                                     <div class="col-md-12">
-                                        <p><em>{{ $review->comment }}</em></p>
+                                        <p><span class="pr-5">{{ $review->rating }}</span> <span class="glyphicon glyphicon-star" style="color: #ee8b2d;"></span></p>
+                                        <p><em>{{ $review->comment }}</em></p>                                       
                                         <p class="small">{{ $review->created_at->diffForHumans() }}</p>
                                     </div>
 

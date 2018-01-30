@@ -171,8 +171,21 @@ class UserController extends Controller
 			abort(404);
 		}
 		$posts = $user->posts()->where('user_id', $user->id)->get();
-        $reviews = Review::where('user_to', $user_id)->get();
-		return view('accounts.profile', ['user' => $user, 'posts' => $posts, 'reviews' => $reviews]);
+        $reviews = Review::where('user_to', $user_id);
+
+        if($reviews->count() > 0)
+        {
+        	$reviews = $reviews->orderBy('created_at', 'desc')->paginate(3);
+            $reviews_total = Review::where('user_to', $user_id)->sum('rating');
+            $rating = round($reviews_total / Review::where('user_to', $user_id)->get()->count(), 2);
+
+            return view('accounts.profile', ['user' => $user, 'posts' => $posts, 'reviews' => $reviews, 'rating' => $rating]);
+        }
+        else
+        {
+        	$reviews = $reviews->get();
+            return view('accounts.profile', ['user' => $user, 'posts' => $posts, 'reviews' => $reviews]);
+        }		
 	}
 
 	// public function getEditAccountIndex()
@@ -256,7 +269,7 @@ class UserController extends Controller
 		if($reviews->count() > 0)
         {
             $reviews_total = Review::where('user_to', $user_id)->sum('rating');
-            $rating = round($reviews_total / $reviews->count(), 2);
+            $rating = round($reviews_total / Review::where('user_to', $user_id)->get()->count(), 2);
 
             return view('accounts.review', ['user' => $user, 'reviews' => $reviews, 'rating' => $rating]);
         }

@@ -136,8 +136,7 @@
                                 @endif()
                                 @if(!Auth::user())
                                 <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="#" data-toggle="modal" data-target="#register-first"><i class="fa fa-inbox"></i><span class="btn-text" title="Please register to send a message.">Send Message</span></a>
-                                @endif()
-                                <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('account.review', ['user_id' => $user->id]) }}"><i class="fa fa-book"></i><span class="btn-text">Reviews ({{ count($reviews)  }})</span></a>
+                                @endif()                                
                                 @if(Auth::user() && Auth::user()->id == $user->id)
                                 <button class="btn btn-default btn-block btn-outline btn-anim mt-30" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i><span class="btn-text">edit profile</span></button>
                                 <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -228,70 +227,49 @@
                                     <div class="col-md-12">
                                         <div class="pt-20">
                                             <div class="streamline user-activity">
-                                                <div class="sl-item">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                            <img class="img-responsive img-circle" src="dist/img/user.png" alt="avatar"/>
+                                                <div class="col-md-12">
+                                                    <h4>Reviews</h4>
+                                                    @if(count($reviews) > 0)
+                                                    <div class="col-md-12">
+                                                        <h4><strong><em>{{ $rating }}</em></strong> <span class="glyphicon glyphicon-star" style="color: #ee8b2d;"></span></h4>
+                                                    </div>
+                                                    <div class="col-md-12"> <p class="info">There are <strong>{{ $reviews->total() }}</strong> reviews for this user. </p></div>
+                                                    @foreach($reviews as $review)
+                                                    <div class="form-group div_hover col-md-12" title="View user profile">
+                                                        <div class="col-md-12">
+                                                            <a href="{{ route('account.profile', ['$id' => $review->user->id]) }}" class="text-primary"><h5>
+                                                                <strong>{{ $review->user->first_name }} {{ $review->user->last_name }}</strong></h5>
+                                                            </a>
                                                         </div>
-                                                        <div class="sl-content">
-                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Maan Dyosa</span><span>invited to join the meeting in the conference room at 9.45 am</span></p>
-                                                            <span class="block txt-grey font-12 capitalize-font">3 Min</span>
+                                                        <div class="col-md-12">
+                                                            <p><span class="pr-5">{{ $review->rating }}</span><span class="glyphicon glyphicon-star" style="color: #ee8b2d;"></span></p>
+                                                            <p><em>{{ $review->comment }}</em></p>
+                                                            <p class="small">{{ $review->created_at->diffForHumans() }}</p>
                                                         </div>
-                                                    </a>
-                                                </div>
 
-                                                <div class="sl-item">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                            <img class="img-responsive img-circle" src="dist/img/user1.png" alt="avatar"/>
-                                                        </div>
-                                                        <div class="sl-content">
-                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Jow Jow</span><span>added three new photos in the library</span></p>
-                                                            <div class="activity-thumbnail">
-                                                                <img src="dist/img/thumb-1.jpg" alt="thumbnail"/>
-                                                                <img src="dist/img/thumb-2.jpg" alt="thumbnail"/>
-                                                                <img src="dist/img/thumb-3.jpg" alt="thumbnail"/>
-                                                            </div>
-                                                            <span class="block txt-grey font-12 capitalize-font">8 Min</span>
-                                                        </div>
-                                                    </a>    
-                                                </div>
+                                                    </div>
+                                                    @endforeach
+                                                    @endif
+                                                    @if(count($reviews) == 0)
+                                                    <div class="col-md-12">
+                                                        <p><em>There is no feedback for this user.</em></p>
+                                                    </div>
+                                                    @endif
+                                                    <div class="col-md-4 mt-0 pb-10">
+                                                        @if(Auth::user() && Auth::user()->id != $user->id)
+                                                        <a href="{{ route('account.review', ['user_id' => $user->id]) }}" class="text-primary" ">Write/View all reviews</a>
+                                                        @endif()
 
-                                                <div class="sl-item">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                            <img class="img-responsive img-circle" src="dist/img/user2.png" alt="avatar"/>
-                                                        </div>
-                                                        <div class="sl-content">
-                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">{{ $user->first_name }} {{ $user->last_name }}</span><span>assigned a new task</span></p>
-                                                            <span class="block txt-grey font-12 capitalize-font">28 Min</span>
-                                                        </div>
-                                                    </a>    
-                                                </div>
+                                                        @if(Auth::user() && Auth::user()->id == $user->id)
+                                                        <a href="{{ route('account.review', ['user_id' => $user->id]) }}" class="text-primary" ">View all your reviews</a>
+                                                        @endif()
 
-                                                <div class="sl-item">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                            <img class="img-responsive img-circle" src="dist/img/user3.png" alt="avatar"/>
-                                                        </div>
-                                                        <div class="sl-content">
-                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">Batman</span><span>completed project wireframes</span></p>
-                                                            <span class="block txt-grey font-12 capitalize-font">yesterday</span>
-                                                        </div>
-                                                    </a>    
-                                                </div>
-
-                                                <div class="sl-item">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="sl-avatar avatar avatar-sm avatar-circle">
-                                                            <img class="img-responsive img-circle" src="dist/img/user4.png" alt="avatar"/>
-                                                        </div>
-                                                        <div class="sl-content">
-                                                            <p class="inline-block"><span class="capitalize-font txt-success mr-5 weight-500">superman</span><span>created a group 'Hencework' in the discussion forum</span></p>
-                                                            <span class="block txt-grey font-12 capitalize-font">18 feb</span>
-                                                        </div>
-                                                    </a>
-                                                </div>
+                                                        @if(!Auth::user())
+                                                            <a href="{{ route('account.review', ['user_id' => $user->id]) }}" class="text-primary" ">View all reviews</a>
+                                                        @endif()
+                                                        {{-- <a class="btn btn-default btn-block btn-outline btn-anim mt-30" href="{{ route('account.review', ['user_id' => $user->id]) }}"><i class="fa fa-book"></i><span class="btn-text">Reviews ({{ count($reviews)  }})</span></a> --}}
+                                                    </div>                                                    
+                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -768,55 +746,6 @@
           </div>  
       </div>
       @endif()
-      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <div class="panel panel-default card-view bg-twitter">
-            <div class="panel-wrapper collapse in">
-                <div  class="panel-body">
-                    <div class="twitter-icon-wrap text-center mb-15">
-                        <i class="fa fa-twitter"></i>
-                    </div>
-                    <!-- START carousel-->
-                    <div id="twitter_slider" data-ride="carousel" class="carousel slide twitter-slider-wrap text-slider">
-                        <ol class="carousel-indicators">
-                           <li data-target="#twitter_slider" data-slide-to="0" class="active"></li>
-                           <li data-target="#twitter_slider" data-slide-to="1"></li>
-                       </ol>
-                       <div role="listbox" class="carousel-inner mb-50">
-                        <div class="item active"> 
-                            <div class="twitter-wrap text-center">
-                                <p class="tweet font-16 txt-light mb-30">Envato Elements just got even better with its awesome new web template category! Check it out at <a class="txt-light" href="https://t.co/JuKPZ0cDfb" target="_blank">enva.to/4_m8D.</a></p>
-                                <span class="date-posted block font-12 txt-light">Posted on 26 Sep</span>
-                            </div>
-                        </div>
-                        <div class="item"> 
-                            <div class="twitter-wrap text-center">
-                                <p class="tweet font-16 txt-light mb-30">Super excited to be hosting an Envato Meetup in Philadelphia.  Come join us in December <a class="txt-light" href="https://t.co/OMAlcRluGx" target="_blank">https://nvite.com/EnvatoMeetupPHL/b338 … #envatomeetupPHL...</a></p>
-                                <span class="date-posted block font-12 txt-light">Posted on 19 Oct</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- END carousel-->
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default card-view">
-        <div class="panel-heading">
-            <div class="pull-left">
-                <h6 class="panel-title txt-dark">{{ $user->first_name }} {{ $user->last_name }}</h6>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-wrapper collapse in">
-            <div  class="panel-body row pa-0">
-                <!--Instagram-->
-                <ul class="instagram-lite"></ul>
-                <!--/Instagram-->
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 <!-- /Row -->
 
