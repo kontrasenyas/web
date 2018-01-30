@@ -5,6 +5,7 @@ use App\User;
 use App\Post;
 use App\Like;
 use App\PostPhoto;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -172,11 +173,16 @@ class PostController extends Controller
         $post = Post::where('id', $post_id)->first();
         $post_photos = PostPhoto::where('post_id', $post->id)->get();
 
+        $user_id = $post->user->id;
+        $reviews = Review::where('user_to', $user_id)->orderBy('created_at', 'desc')->get();
+		$reviews_total = Review::where('user_to', $user_id)->sum('rating');
+        $rating = round($reviews_total / Review::where('user_to', $user_id)->get()->count(), 2);
+
         if (is_null($post)) {
         	abort(404);
         }
         Post::where('id', $post_id)->increment('view_count');
-		return view('posts.details', ['post' => $post, 'post_photos' => $post_photos]);
+		return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'rating' => $rating, 'reviews' => $reviews]);
 	}
 
 	public function getPostImage($filename)

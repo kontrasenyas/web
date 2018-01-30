@@ -118,15 +118,14 @@
 							</div>	
 
 							<div class="col-md-9">
-								<div class="product-detail-wrap post" data-postid="{{ $post->id }}">
-									<div class="product-rating inline-block mb-10">
-										<a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star"></a><a href="javascript:void(0);" class="zmdi zmdi-star-outline"></a>
-									</div>
-									<div class="average-review inline-block mb-10">&nbsp;(<span class="review-count">5</span> customer review)</div>
+								<div class="product-detail-wrap post" data-postid="{{ $post->id }}">									
 									<h3 class="mb-20 weight-500">{{ $post->title }}</h3>
 									{{-- <div class="product-price head-font mb-30">$ 1234</div> --}}
-									<div class="mb-20 info">Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a> on {{ $post->created_at->diffForHumans() }}﻿</div>
-
+									<div class="mb-0 info">Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a>  on {{ $post->created_at->diffForHumans() }}﻿</div>
+									<div class="product-rating inline-block mt-0">
+										{{ $rating }}&nbsp;<a href="javascript:void(0);" class="zmdi zmdi-star"></a>
+									</div>
+									<div class="average-review inline-block mb-10">(<span class="review-count">{{count($reviews) }}</span> user review)</div>
 									<div class="mb-20" id="details">
 										<!-- <p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p> -->
 										<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
