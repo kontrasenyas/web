@@ -43,7 +43,13 @@
 							<div class="col-sm-12 col-xs-12">
 								<div class="mb-30">
 									<h3 class="text-center txt-dark mb-10">Sign up to Libot</h3>
-									<h6 class="text-center nonecase-font txt-grey">Enter your details below</h6>
+									<form class="form-group text-center" action="{{ route('login.facebook') }}">
+				                      <button class="loginBtn loginBtn--facebook" type="submit" onclick="this.disabled=true;this.form.submit();">Signup using facebook</button>
+				                      <input type="hidden" name="_token" value="{{ Session::token() }}"> 
+				                    </form>
+				                    <h5 class="text-center nonecase-font txt-grey">or</h6>
+				                    <hr width="100%">
+				                    <h6 class="text-center nonecase-font txt-grey">Enter your details below</h6>
 								</div>	
 								<div class="form-wrap">
 									<form action="{{ route('signup') }}" method="post">
@@ -86,10 +92,6 @@
 											<button type="submit" class="btn btn-info btn-rounded">sign Up</button>
 										</div>
 									</form>
-									<form class="form-group text-center" action="{{ route('login.facebook') }}">
-				                      <button class="loginBtn loginBtn--facebook" type="submit" onclick="this.disabled=true;this.form.submit();">Signup using facebook</button>
-				                      <input type="hidden" name="_token" value="{{ Session::token() }}"> 
-				                    </form>
 								</div>
 							</div>	
 						</div>

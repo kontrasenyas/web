@@ -264,7 +264,8 @@
 		@if(!Auth::user())
 		<div id="mobile_only_nav" class="mobile-only-nav pull-right">
             <div class="form-group mb-5 pull-right">
-				<span class="inline-block pr-10">Already have an account?</span>
+            	<span class="inline-block mt-0 mr-20"><a class="btn btn-success" href="{{ route('register') }}">Start posting now</a></span>
+				{{-- <span class="inline-block pr-10">Already have an account?</span> --}}
 				<a class="inline-block btn btn-info btn-rounded btn-outline" href="{{ route('login') }}">Sign In</a>
 			</div>
 		</div>
