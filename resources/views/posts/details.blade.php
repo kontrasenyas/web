@@ -6,6 +6,13 @@
     <meta name="description" content="Libot Philippines -  {{ $post->title }} .. {{ $post->body }}" />
     <meta name="keywords" content="libot, libot philippines, travel, libot travel, rent, {{ $post->title }}, {{ $post->body }}" />
     <meta name="author" content="libot-ph"/>
+
+    <meta property="fb:app_id"      content="1236189279823899" />
+    <meta property="og:url"           content="{{ url()->current() }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Libot Philippines  -  {{ $post->title }}" />
+	<meta property="og:description"   content="{{ $post->body }}" />
+	<meta property="og:image"         content="{{ route('post.image', ['filename' => $post->image_name]) }}" />
 @endsection()
 
 @section('title')
@@ -172,6 +179,17 @@
 							            @endif
 							        @endif
 									<p class="text-muted">{{ $post->view_count }} views</p>
+									<div id="fb-root"></div>
+									<script>(function(d, s, id) {
+									    var js, fjs = d.getElementsByTagName(s)[0];
+									    if (d.getElementById(id)) return;
+									    js = d.createElement(s); js.id = id;
+									    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=1236189279823899&autoLogAppEvents=1";
+									    fjs.parentNode.insertBefore(js, fjs);
+									 }(document, 'script', 'facebook-jssdk'));</script>
+
+									<!-- Your share button code -->
+									<div class="fb-share-button" data-href="{{ url()->current() }}" data-layout="button_count"></div>
 								</div>
 							</div>
 							<div class="col-md-12 mt-10">
