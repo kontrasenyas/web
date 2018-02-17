@@ -50,7 +50,7 @@
                                                 <a  id="goto_back_widget_1" href="javascript:void(0)" class="inline-block txt-grey">
                                                     <i class="zmdi zmdi-account-add"></i>
                                                 </a>    
-                                                <span class="inline-block txt-dark" id="chat-name"><a href="{{ route('account.profile', $sent_to->id) }}" target="_parent" style="float: none !important; ">{{ $sent_to->first_name }} {{ $sent_to->last_name }}</a></span>
+                                                <span class="inline-block txt-dark" id="chat-name" style="white-space: nowrap;"><a href="{{ route('account.profile', $sent_to->id) }}" target="_parent" style="float: none !important; ">{{ $sent_to->first_name }} {{ $sent_to->last_name }}</a></span>
                                                 <a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="zmdi zmdi-more"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
