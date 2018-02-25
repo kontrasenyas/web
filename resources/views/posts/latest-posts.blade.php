@@ -15,7 +15,7 @@
                     </div>
                     <div class="pull-left user-detail-wrap">    
                         <span class="block card-user-name">
-                            {{ $post->title }}
+                            {{ str_limit($post->title, $limit = 15, $end = '...') }}
                         </span>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
             <div class="panel-wrapper collapse in">
                 <div class="panel-body row">
                     <div class="user-others-details pl-15 pr-15">
-                        <span class="block card-user-desn">Details:</span>
+                        <span class="block card-user-desn panel-title">{{ $post->type }}</span>
                         <div class="mb-15">
                             <i class="zmdi inline-block mr-10">Location:</i>
                             <span class="inline-block txt-dark">{{ str_limit($post->location, $limit = 22, $end = '...') }}</span>

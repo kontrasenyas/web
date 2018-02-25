@@ -54,6 +54,22 @@ Dashboard
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
 									<form action="{{ route('post.create') }}" method="post"  enctype="multipart/form-data">
+										<div class="form-group">											
+											<div class="radio-list">
+												<div class="radio-inline pl-0">
+													<span class="radio radio-info">
+														<input type="radio" name="radio_type" id="radio_rental" value="rental" required>
+														<label for="radio_rental">Rental</label>
+													</span>
+												</div>
+												<div class="radio-inline">
+													<span class="radio radio-info">
+														<input type="radio" name="radio_type" id="radio_package" value="package" required>
+														<label for="radio_package">Travel Package</label>
+													</span>
+												</div>
+											</div>
+										</div>
 										<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 											<input type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon2" name="title" id="title" value="{{ Request::old('title') }}" required="">
 										</div>
@@ -122,8 +138,9 @@ Dashboard
 							        	<div class="form-group div_hover col-md-12">                    
 								            <div class="post row" data-postid="{{ $post->id }}">
 								                <div class="col-md-6">
-								                    <h4 class="body text-uppercase">{{ $post->title }}</h4>                
+								                    <h4 class="body text-uppercase">{{ str_limit($post->title, $limit = 15, $end = '...') }}</h4>                
 								                    <div class="info">
+								                    	<p class="panel-title">{{ $post->type }}</p>
 								                        <p class="body text-uppercase">{{ str_limit($post->location, $limit = 22, $end = '...') }}</p>
 								                        <p>Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}</p>
 								                        <p>Contact No: {{ $post->user->mobile_no }}</p>

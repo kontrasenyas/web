@@ -101,8 +101,9 @@ Libot Philippines
                                                     <div class="form-group div_hover col-md-12">                    
                                                         <div class="post row" data-postid="{{ $post->id }}">                
                                                             <div class="col-md-6">
-                                                                <h4 class="body text-uppercase">{{ $post->title }}</h4>                
+                                                                <h4 class="body text-uppercase">{{ str_limit($post->title, $limit = 15, $end = '...') }}</h4>                
                                                                 <div class="info">
+                                                                    <p class="panel-title">{{ $post->type }}</p>
                                                                     <p class="body text-uppercase">{{ str_limit($post->location, $limit = 22, $end = '...') }}</p>
                                                                     <p>Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}</p>
                                                                     <p>Contact No: {{ $post->user->mobile_no }}</p>

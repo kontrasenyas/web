@@ -39,7 +39,8 @@ class PostController extends Controller
 			'image' => 'image',
 			'contact_no' => 'required|regex:/(09)[0-9]{9}/',
 			'location' => 'required|max:100',
-			'body' => 'required|max:1000'
+			'body' => 'required|max:1000',
+			'radio_type' => 'required'
 			], ['image.image' => 'Photo must be a valid image file.']
 
 			);
@@ -50,7 +51,9 @@ class PostController extends Controller
 		$post->body = $request['body'];
 		$post->contact_no = $request['contact_no'];
 		$post->location = $request['location'];
+		$post->type = $request['radio_type'];
 		$message = 'There was an error';
+
 
 		// $file = $request->file('image');
 		// $filename = uniqid() . '.jpg';

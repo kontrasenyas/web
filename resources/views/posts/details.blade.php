@@ -135,6 +135,7 @@
 									<div class="average-review inline-block mb-10">(<span class="review-count">{{count($reviews) }}</span> user review)</div>
 									<div class="mb-20" id="details">
 										<!-- <p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p> -->
+										<p><span id="location" class="panel-title txt-dark">{{ $post->type }}</span></p>
 										<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
 										<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
 										<p><strong>Destination: </strong><span id="location">{{ $post->location }}</span></p>
