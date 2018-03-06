@@ -116,7 +116,8 @@ class PostController extends Controller
 			'body' => 'required',
 			'capacity' => 'required|numeric|max:100',
 			'contactNo' => 'required|regex:/(09)[0-9]{9}/',
-			'location' => 'required'
+			'location' => 'required',
+			'radioType' => 'required'
 			]);
 
 		$post = Post::find($request['postId']);
@@ -129,8 +130,9 @@ class PostController extends Controller
 		$post->capacity = $request['capacity'];
 		$post->contact_no = $request['contactNo'];
 		$post->location = $request['location'];
+		$post->type = $request['radioType'];
 		$post->update();
-		return response()->json(['message' => 'Post edited', 'new_body' => $post->body, 'new_capacity' => $post->capacity, 'new_contact' => $post->contact_no, 'new_location' => $post->location], 200);
+		return response()->json(['message' => 'Post edited', 'new_body' => $post->body, 'new_capacity' => $post->capacity, 'new_contact' => $post->contact_no, 'new_location' => $post->location, 'new_radioType' => $post->type], 200);
 	}
 
 	public function postLikePost(Request $request)

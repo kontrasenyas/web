@@ -135,7 +135,7 @@
 									<div class="average-review inline-block mb-10">(<span class="review-count">{{count($reviews) }}</span> user review)</div>
 									<div class="mb-20" id="details">
 										<!-- <p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p> -->
-										<p><span id="location" class="panel-title txt-dark">{{ $post->type }}</span></p>
+										<p><span id="type" class="panel-title txt-dark">{{ $post->type }}</span></p>
 										<p><strong>Capacity: </strong><span id="capacity">{{ $post->capacity }}</span></p>
 										<p><strong>Contact No: </strong><span id="contact">{{ $post->contact_no }}</span></p>
 										<p><strong>Destination: </strong><span id="location">{{ $post->location }}</span></p>
@@ -311,30 +311,46 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">Edit Post</h4>
 			</div>
-			<div class="modal-body">
-				<form>
+			<form action="" method="POST" id="edit-post-form">
+				<div class="modal-body">
+					<div class="form-group">											
+						<div class="radio-list">
+							<div class="radio-inline pl-0">
+								<span class="radio radio-info">
+									<input type="radio" name="radio_type" id="radio_rental" value="rental" required>
+									<label for="radio_rental">Rental</label>
+								</span>
+							</div>
+							<div class="radio-inline">
+								<span class="radio radio-info">
+									<input type="radio" name="radio_type" id="radio_package" value="package" required>
+									<label for="radio_package">Travel Package</label>
+								</span>
+							</div>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="post-body">Details</label>
-						<textarea name="post-body" id="post-body" rows="5" class="form-control"></textarea>
+						<textarea name="post-body" id="post-body" rows="5" class="form-control" required=""></textarea>
 					</div>
 					<div class="form-group">
 						<label for="post-body">Capacity</label>
-						<input type="number" name="post-capacity" id="post-capacity" rows="5" class="form-control">
+						<input type="number" name="post-capacity" id="post-capacity" rows="5" class="form-control" required="">
 					</div>
 					<div class="form-group">
 						<label for="post-body">Contact Number</label>
-						<input type="text" name="post-contact" id="post-contact" rows="5" class="form-control">
+						<input type="text" name="post-contact" id="post-contact" rows="5" class="form-control" pattern=".{11,}" required title="Valid Mobile number Ex. 09171234567">
 					</div>
 					<div class="form-group">
 						<label for="post-body">Location</label>
-						<input type="text" name="post-location" id="post-location" rows="5" class="form-control typeahead">
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
-			</div>
+						<input type="text" name="post-location" id="post-location" rows="5" class="form-control typeahead" required="">
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<input type="submit" class="btn btn-primary" id="modal-save" value="Save Changes" />
+				</div>
+			</form>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

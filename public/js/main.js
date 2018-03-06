@@ -3,6 +3,7 @@ var postBodyElement = null;
 var postCapacityElement = null;
 var postContactElement = null;
 var postLocationElement = null;
+var postRadioTypeElement = null;
 var postElement = null;
 
 
@@ -14,21 +15,35 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 	postCapacityElement = document.getElementById('capacity');
 	postContactElement = document.getElementById('contact');
 	postLocationElement = document.getElementById('location');
+	postRadioTypeElement = document.getElementById('type');
 
 	var postBody = postBodyElement.textContent;
 	var postCapacity = postCapacityElement.textContent;
 	var postContact = postContactElement.textContent;
 	var postLocation = postLocationElement.textContent;
+	var postRadioType = postRadioTypeElement.textContent;
 	postId = $(".post").data("postid"); //postId = event.target.parentNode.parentNode.dataset['postid'];
 
 	$('#post-body').val(postBody);
 	$('#post-capacity').val(postCapacity);
 	$('#post-contact').val(postContact);
 	$('#post-location').val(postLocation);
+	//$('#post-type').val(postRadioType);
+
+	if(postRadioType == 'rental')
+	{
+		$("#radio_rental").prop("checked", true);
+	}
+	else if(postRadioType == 'package')
+	{
+		$("#radio_package").prop("checked", true);
+	}
+
 	$('#edit-modal').modal();
 });
 
-$('#modal-save').on('click', function() {
+$('#edit-post-form').on('submit', function(event) {
+	event.preventDefault();
 	$.ajax({
 		method: 'POST',
 		url: urlEdit,
@@ -36,7 +51,8 @@ $('#modal-save').on('click', function() {
 			body: $('#post-body').val(),
 			capacity: $('#post-capacity').val(),
 			contactNo: $('#post-contact').val(),
-			location: $('#post-location').val(),  
+			location: $('#post-location').val(),
+			radioType: $('input[name=radio_type]:checked').val(),
 			postId: postId, 
 			_token: token
 		}
@@ -47,6 +63,7 @@ $('#modal-save').on('click', function() {
 		$(postCapacityElement).text(msg['new_capacity']);
 		$(postContactElement).text(msg['new_contact']);
 		$(postLocationElement).text(msg['new_location']);
+		$(postRadioTypeElement).text(msg['new_radioType']);
 		//$(postElement).effect("highlight", {color: '#eff0f1'}, 5000);
 		$('#edit-modal').modal('hide');
 		$.toast({

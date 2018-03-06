@@ -58,13 +58,13 @@ Dashboard
 											<div class="radio-list">
 												<div class="radio-inline pl-0">
 													<span class="radio radio-info">
-														<input type="radio" name="radio_type" id="radio_rental" value="rental" required>
+														<input type="radio" name="radio_type" id="radio_rental" value="rental" @if(Request::old('radio_type') == 'rental') checked @endif required>
 														<label for="radio_rental">Rental</label>
 													</span>
 												</div>
 												<div class="radio-inline">
 													<span class="radio radio-info">
-														<input type="radio" name="radio_type" id="radio_package" value="package" required>
+														<input type="radio" name="radio_type" id="radio_package" value="package" @if(Request::old('radio_type') == 'package' ) checked @endif required>
 														<label for="radio_package">Travel Package</label>
 													</span>
 												</div>
@@ -77,13 +77,13 @@ Dashboard
 											<input type="number" class="form-control" placeholder="Capacity" aria-describedby="basic-addon2" name="capacity" id="capacity" value="{{ Request::old('capacity') }}" required="">
 										</div>
 										<div class="form-group {{ $errors->has('contact_no') ? 'has-error' : '' }}">
-											<input type="text" class="form-control" placeholder="Contact No (Eg. 09051234567)" aria-describedby="basic-addon2" name="contact_no" id="contact_no" value="{{ Request::old('contact_no') }}" required="">
+											<input type="text" class="form-control" placeholder="Contact No (Eg. 09171234567)" aria-describedby="basic-addon2" name="contact_no" id="contact_no" value="{{ Request::old('contact_no') }}" pattern=".{11,}" required title="Valid Mobile number Ex. 09171234567">
 										</div>
 										<div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
 											<input type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="off" required="">
 										</div>
 										<div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-											<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Other details (Eg. Toyota Hiace, Trip to Tagaytay.)" required="">{{ Request::old('body') }}</textarea>				
+											<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="More details (Eg. Toyota Hiace, Trip to Tagaytay.)" required="">{{ Request::old('body') }}</textarea>				
 										</div>
 										<div class="form-group">
 											<label for="input-id">Add photo (must be a valid image file)</label>
@@ -92,7 +92,7 @@ Dashboard
 											{{-- <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text"> --}}
 										</div>
 										{{-- onclick="this.disabled=true;this.form.submit();" --}}
-										<button type="submit" class="btn btn-success pull-left">Create Post</button>
+										<input type="submit" class="btn btn-success pull-left" value="Create Post" />
 										<input type="hidden" name="_token" value="{{ Session::token() }}">
 									</form>
 								</div>	
