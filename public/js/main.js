@@ -1,4 +1,5 @@
 var postId = 0;
+var postTitleElement = null;
 var postBodyElement = null;
 var postCapacityElement = null;
 var postContactElement = null;
@@ -11,12 +12,14 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 	event.preventDefault();
 
 	postElement = $(".post");//postElement = event.target.parentNode.parentNode;
+	postTitleElement = document.getElementById('title');
 	postBodyElement = document.getElementById('body');
 	postCapacityElement = document.getElementById('capacity');
 	postContactElement = document.getElementById('contact');
 	postLocationElement = document.getElementById('location');
 	postRadioTypeElement = document.getElementById('type');
 
+	var postTitle = postTitleElement.textContent;
 	var postBody = postBodyElement.textContent;
 	var postCapacity = postCapacityElement.textContent;
 	var postContact = postContactElement.textContent;
@@ -24,6 +27,7 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 	var postRadioType = postRadioTypeElement.textContent;
 	postId = $(".post").data("postid"); //postId = event.target.parentNode.parentNode.dataset['postid'];
 
+	$('#post-title').val(postTitle);
 	$('#post-body').val(postBody);
 	$('#post-capacity').val(postCapacity);
 	$('#post-contact').val(postContact);
@@ -48,6 +52,7 @@ $('#edit-post-form').on('submit', function(event) {
 		method: 'POST',
 		url: urlEdit,
 		data: {
+			title: $('#post-title').val(),
 			body: $('#post-body').val(),
 			capacity: $('#post-capacity').val(),
 			contactNo: $('#post-contact').val(),
@@ -59,6 +64,7 @@ $('#edit-post-form').on('submit', function(event) {
 	})
 	.done(function (msg) {
 		//console.log(JSON.stringify(msg));
+		$(postTitleElement).text(msg['new_title']);
 		$(postBodyElement).text(msg['new_body']);
 		$(postCapacityElement).text(msg['new_capacity']);
 		$(postContactElement).text(msg['new_contact']);

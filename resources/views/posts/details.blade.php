@@ -126,7 +126,7 @@
 
 							<div class="col-md-9">
 								<div class="product-detail-wrap post" data-postid="{{ $post->id }}">									
-									<h3 class="mb-20 weight-500">{{ $post->title }}</h3>
+									<h3 class="mb-20 weight-500"><span id="title">{{ $post->title }}</span></h3>
 									{{-- <div class="product-price head-font mb-30">$ 1234</div> --}}
 									<div class="mb-0 info">Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a>  on {{ $post->created_at->diffForHumans() }}﻿</div>
 									<div class="product-rating inline-block mt-0">
@@ -328,6 +328,10 @@
 								</span>
 							</div>
 						</div>
+					</div>
+					<div class="form-group">
+						<label for="post-body">Title</label>
+						<input type="text" name="post-title" id="post-title" rows="5" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="post-body">Details</label>
