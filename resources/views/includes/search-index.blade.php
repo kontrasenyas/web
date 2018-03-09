@@ -21,6 +21,9 @@ Libot Philippines
 
     <!-- Post image style -->
     <link href="{{ URL::to('css/post.css')}}" media="all" rel="stylesheet" type="text/css" />
+
+    <!-- bootstrap-select CSS -->
+    <link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 @endsection()
 
 @section('content')
@@ -44,14 +47,25 @@ Libot Philippines
                                         <div class="">
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" placeholder="Search for Car/Services/Packages" name="query" autocomplete="off" value="{{ Request::query('query') }}">
-                                                </div>                          
+                                                    {{-- <label class="control-label mb-10">Select box</label> --}}
+                                                    <select class="selectpicker" data-style="form-control btn-default btn-outline" name="search-type" id="search-type">
+                                                        <option value="any" @if(Request::query('search-type') == 'any') selected @endif()>Any</option>
+                                                        <option value="rental" @if(Request::query('search-type') == 'rental') selected @endif()>Rental</option>
+                                                        <option value="package" @if(Request::query('search-type') == 'package') selected @endif()>Travel Package</option>
+                                                        <option value="itinerary" @if(Request::query('search-type') == 'itinerary') selected @endif()>Itinerary</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" placeholder="Location" name="location" id="location" autocomplete="off" value="{{ Request::query('location') }}">
+                                                    <input type="text" class="form-control" placeholder="Location" name="location" id="location" autocomplete="off" required="" value="{{ Request::query('location') }}" >
                                                 </div>
                                             </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" placeholder="Search for Car/Services/Packages" name="query" autocomplete="off" value="{{ Request::query('query') }}">
+                                                </div>                          
+                                            </div>                                            
                                             <div class="form-group row">
                                                 <div class="col-md-12">
                                                     <input type="text" class="form-control" placeholder="Keywords" name="keywords" autocomplete="off" value="{{ Request::query('keywords') }}">
@@ -162,6 +176,9 @@ Libot Philippines
 
     <!-- Init JavaScript -->
     <script src="dist/js/init.js"></script>
+
+    <!-- Bootstrap Select JavaScript -->
+    <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
     @include('includes.places-autocomplete')
     @include('includes.message-block')

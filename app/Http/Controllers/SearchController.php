@@ -23,33 +23,65 @@ class SearchController extends Controller
 		$query =  $request['query'];
 		$location = $request['location'];
 		$keywords = $request['keywords'];
+		$type = $request->get('search-type');
 
-		if (isset($location) && isset($query) && $keywords) {
-			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->where('location', 'like', $location)->where('body', 'like', $keywords)->paginate(5);
-		}
-		else if (isset($location) && isset($query)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', $query)->where('location', 'like', $location)->paginate(5);
-		}
-		else if (isset($location) && isset($keywords)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', $keywords)->where('location', 'like', $location)->paginate(5);
-		}
-		else if (isset($keywords) && isset($query)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->where('location', 'like', '%' . $location . '%')->paginate(5);
-		}
-		else if (isset($query)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->paginate(5);
-		}
-		else if (isset($location)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', '%' . $location . '%')->paginate(5);
-		}
-		else if (isset($keywords)) {
-			$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->paginate(5);
+		if ($type == 'any' || !isset($type))	{
+			if (isset($location) && isset($query) && $keywords) {
+				$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->where('location', 'like', $location)->where('body', 'like', $keywords)->paginate(5);
+			}
+			else if (isset($location) && isset($query)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', $query)->where('location', 'like', $location)->paginate(5);
+			}
+			else if (isset($location) && isset($keywords)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', $keywords)->where('location', 'like', $location)->paginate(5);
+			}
+			else if (isset($keywords) && isset($query)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->where('location', 'like', '%' . $location . '%')->paginate(5);
+			}
+			else if (isset($query)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->paginate(5);
+			}
+			else if (isset($location)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', '%' . $location . '%')->paginate(5);
+			}
+			else if (isset($keywords)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->paginate(5);
+			}
+			else {
+				$query = '';
+				$location = '';
+				$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', $location)->paginate(5);
+			}
 		}
 		else {
-			$query = '';
-			$location = '';
-			$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', $location)->paginate(5);
+			if (isset($location) && isset($query) && $keywords) {
+				$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->where('location', 'like', $location)->where('body', 'like', $keywords)->where('type', $type)->paginate(5);
+			}
+			else if (isset($location) && isset($query)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', $query)->where('location', 'like', $location)->where('type', $type)->paginate(5);
+			}
+			else if (isset($location) && isset($keywords)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', $keywords)->where('location', 'like', $location)->where('type', $type)->paginate(5);
+			}
+			else if (isset($keywords) && isset($query)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->where('location', 'like', '%' . $location . '%')->where('type', $type)->paginate(5);
+			}
+			else if (isset($query)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('title', 'like', '%' . $query . '%')->where('type', $type)->paginate(5);
+			}
+			else if (isset($location)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', '%' . $location . '%')->where('type', $type)->paginate(5);
+			}
+			else if (isset($keywords)) {
+				$posts = Post::orderBy('created_at', 'desc')->where('body', 'like', '%' . $keywords . '%')->where('type', $type)->paginate(5);
+			}
+			else {
+				$query = '';
+				$location = '';
+				$posts = Post::orderBy('created_at', 'desc')->where('location', 'like', $location)->where('type', $type)->paginate(5);
+			}
 		}
+
 		
 		return view('includes.search-index', ['posts' => $posts]);		
 	}
