@@ -126,8 +126,10 @@
                                         <span class="counts-text block">followers</span>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <span class="counts block head-font"><span class="counter-anim">898</span></span>
-                                        <span class="counts-text block">tweets</span>
+                                        <a href="{{ route('itinerary', ['user_id' => $user->id]) }}">
+                                            <span class="counts block head-font"><span class="counter-anim text-primary">{{ count($user->itinerary()->get()) }}</span></span>
+                                            <span class="counts-text block">Itinerary</span>
+                                        </a>
                                     </div>
                                 </div>
                                 @if(Auth::user() && Auth::user()->id != $user->id)

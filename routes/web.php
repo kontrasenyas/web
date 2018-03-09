@@ -31,6 +31,28 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'terms'
     ]);
 
+    Route::get('/create-itinerary', [
+    	'uses' => 'ItineraryController@getCreateItinerary',
+    	'as' => 'create-itinerary',
+    	'middleware' => 'auth'
+    ]);
+
+    Route::get('/itinerary/{user_id}', [
+    	'uses' => 'ItineraryController@getItineraryIndex',
+    	'as' => 'itinerary'
+    ]);
+
+    Route::get('/itinerary-detail/{itinerary_id}', [
+    	'uses' => 'ItineraryController@getItinerary',
+    	'as' => 'get.itinerary'
+    ]);
+
+    Route::post('/post-itinerary', [
+    	'uses' => 'ItineraryController@postCreateItinerary',
+    	'as' => 'post.itinerary',
+    	'middleware' => 'auth'
+    ]);
+
     Route::get('/messages/{user_id}', [
     	'uses' => 'MessageController@index',
     	'as' => 'messages',

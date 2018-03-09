@@ -26,4 +26,9 @@ class User extends Model implements Authenticatable
     {
         return $this->hasManyThrough('App\Message', 'App\MessageReply');
     }
+
+    public function itinerary()
+    {
+        return $this->hasMany('App\Itinerary');
+    }
 }

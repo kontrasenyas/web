@@ -228,8 +228,11 @@
 							<li>
 								<a href="{{ route('user-post', ['user_id' => Auth::user()->id]) }}"><i class="zmdi zmdi-archive"></i><span>my posts</span></a>
 							</li>
-							<li>
+							{{-- <li>
 								<a href="{{ route('moments.user', Auth::user()->id) }}"><i class="zmdi zmdi-card"></i><span>my moments</span></a>
+							</li> --}}
+							<li>
+								<a href="{{ route('itinerary', Auth::user()->id) }}"><i class="zmdi zmdi-card"></i><span>my itinerary</span></a>
 							</li>
 							<li>
 								<a href="{{ route('messages', Auth::user()->id) }}"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
