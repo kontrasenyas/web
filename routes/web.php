@@ -53,6 +53,18 @@ Route::group(['middleware' => ['web']],function(){
     	'middleware' => 'auth'
     ]);
 
+    Route::get('/itinerary-delete/{itinerary_id}', [
+    	'uses' => 'ItineraryController@deleteItinerary',
+    	'as' => 'delete.itinerary',
+    	'middleware' => 'auth'
+    ]);
+
+    Route::post('/itinerary-edit', [
+		'uses'=>'ItineraryController@editItinerary',
+		'as'=>'edit.itinerary',
+		'middleware' => 'auth'
+	]);
+
     Route::get('/messages/{user_id}', [
     	'uses' => 'MessageController@index',
     	'as' => 'messages',

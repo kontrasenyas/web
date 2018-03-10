@@ -99,7 +99,7 @@ Itinerary List
 		                                                <div class="clearfix"></div>
 		                                            </div>
 		                                            <div class="panel-wrapper collapse in">
-		                                                <div class="panel-body row">
+		                                                <div class="panel-body row text-left">
 		                                                    <div class="user-others-details pl-15 pr-15">
 		                                                        <div class="mb-15">
 		                                                            <i class="zmdi inline-block mr-10">Location:</i>
@@ -162,7 +162,4 @@ Itinerary List
 	
 	<!-- Init JavaScript -->
 	<script src="dist/js/init.js"></script>
-    
-    @include('includes.message-block')
-	@include('includes.places-autocomplete')
 @endsection()
