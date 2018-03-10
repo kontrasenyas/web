@@ -35,7 +35,7 @@ class ItineraryController extends Controller
 
 		$itinerary->update();
 
-		return redirect()->route('create-itinerary')->with(['message' => $message]);
+		return redirect()->route('itinerary', ['user_id' => $request->user()->id])->with(['message' => $message]);
 	}
 
 	public function getItineraryIndex($user_id)

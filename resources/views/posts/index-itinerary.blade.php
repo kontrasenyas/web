@@ -174,4 +174,6 @@
 	
 	<!-- Init JavaScript -->
 	<script src="dist/js/init.js"></script>
+
+	@include('includes.message-block')
 @endsection()

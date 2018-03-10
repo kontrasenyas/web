@@ -10,7 +10,7 @@
 	<meta property="fb:app_id"      content="1236189279823899" />
     <meta property="og:url"           content="{{ url()->current() }}" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="Libot Philippines  -  {{ $itinerary->title }}" />
+	<meta property="og:title"         content="Itinerary  -  {{ $itinerary->title }}" />
 	<meta property="og:description"   content="{{ $itinerary->body }}" />
 	<meta property="og:image"         content="{{ URL::to('images/libot.png')}}" />
 @endsection()
@@ -59,7 +59,7 @@
 				<div class="panel panel-default card-view">
 					<div class="panel-heading">
 						<div class="text-center">
-							<h6 class="panel-title txt-dark" id="title">{{ $itinerary->title }}</h6>
+							<h6 class="panel-title txt-dark mb-10" id="title">{{ $itinerary->title }}</h6>							
 							<div id="fb-root"></div>
 							<script>(function(d, s, id) {
 							    var js, fjs = d.getElementsByTagName(s)[0];
@@ -78,6 +78,7 @@
 					<hr class="light-grey-hr mb-10"/>
 					<div  class="panel-wrapper collapse in">
 						<div  class="panel-body pl-15">
+							<div class="mb-10 info">Posted by <a href="{{ route('account.profile', ['id' => $itinerary->user->id]) }}">{{ $itinerary->user->first_name }} {{ $itinerary->user->last_name }}</a>  on <span title="{{$itinerary->created_at->format('F d, Y g:i A')}}">{{ $itinerary->created_at->diffForHumans() }}﻿</span></div>
 							<p class="pb-15">Location: <span id="location">{{ $itinerary->location }}</span></p>
 							<p><span>Itinerary details:</span></p>
 							<p><span id="body">{{ $itinerary->body }}</span></p>
