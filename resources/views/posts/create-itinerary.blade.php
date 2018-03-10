@@ -61,7 +61,7 @@ Create Itinerary
 												<input type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="disabled" required="">
 											</div>
 											<div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-												<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="More details (Eg. Toyota Hiace, Trip to Tagaytay.)" required="">{{ Request::old('body') }}</textarea>				
+												<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Details of your itinerary" required="">{{ Request::old('body') }}</textarea>				
 											</div>
 											<input type="submit" class="btn btn-success pull-left" value="Create Post" />
 											<input type="hidden" name="_token" value="{{ Session::token() }}">
