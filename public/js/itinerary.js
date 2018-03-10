@@ -37,7 +37,7 @@ $('#edit-itinerary-form').on('submit', function(event) {
 			_token: token
 		}
 	})
-	.done(function (msg) {				
+	.done(function (msg) {
 		$(itineraryTitleElement).text(msg['new_title']);
 		$(itineraryBodyElement).text(msg['new_body']);
 		$(itineraryLocationElement).text(msg['new_location']);

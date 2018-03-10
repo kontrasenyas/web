@@ -9,7 +9,12 @@
 @endsection()
 
 @section('title')
-Itinerary List
+    @if(Auth::user() && Auth::user()->id == $user->id)
+        My Itinerary List
+    @endif
+    @if(!Auth::user() || Auth::user()->id != $user->id)
+        {{ $user->first_name }}'s Itinerary List
+    @endif
 @endsection
 
 @section('css')
@@ -64,7 +69,14 @@ Itinerary List
 							<div class="panel panel-default card-view">
 								<div class="panel-heading">
 									<div class="text-center">
-										<h6 class="panel-title txt-dark pb-15">Itinerary List</h6>
+										<h6 class="panel-title txt-dark pb-15">											
+										    @if(Auth::user() && Auth::user()->id == $user->id)
+										        My Itinerary List
+										    @endif
+										    @if(!Auth::user() || Auth::user()->id != $user->id)
+										        {{ $user->first_name }}'s Itinerary List
+										    @endif										    
+										</h6>
 										@if(Auth::user() && Auth::user()->id == $user->id)
 											<span><a href="{{ route('create-itinerary') }}" class="text-success"><i class="fa fa-plus-square"></i> Create Itinerary</a></span>
 										@endif()

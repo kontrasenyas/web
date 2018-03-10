@@ -6,6 +6,13 @@
 	<meta name="description" content="Libot Philippines about page, we creates socially responsible travel experiences thus, making it more convenient to find travel packages and renting a car for everyone." />
 	<meta name="keywords" content="libot, libot philippines, travel, libot travel, rent, about us" />
 	<meta name="author" content="libot-ph"/>
+
+	<meta property="fb:app_id"      content="1236189279823899" />
+    <meta property="og:url"           content="{{ url()->current() }}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Libot Philippines  -  {{ $itinerary->title }}" />
+	<meta property="og:description"   content="{{ $itinerary->body }}" />
+	<meta property="og:image"         content="{{ URL::to('images/libot.png')}}" />
 @endsection()
 
 @section('title')
@@ -20,6 +27,12 @@
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
 
 	<link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+
+	<style type="text/css">
+		#body {
+		    white-space: pre;
+		}
+	</style>
 @endsection()
 
 @section('content')    
@@ -47,6 +60,18 @@
 					<div class="panel-heading">
 						<div class="text-center">
 							<h6 class="panel-title txt-dark" id="title">{{ $itinerary->title }}</h6>
+							<div id="fb-root"></div>
+							<script>(function(d, s, id) {
+							    var js, fjs = d.getElementsByTagName(s)[0];
+							    if (d.getElementById(id)) return;
+							    js = d.createElement(s); js.id = id;
+							    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=1236189279823899&autoLogAppEvents=1";
+							    fjs.parentNode.insertBefore(js, fjs);
+							 	}(document, 'script', 'facebook-jssdk'));
+							</script>
+
+							<!-- Your share button code -->
+							<div class="fb-share-button" data-href="{{ url()->current() }}" data-layout="button_count"></div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
