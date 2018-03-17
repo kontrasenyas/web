@@ -293,6 +293,11 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'search'
 	]);
 
+	Route::get('/search-itinerary', [
+		'uses' => 'SearchController@getSearchItinerary',
+		'as' => 'search-itinerary'
+	]);
+
 	Route::get('/search-index', [
 		'uses' => 'SearchController@index',
 		'as' => 'search-index'

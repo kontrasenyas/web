@@ -77,55 +77,50 @@ Libot Philippines
                                                     <input type="hidden" name="_token" value="{{ Session::token() }}">                          
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                                       
                                 </div>
                             </form>
                         </div>
                         <div class="col-md-6">
                             <section class="row posts">
                                 <div class="col-md-12">
-                                    @if(count($posts) < 1)
+                                    @if(count($itinerarys) < 1)
                                         <div class="col-md-6">
                                             No results!
                                         </div>
                                     @endif
-                                    @if(count($posts) > 0)
-                                        <div class="col-md-12"> <p class="info"> {{ $posts->total() }} result/s </p></div>
+                                    @if(count($itinerarys) > 0)
+                                        <div class="col-md-12"> <p class="info"> {{ $itinerarys->total() }} result/s </p></div>
                                         <div class="col-md-12">
-                                            @foreach($posts as $post)
-                                                <p><strong>{{ $post->user->first_name }} {{ $post->user->last_name }}</strong>
-                                                @if((Auth::user() && (Auth::user()->id != $post->user->id) ))
-                                                    <a href="{{ route('get.message-post', ['user_id' => $post->user->id, 'post_id' => $post->id]) }}"><span class="glyphicon glyphicon-envelope text-primary" title="Send message to this user."></span></a>
+                                            @foreach($itinerarys as $itinerary)
+                                                <p><strong>{{ $itinerary->user->first_name }} {{ $itinerary->user->last_name }}</strong>
+                                                @if((Auth::user() && (Auth::user()->id != $itinerary->user->id) ))
+                                                    <a href="{{ route('get.message-post', ['user_id' => $itinerary->user->id, 'itinerary_id' => $itinerary->id]) }}"><span class="glyphicon glyphicon-envelope text-primary" title="Send message to this user."></span></a>
                                                 @endif
                                                 @if(!Auth::user())
                                                 <a href="#" data-toggle="modal" data-target="#register-first"><span class="glyphicon glyphicon-envelope text-primary" title="Please register to send a message."></span></a>
                                                 @endif
                                                 </p>
-                                                <a href="{{ route('post.get', ['post_id' => $post->id]) }}" style="text-decoration:none">
+                                                <a href="{{ route('get.itinerary', ['itinerary_id' => $itinerary->id]) }}" style="text-decoration:none">
                                                     <div class="form-group div_hover col-md-12">                    
-                                                        <div class="post row" data-postid="{{ $post->id }}">                
+                                                        <div class="post row" data-postid="{{ $itinerary->id }}">                
                                                             <div class="col-md-6">
-                                                                <h4 class="body text-uppercase">{{ str_limit($post->title, $limit = 15, $end = '...') }}</h4>                
+                                                                <h4 class="body text-uppercase">{{ str_limit($itinerary->title, $limit = 15, $end = '...') }}</h4>                
                                                                 <div class="info">
-                                                                    <p class="panel-title">{{ $post->type }}</p>
-                                                                    <p class="body text-uppercase">{{ str_limit($post->location, $limit = 22, $end = '...') }}</p>
-                                                                    <p>Posted by {{ $post->user->first_name }} {{ $post->created_at->diffForHumans() }}</p>
-                                                                    <p>Contact No: {{ $post->user->mobile_no }}</p>
-                                                                    <p>Description: {{ str_limit($post->body, $limit = 15, $end = '...') }}</p>
-                                                                    <span class="text-muted">{{ $post->view_count }} views</span>
+                                                                    <p class="panel-title">{{ $itinerary->type }}</p>
+                                                                    <p class="body text-uppercase">{{ str_limit($itinerary->location, $limit = 22, $end = '...') }}</p>
+                                                                    <p>Posted by {{ $itinerary->user->first_name }} {{ $itinerary->created_at->diffForHumans() }}</p>
+                                                                    <p>Description: {{ str_limit($itinerary->body, $limit = 15, $end = '...') }}</p>
+                                                                    {{-- <span class="text-muted">{{ $itinerary->view_count }} views</span> --}}
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <img src="{{ route('post.image', ['filename' => $post->image_name]) }}" alt=""
-                                                                class="img-responsive center-block img-preview">
-                                                            </div>                
+                                                            </div>              
                                                         </div>
                                                     </div>
                                                 </a>
                                             @endforeach
                                         </div>
                                         <div class="col-md-12 text-center">
-                                            {{ $posts->appends(Request::except('page'))->links() }}
+                                            {{ $itinerarys->appends(Request::except('page'))->links() }}
                                         </div>
                                     @endif
                                 </div>
@@ -140,7 +135,7 @@ Libot Philippines
 @endsection()
 
 @section('script')  
-    <!-- JavaScript -->    
+    <!-- JavaScript -->
     <script type="text/javascript" src="{{ URL::to('js/search.js') }}"></script>
 
     <!-- jQuery -->

@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@section('meta')
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Libot Philippines search page, we creates socially responsible travel experiences thus, making it more convenient to find travel packages and renting a car for everyone." />
+    <meta name="keywords" content="libot, libot philippines, travel, libot travel, rent, search" />
+    <meta name="author" content="libot-ph"/>
+@endsection()
+
 @section('title')
 Libot Philippines
 @endsection
@@ -34,14 +42,14 @@ Libot Philippines
 	                </div>
 	                <div class="panel-wrapper collapse in">
 	                    <div class="panel-body">
-	                        <form action="{{ route('search') }}" method="get" >	                        					
+	                        <form action="" method="get" id="search-form">	                        					
 						        <div class="col-md-12">
 						            {{-- <div class="text-center col-md-6 col-md-offset-3"> --}}
 						                <div class="">
 						                	<div class="row form-group">
 												<div class="col-md-12">
 													{{-- <label class="control-label mb-10">Select box</label> --}}
-													<select class="selectpicker" data-style="form-control btn-default btn-outline" name="search-type">
+													<select class="selectpicker" data-style="form-control btn-default btn-outline" name="search-type" id="search-type">
 														<option value="any">Any</option>
 														<option value="rental">Rental</option>
 														<option value="package">Travel Package</option>
@@ -56,17 +64,18 @@ Libot Philippines
 						                    </div>
 						                    <div class="row form-group">
 						                        <div class="col-md-12">
-						                            <input type="text" class="form-control" placeholder="Title" name="query" autocomplete="off" value="{{ Request::query('query') }}">
+						                            <input type="text" class="form-control" placeholder="Title" name="query" id="query" autocomplete="off" value="{{ Request::query('query') }}">
 						                        </div>                          
 						                    </div>						                    
 						                    <div class="form-group row">
 						                        <div class="col-md-12">
-						                            <input type="text" class="form-control" placeholder="Keywords" name="keywords" autocomplete="off" value="{{ Request::query('keywords') }}">
+						                            <input type="text" class="form-control" placeholder="Keywords" name="keywords" id="keywords" autocomplete="off" value="{{ Request::query('keywords') }}">
 						                        </div>
 						                    </div>
 						                    <div class="form-group row">
 						                        <div class="col-md-12">                         
-						                            <button class="btn btn-primary" type="submit" onclick="this.disabled=true;this.form.submit();">Search!</button>
+						                            <button id="btnSearch" class="btn btn-primary" type="submit" onclick="this.disabled=true;search();this.form.submit();">Search!</button>
+						                            {{-- <input type="submit" class="btn btn-primary" id="btnSearch" value="Save Changes" /> --}}
 						                            <input type="hidden" name="_token" value="{{ Session::token() }}">                          
 						                        </div>
 						                    </div>
@@ -85,6 +94,7 @@ Libot Philippines
 
 @section('script')  
     <!-- JavaScript -->
+    <script type="text/javascript" src="{{ URL::to('js/search.js') }}"></script>
 
     <!-- jQuery -->
     <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
