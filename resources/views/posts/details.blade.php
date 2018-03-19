@@ -120,11 +120,19 @@
 										</div>
 									</div>
 									<!-- END carousel-->
-
+									<div class="col-md-12 mt-10">
+										@if(Auth::user() == $post->user)
+											<div class="form-group text-center">										
+												<div class="form-group col-md-12">
+													<a href="#" class="info text-primary" data-toggle="modal" data-target="#modalPhotos">Add more photos</a>
+												</div>											
+											</div>
+										@endif
+									</div>
 								</div>
 							</div>	
 
-							<div class="col-md-9">
+							<div class="col-md-4">
 								<div class="product-detail-wrap post" data-postid="{{ $post->id }}">									
 									<h3 class="mb-20 weight-500"><span id="title">{{ $post->title }}</span></h3>
 									{{-- <div class="product-price head-font mb-30">$ 1234</div> --}}
@@ -193,16 +201,57 @@
 									<div class="fb-share-button" data-href="{{ url()->current() }}" data-layout="button_count"></div>
 								</div>
 							</div>
-							<div class="col-md-12 mt-10">
-								@if(Auth::user() == $post->user)
-									<div class="form-group text-center">										
-										<div class="form-group col-md-3">
-											<a href="#" class="info text-primary" data-toggle="modal" data-target="#modalPhotos">Add more photos</a>
-										</div>											
-									</div>
-								@endif
-							</div>
+							<div class="col-md-5">
+								<div  class="tab-struct custom-tab-1 product-desc-tab">
+									<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_7">
+										<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="descri_tab" href="#descri_tab_detail"><span>Description</span></a></li>
+										<li role="presentation" class="hidden"><a  data-toggle="tab" id="review_tab" role="tab" href="#review_tab_detail" aria-expanded="false"><span>Review<span class="inline-block">(<span class="review-count">0</span>)</span></span></a></li>
+									</ul>
+									<div class="tab-content" id="myTabContent_7">
+										<div  id="descri_tab_detail" class="tab-pane fade active in pt-0" role="tabpanel">
+											<!-- <p class="pt-15" id="body">{!! nl2br(e($post->body)) !!}</p> -->
+											<p class="pt-15" id="body">{{ $post->body }}</p>
+										</div>							
+										<div  id="review_tab_detail" class="tab-pane pt-0 fade" role="tabpanel">
+											<p class="muted review-tag pt-15">No reviews yet.</p>
+											<div class="row mt-40">
+												<div class="col-sm-6">
+													<div class="form-wrap">
+														<form>
+															<div class="form-group">
+																<label class="control-label mb-10" for="review">Your rating</label>
+																<div class='product-rating starrr' id='star1'></div>
+															</div>
+															<div class="form-group">
+																<label class="control-label mb-10" for="review">Your review</label>
+																<textarea class="form-control" id="review" placeholder="add review"></textarea>
+															</div>
+															<div class="row">
+																<div class="col-sm-6">
+																	<div class="form-group">
+																		<label class="control-label mb-10" for="exampleInputuname_2">User Name</label>
+																		<input type="text" class="form-control" id="exampleInputuname_2" placeholder="Username"/>
+																	</div>
+																</div>
+																<div class="col-sm-6">
+																	<div class="form-group">
+																		<label class="control-label mb-10" for="exampleInputEmail_2">Email address</label>
+																		<input type="email" class="form-control" id="exampleInputEmail_2" placeholder="Enter email">
+																	</div>
+																</div>
+															</div>
 
+															<div class="form-group mb-0">
+																<button type="submit" class="btn btn-success  mr-10">Submit</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -241,66 +290,17 @@
 	</div>
 
 	<!-- Row -->
-	<div class="row">
+	{{-- <div class="row">
 		<div class="col-sm-12">
 			<div class="panel panel-default card-view">
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body">
-						<div  class="tab-struct custom-tab-1 product-desc-tab">
-							<ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_7">
-								<li class="active" role="presentation"><a aria-expanded="true"  data-toggle="tab" role="tab" id="descri_tab" href="#descri_tab_detail"><span>Description</span></a></li>
-								<li role="presentation" class=""><a  data-toggle="tab" id="review_tab" role="tab" href="#review_tab_detail" aria-expanded="false"><span>Review<span class="inline-block">(<span class="review-count">0</span>)</span></span></a></li>
-							</ul>
-							<div class="tab-content" id="myTabContent_7">
-								<div  id="descri_tab_detail" class="tab-pane fade active in pt-0" role="tabpanel">
-									<!-- <p class="pt-15" id="body">{!! nl2br(e($post->body)) !!}</p> -->
-									<p class="pt-15" id="body">{{ $post->body }}</p>
-								</div>							
-								<div  id="review_tab_detail" class="tab-pane pt-0 fade" role="tabpanel">
-									<p class="muted review-tag pt-15">No reviews yet.</p>
-									<div class="row mt-40">
-										<div class="col-sm-6">
-											<div class="form-wrap">
-												<form>
-													<div class="form-group">
-														<label class="control-label mb-10" for="review">Your rating</label>
-														<div class='product-rating starrr' id='star1'></div>
-													</div>
-													<div class="form-group">
-														<label class="control-label mb-10" for="review">Your review</label>
-														<textarea class="form-control" id="review" placeholder="add review"></textarea>
-													</div>
-													<div class="row">
-														<div class="col-sm-6">
-															<div class="form-group">
-																<label class="control-label mb-10" for="exampleInputuname_2">User Name</label>
-																<input type="text" class="form-control" id="exampleInputuname_2" placeholder="Username"/>
-															</div>
-														</div>
-														<div class="col-sm-6">
-															<div class="form-group">
-																<label class="control-label mb-10" for="exampleInputEmail_2">Email address</label>
-																<input type="email" class="form-control" id="exampleInputEmail_2" placeholder="Enter email">
-															</div>
-														</div>
-													</div>
-
-													<div class="form-group mb-0">
-														<button type="submit" class="btn btn-success  mr-10">Submit</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
+						
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<!-- /Row -->
 </div>
 <!-- Edit Modal -->
