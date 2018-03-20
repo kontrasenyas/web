@@ -98,6 +98,14 @@
 																</form>
 															</div>
 														@endif()
+														<a class="left carousel-control" href="#carousel-example-captions-1" data-slide="prev">
+															<span class="glyphicon glyphicon-chevron-left"></span>
+															<span class="sr-only">Previous</span>
+														</a>
+														<a class="right carousel-control" href="#carousel-example-captions-1" data-slide="next">
+															<span class="glyphicon glyphicon-chevron-right"></span>
+															<span class="sr-only">Next</span>
+														</a>
 														<img src="{{ route('post.image', ['filename' => $post_photo->filename]) }}" alt="{{ $post->title }}">
 													</div>
 												@endif
@@ -113,6 +121,14 @@
 																</form>
 															</div>
 														@endif()
+														<a class="left carousel-control" href="#carousel-example-captions-1" data-slide="prev">
+															<span class="glyphicon glyphicon-chevron-left"></span>
+															<span class="sr-only">Previous</span>
+														</a>
+														<a class="right carousel-control" href="#carousel-example-captions-1" data-slide="next">
+															<span class="glyphicon glyphicon-chevron-right"></span>
+															<span class="sr-only">Next</span>
+														</a>
 														<img src="{{ route('post.image', ['filename' => $post_photo->filename]) }}" alt="{{ $post->title }}">
 													</div>
 												@endif
