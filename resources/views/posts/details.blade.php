@@ -38,6 +38,13 @@
 		#body {
 		    white-space: pre;
 		}
+		.carousel-control.right:hover,
+		.carousel-control.left:hover {
+			background-color: #0000001a;
+		}
+
+
+
 	</style>
 @endsection()
 
