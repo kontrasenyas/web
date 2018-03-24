@@ -54,7 +54,7 @@ Libot Philippines
 				</div>
 			</div>
 		</div>		
-		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+		{{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 			<div class="panel panel-default card-view pt-0">
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body pa-0">
@@ -74,7 +74,7 @@ Libot Philippines
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 			<div class="panel panel-default card-view pt-0">
 				<div class="panel-wrapper collapse in">

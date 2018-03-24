@@ -59,6 +59,12 @@ class UserController extends Controller
 	        $user->first_name = $first_name;
 	        $user->last_name = $last_name;
 
+	        $file = file_get_contents($userSocial->getAvatar());
+			$filename = $user->id . '-' . $user->first_name . '-' . $user->last_name . '.jpg';
+			
+			Storage::disk('local')->put('profile_picture/' . $filename, $file);
+			$user->profile_picture_path = $filename;
+
 	        $user->save();
 	        Auth::login($user);
     	}        
