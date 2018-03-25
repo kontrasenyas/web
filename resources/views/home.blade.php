@@ -7,6 +7,7 @@
     <meta name="keywords" content="libot, libot philippines, travel, libot travel, rent" />
     <meta name="author" content="libot-ph"/>
 
+    <meta property="og:url"           content="{{ url()->current() }}" />
     <meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Libot Philippines" />
 	<meta property="og:description"   content="Libot Philippines, we creates socially responsible travel experiences thus, making it more convenient to find travel packages and renting a car for everyone." />
