@@ -3,7 +3,7 @@
 		<div class="nav-header pull-left">
 			<div class="logo-wrap">
 				<a href="{{ route('home') }}">
-					<img class="brand-img" src="{{ URL::to('dist/img/logo.png') }}" alt="brand" height="21px;" width="22px;" />
+					<img class="brand-img" src="{{ URL::to('dist/img/logo.png') }}" alt="brand" />
 					<span class="brand-text">Libot</span>
 				</a>
 			</div>
