@@ -9,6 +9,7 @@
 	<meta name="keywords" content="libot, libot philippines, registration, libot registration, libot philippines registration, register, sign up, signup" />
 	<meta name="author" content="libot"/>
 
+	<meta property="og:url"           content="{{ url()->current() }}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Sign Up" />
 	<meta property="og:description"   content="Libot Philippines Sign Up" />
