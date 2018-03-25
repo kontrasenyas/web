@@ -12,7 +12,7 @@
 	<meta property="og:url"           content="{{ url()->current() }}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Sign Up" />
-	<meta property="og:description"   content="Libot Philippines Sign Up" />
+	<meta property="og:description"   content="Join Libot Philippines! Sign Up to share your rental service, travel packages and more." />
 	<meta property="og:image"         content="{{ URL::to('images/libot.png') }}" />
 @endsection()
 
