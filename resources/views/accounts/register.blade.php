@@ -8,6 +8,11 @@
 	<meta name="description" content="Libot Philippines registration page." />
 	<meta name="keywords" content="libot, libot philippines, registration, libot registration, libot philippines registration, register, sign up, signup" />
 	<meta name="author" content="libot"/>
+
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Sign Up" />
+	<meta property="og:description"   content="Libot Philippines Sign Up" />
+	<meta property="og:image"         content="{{ URL::to('images/libot.png') }}" />
 @endsection()
 
 @section('content')
