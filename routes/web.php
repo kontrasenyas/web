@@ -232,6 +232,11 @@ Route::group(['middleware' => ['web']],function(){
 		'as' => 'account.review-post',
         'middleware' => 'auth'
 	]);
+	Route::get('/delete-review/{review_id}',[
+		'uses'=>'UserController@getDeleteReview',
+		'as'=>'review.delete',
+		'middleware' => 'auth'
+	]);
 
 	Route::get('/dashboard', [
 		'uses' => 'HomeController@getDashboard',

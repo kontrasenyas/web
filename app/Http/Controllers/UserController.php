@@ -307,6 +307,17 @@ class UserController extends Controller
         $review->save();
 		return redirect()->route('account.profile', ['id' => $user_id])->with(['message' => 'Thank you for your feedback.']);
 	}
+	public function getDeleteReview($review_id)
+	{
+		$review = Review::where('id', $review_id)->first();
+		
+		if (Auth::user() != $review->user) {
+			return redirect()->back();
+		}
+		$review->delete();
+
+		return redirect()->back()->with(['message' => 'Review succesfully deleted']); 
+	}
 
 	public function getChangePassword()
 	{

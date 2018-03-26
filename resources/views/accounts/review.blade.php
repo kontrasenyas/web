@@ -101,7 +101,12 @@ Feedback for {{ $user->first_name }}
                                         </a>
                                     </div>
                                     <div class="col-md-12">
-                                        <p><span class="pr-5">{{ $review->rating }}</span> <span class="glyphicon glyphicon-star" style="color: #ee8b2d;"></span></p>
+                                        <p>
+                                            <span class="pr-5">{{ $review->rating }}</span> <span class="glyphicon glyphicon-star" style="color: #ee8b2d;"></span>
+                                            @if(Auth::user() == $review->user)
+                                            <a href="{{ route('review.delete', ['review_id' => $review->id]) }}" title="Delete review" onclick="return confirm('Are you sure?')"><span class="info small txt-danger">Delete review</span></a>
+                                            @endif()
+                                        </p>
                                         <p><em>{{ $review->comment }}</em></p>                                       
                                         <p class="small">{{ $review->created_at->diffForHumans() }}</p>
                                     </div>
