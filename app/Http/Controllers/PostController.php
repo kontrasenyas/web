@@ -181,15 +181,27 @@ class PostController extends Controller
         $post_photos = PostPhoto::where('post_id', $post->id)->get();
 
         $user_id = $post->user->id;
-        $reviews = Review::where('user_to', $user_id)->orderBy('created_at', 'desc')->get();
-		$reviews_total = Review::where('user_to', $user_id)->sum('rating');
-        $rating = round($reviews_total / Review::where('user_to', $user_id)->get()->count(), 2);
+        $reviews = Review::where('user_to', $user_id);
 
-        if (is_null($post)) {
+		if (is_null($post)) {
         	abort(404);
         }
-        Post::where('id', $post_id)->increment('view_count');
-		return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'rating' => $rating, 'reviews' => $reviews]);
+
+        if($reviews->count() > 0)
+        {
+        	$reviews = $reviews->orderBy('created_at', 'desc')->paginate(3);
+            $reviews_total = Review::where('user_to', $user_id)->sum('rating');
+            $rating = round($reviews_total / Review::where('user_to', $user_id)->get()->count(), 2);
+
+            Post::where('id', $post_id)->increment('view_count');
+			return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'rating' => $rating, 'reviews' => $reviews]);
+        }
+        else
+        {
+        	$reviews = $reviews->get();
+        	Post::where('id', $post_id)->increment('view_count');
+            return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'reviews' => $reviews]);
+        }        
 	}
 
 	public function getPostImage($filename)

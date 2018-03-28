@@ -160,10 +160,15 @@
 									<h3 class="mb-20 weight-500"><span id="title">{{ $post->title }}</span></h3>
 									{{-- <div class="product-price head-font mb-30">$ 1234</div> --}}
 									<div class="mb-0 info">Posted by <a href="{{ route('account.profile', ['id' => $post->user->id]) }}">{{ $post->user->first_name }} {{ $post->user->last_name }}</a>  on {{ $post->created_at->diffForHumans() }}﻿</div>
-									<div class="product-rating inline-block mt-0">
-										{{ $rating }}&nbsp;<a href="javascript:void(0);" class="zmdi zmdi-star"></a>
+									@if(count($reviews) > 0)
+									<div class="product-rating inline-block mt-0">										
+										{{ $rating }}&nbsp;<a href="javascript:void(0);" class="zmdi zmdi-star"></a>										
 									</div>
 									<div class="average-review inline-block mb-10">(<span class="review-count">{{count($reviews) }}</span> user review)</div>
+									@endif()
+									@if(count($reviews) == 0)
+										<div class="average-review inline-block mb-10">No review for this user</div>
+									@endif()
 									<div class="mb-20" id="details">
 										<!-- <p><strong>Description: </strong><br/><span id="body">{!! nl2br(e($post->body)) !!}</span></p> -->
 										<p><span id="type" class="panel-title txt-dark">{{ $post->type }}</span></p>
