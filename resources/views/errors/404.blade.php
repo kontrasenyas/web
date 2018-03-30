@@ -1,87 +1,60 @@
-@extends('layouts.main')
+@extends('layouts.base.other')
 
 @section('title')
 Page is not found.
 @endsection
 
-@section('css')
-    <!-- Data table CSS -->
-    <link href="vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-    
-    <!-- Custom CSS -->
-    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+@section('meta_content')
+  <meta name="description" content="Libot Philippines" />
+  <meta name="keywords" content="libot, libot philippines" />
+  <meta name="author" content="libot"/>
 @endsection()
 
-@section('content')    
-		<!--Preloader-->
-        <div class="preloader-it">
-            <div class="la-anim-1"></div>
-        </div>
-        <!--/Preloader-->
-        
-         <div class="container-fluid">
-                
-                <!-- Title -->
-                <div class="row heading-bg">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h5 class="txt-dark">404 Not found</h5>
-                    </div>
-                    <!-- Breadcrumb -->
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <ol class="breadcrumb">
-                            
-                        </ol>
-                    </div>
-                    <!-- /Breadcrumb -->
-                </div>
-                <!-- /Title -->
-                <div class="row">
-                        <div class="col-md-6 ml-auto mr-auto no-float">
-                            <div class="panel panel-default card-view">
-                                <div class="panel-heading">
-                                    <div class="pull-left">
-                                        <h6 class="panel-title txt-dark">Sorry for the inconvenience.</h6>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <hr class="light-grey-hr mb-10"/>
-                                <div  class="panel-wrapper collapse in">
-                                    <div  class="panel-body pl-15">
-                                        The page your looking is not found.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-            
+@section('content')
+  <!--Preloader-->
+  <div class="preloader-it">
+    <div class="la-anim-1"></div>
+  </div>
+  <!--/Preloader-->
+
+  <div class="wrapper pa-0">
+    <header class="sp-header">
+      <div class="sp-logo-wrap pull-left">
+        <a href="{{ route('home') }}">
+          <img class="brand-img mr-10" src="dist/img/logo.png" alt="brand"/>
+          <span class="brand-text">Libot</span>
+        </a>
+      </div>
+      <div class="form-group mb-0 pull-right">
+        <a class="inline-block btn btn-info btn-rounded btn-outline" href="{{ route('login') }}">Sign In</a>
+      </div>
+      <div class="clearfix"></div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="page-wrapper pa-0 ma-0 auth-page">
+      <div class="container-fluid">
+        <!-- Row -->
+        <div class="table-struct full-width full-height">
+          <div class="table-cell vertical-align-middle auth-form-wrap">
+            <div class="auth-form  ml-auto mr-auto no-float">
+              <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                  <div class="mb-30">
+                    <h3 class="text-center txt-dark mb-10">404 Not found.</h3>
+                    <h6 class="text-center nonecase-font txt-grey">Sorry for the inconvenience. The page your looking is not found.</h6>
+                  </div>
+                </div>  
+              </div>
             </div>
-@endsection()
-
-@section('script')
-    <!-- JavaScript -->
+          </div>
+        </div>
+        <!-- /Row --> 
+      </div>
+      
+    </div>
+    <!-- /Main Content -->
     
-    <!-- jQuery -->
-    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-    <!-- Data table JavaScript -->
-    <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="dist/js/dataTables-data.js"></script>
-    
-    <!-- Slimscroll JavaScript -->
-    <script src="dist/js/jquery.slimscroll.js"></script>
-    
-    <!-- Owl JavaScript -->
-    <script src="vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
-    
-    <!-- Switchery JavaScript -->
-    <script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
-    
-    <!-- Fancy Dropdown JS -->
-    <script src="dist/js/dropdown-bootstrap-extended.js"></script>
-    
-    <!-- Init JavaScript -->
-    <script src="dist/js/init.js"></script>
+  </div>
+  <!-- /#wrapper -->
 @endsection()
