@@ -52,7 +52,7 @@ Contact Us
                                     <div  class="panel-body text-center">
                                         <div class="col-md-12">
                                             <p>For general inquiries and further information, kindly email at us</p>
-                                            <p>Email Address: <a href="mailto:administrator@libot-ph.com.ph?Subject=Good%20Day" target="_top">administrator@libot-ph.com</a></p>
+                                            <p>Email Address: <a href="mailto:administrator@libot-ph.com.ph?Subject=Good%20Day" target="_top">administrator@libotph.com</a> or <a href="mailto:alcantarajosephc@gmail.com.ph?Subject=Good%20Day" target="_top">alcantarajosephc@gmail.com.ph</a></p>
                                         </div>
                                         <div class="col-md-12 text-center">
                                             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FLibot-Philippines-293680597728982%2F&tabs&width=340&height=214&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=true&appId=271534782866931" width="340" height="214" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
