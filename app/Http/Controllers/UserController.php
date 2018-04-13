@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Socialite;
+use Intervention\Image\ImageManagerStatic as Image;
+
+\Tinify\setKey(env('TINYPNG_KEY'));
 
 class UserController extends Controller
 {
@@ -215,13 +218,23 @@ class UserController extends Controller
 		$user->last_name = ucwords($request['last_name']);
 		$user->mobile_no = $request['mobile_no'];
 		$user->email = $request['email'];
-		
 
-		$file = $request->file('image');
+		$image = $request->file('image');
 		$filename = $user->id . '-' . $user->first_name . '-' . $user->last_name . '.jpg';
 
-		if ($file) {
-			Storage::disk('local')->put('profile_picture/' . $filename, File::get($file));
+		if ($image) {
+			$filename_optimize = "images/". "optimize-" . $filename;
+			$image_resize = Image::make($image->getRealPath());
+    		$image_resize->resize(135, 135);
+    		$image_resize->save('images/' . $filename);
+    		$source = \Tinify\fromFile('images/' . $filename);
+			$source->toFile($filename_optimize);
+
+			$image_resize = Image::make($filename_optimize);
+			Storage::disk('local')->put('profile_picture/' . $filename, $image_resize->stream()->__toString());
+    		unlink($filename_optimize);
+    		unlink('images/' . $filename);
+
 			$user->profile_picture_path = $filename;
 		}
 
@@ -255,11 +268,22 @@ class UserController extends Controller
 		$this->validate($request, [
 			'image' => 'required',
 		]);
-		$file = $request->file('image');
+		$image = $request->file('image');
 		$filename = $user->id . '-' . $user->first_name . '-' . $user->last_name . '.jpg';
 
-		if ($file) {
-			Storage::disk('local')->put('profile_picture/' . $filename, File::get($file));
+		if ($image) {
+			$filename_optimize = "images/". "optimize-" . $filename;
+			$image_resize = Image::make($image->getRealPath());
+    		$image_resize->resize(135, 135);
+    		$image_resize->save('images/' . $filename);
+    		$source = \Tinify\fromFile('images/' . $filename);
+			$source->toFile($filename_optimize);
+
+			$image_resize = Image::make($filename_optimize);
+			Storage::disk('local')->put('profile_picture/' . $filename, $image_resize->stream()->__toString());
+    		unlink($filename_optimize);
+    		unlink('images/' . $filename);
+
 			$user->profile_picture_path = $filename;
 		}
 

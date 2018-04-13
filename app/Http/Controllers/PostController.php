@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
 
+\Tinify\setKey(env('TINYPNG_KEY'));
+
 class PostController extends Controller
 {
 	public function getUserPost($user_id)
@@ -76,8 +78,16 @@ class PostController extends Controller
 
 			foreach ($request->images as $image) {
 				$filename = uniqid() . '.jpg';
+				$filename_optimize = "images/". "optimize-" . $filename;
+
 				$image_resize = Image::make($image->getRealPath());
 	    		$image_resize->resize(920, 1000);
+	    		$image_resize->save('images/' . $filename);
+
+	    		$source = \Tinify\fromFile('images/' . $filename);
+				$source->toFile($filename_optimize);
+
+				$image_resize = Image::make($filename_optimize);
 
 	    		Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
 	    		PostPhoto::create([
@@ -89,6 +99,8 @@ class PostController extends Controller
 	    			$post->image_name = $filename;
 	    		}
 	    		$count++;
+	    		unlink($filename_optimize);
+	    		unlink('images/' . $filename);
 			}
 		}
 
@@ -268,8 +280,16 @@ class PostController extends Controller
 
 		foreach ($request->images as $image) {
 			$filename = uniqid() . '.jpg';
+			$filename_optimize = "images/". "optimize-" . $filename;
+
 			$image_resize = Image::make($image->getRealPath());
     		$image_resize->resize(920, 1000);
+    		$image_resize->save('images/' . $filename);
+
+    		$source = \Tinify\fromFile('images/' . $filename);
+			$source->toFile($filename_optimize);
+
+			$image_resize = Image::make($filename_optimize);
 
     		Storage::disk('local')->put('post-photos/' . $filename, $image_resize->stream()->__toString());
     		PostPhoto::create([
@@ -282,6 +302,8 @@ class PostController extends Controller
     			$post->update();
     		}
     		$count++;
+    		unlink($filename_optimize);
+    		unlink('images/' . $filename);
 		}
 
 		return redirect()->back()->with(['message' => $message]);
