@@ -122,7 +122,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <span class="counts block head-font"><span class="counter-anim">246</span></span>
+                                        <span class="counts block head-font"><span class="counter-anim">0</span></span>
                                         <span class="counts-text block">followers</span>
                                     </div>
                                     <div class="col-xs-4 text-center">
@@ -221,8 +221,8 @@
                         <div  class="tab-struct custom-tab-1">
                             <ul role="tablist" class="nav nav-tabs nav-tabs-responsive" id="myTabs_8">
                                 <li class="active" role="presentation"><a  data-toggle="tab" id="profile_tab_8" role="tab" href="#profile_8" aria-expanded="false"><span>profile</span></a></li>
-                                <li  role="presentation" class="next"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>followers<span class="inline-block">(246)</span></span></a></li>
-                                <li role="presentation" class=""><a  data-toggle="tab" id="photos_tab_8" role="tab" href="#photos_8" aria-expanded="false"><span>photos</span></a></li>                                
+                                <li  role="presentation" class="next hidden"><a aria-expanded="true"  data-toggle="tab" role="tab" id="follo_tab_8" href="#follo_8"><span>followers<span class="inline-block">(246)</span></span></a></li>
+                                <li role="presentation" class="hidden"><a  data-toggle="tab" id="photos_tab_8" role="tab" href="#photos_8" aria-expanded="false"><span>photos</span></a></li>                                
                             </ul>
                             <div class="tab-content" id="myTabContent_8">
                                 <div  id="profile_8" class="tab-pane fade active in" role="tabpanel">
@@ -421,7 +421,7 @@
     <!-- /Row -->
 
     <!-- Row -->
-    <div class="row">
+    <div class="row hidden">
         @if(Auth::user() && Auth::user()->id == $user->id)
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-default border-panel card-view">
