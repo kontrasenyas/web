@@ -294,7 +294,7 @@
 </div>
 
 <!-- jQuery -->
-<script async src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
