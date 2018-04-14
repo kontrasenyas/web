@@ -19,6 +19,8 @@ Libot Philippines
 @endsection
 
 @section('css')
+<noscript id="deferred-styles">
+      
 	<!-- Morris Charts CSS -->
 	<link href="vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css"/>
 
@@ -38,6 +40,7 @@ Libot Philippines
 
 	<!-- Custom CSS -->
 	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
+</noscript>
 @endsection()
 
 @section('content')  
@@ -113,6 +116,19 @@ Libot Philippines
 
 @section('script')	
 	<!-- JavaScript -->
+	<script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+          window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
 
 	<!-- jQuery -->
 	<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
