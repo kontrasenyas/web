@@ -46,13 +46,13 @@
        // var autocomplete = new google.maps.places.Autocomplete(input);
 
         //$location_input = $("#location");
-//        var options = {
-//            types: ['(cities)'],
-//            componentRestrictions: {
-//                country: 'be'
-//            }
-//        };
-        autocomplete = new google.maps.places.Autocomplete(input);
+        var options = {
+            types: ['(cities)'],
+            componentRestrictions: {
+                country: 'ph'
+            }
+        };
+        autocomplete = new google.maps.places.Autocomplete(input, options);
             
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var data = $("#location").serialize();
