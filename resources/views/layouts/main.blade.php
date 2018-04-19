@@ -25,6 +25,8 @@
 
     <link href="{{ URL::to('css/modal-center.css')}}" rel="stylesheet" type="text/css">
 
+    @include('includes.places-autocomplete')
+
 </head>
 
 <body>

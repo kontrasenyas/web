@@ -375,7 +375,7 @@
 					</div>
 					<div class="form-group">
 						<label for="post-body">Location</label>
-						<input type="text" name="post-location" id="post-location" rows="5" class="form-control typeahead" required="" autocomplete="disabled">
+						<input type="text" name="post-location" id="post-location" rows="5" class="form-control typeahead location" required="" autocomplete="disabled">
 					</div>				
 				</div>
 				<div class="modal-footer">
@@ -471,5 +471,4 @@
 	
 	@include('includes.register-first')
 	@include('includes.message-block')
-	@include('includes.places-autocomplete')
 @endsection()

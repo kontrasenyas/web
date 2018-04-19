@@ -115,7 +115,7 @@
 						</div>
 						<div class="form-group">
 							<label for="post-location">Location</label>
-							<input type="text" name="post-location" id="post-location" rows="5" class="form-control typeahead" required="" autocomplete="disabled">
+							<input type="text" name="post-location" id="post-location" rows="5" class="form-control typeahead location" required="" autocomplete="disabled">
 						</div>
 						<div class="form-group">
 							<label for="itinerary-body">Details</label>
@@ -168,5 +168,4 @@
 	<script type="text/javascript" src="{{ URL::to('js/itinerary.js')}}"></script>
 
 	@include('includes.message-block')
-	@include('includes.places-autocomplete')
 @endsection()

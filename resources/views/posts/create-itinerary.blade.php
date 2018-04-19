@@ -58,7 +58,7 @@ Create Itinerary
 												<input type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon2" name="title" id="title" value="{{ Request::old('title') }}" required="">
 											</div>
 											<div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
-												<input type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="disabled" required="">
+												<input type="text" class="form-control location" placeholder="Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="disabled" required="">
 											</div>
 											<div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
 												<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="Details of your itinerary" required="">{{ Request::old('body') }}</textarea>				
@@ -104,5 +104,4 @@ Create Itinerary
 	<script src="dist/js/init.js"></script>
     
     @include('includes.message-block')
-	@include('includes.places-autocomplete')
 @endsection()

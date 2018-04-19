@@ -37,44 +37,37 @@
     var place;
 
     function activatePlacesSearch(){
-        var input = document.getElementById('location');
+        var inputs = document.getElementsByClassName('location');
 
-        if(input.nodeName != "INPUT")
-        {
-            input = document.getElementById('post-location');
-        }
-       // var autocomplete = new google.maps.places.Autocomplete(input);
-
-        //$location_input = $("#location");
         var options = {
             types: ['(cities)'],
             componentRestrictions: {
                 country: 'ph'
             }
         };
-        autocomplete = new google.maps.places.Autocomplete(input, options);
-            
-        google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            var data = $("#location").serialize();
-            if(input.nodeName != "INPUT")
+
+        var autocompletes = [];
+
+        for (var i = 0; i < inputs.length; i++) {            
+            if(inputs[i].nodeName != "INPUT")
             {
-                data = $("#post-location").serialize();
+                inputs[i] = document.getElementById('post-location');
             }
-            place = autocomplete.getPlace();
 
+            var autocomplete = new google.maps.places.Autocomplete(inputs[i], options);
+            autocomplete.inputId = inputs[i].id;
+            google.maps.event.addListener(autocomplete, 'place_changed', function(inputs) {
+                var data = $("#" + this.inputId).serialize();
+                if($("#" + this.inputId).nodeName != "INPUT")
+                {
+                    data = $("#post-location").serialize();
+                }
+                place = autocomplete.getPlace();
 
-
-            // if (!place.geometry) {
-            //     // User entered the name of a Place that was not suggested and
-            //     // pressed the Enter key, or the Place Details request failed.
-            //     $("#location").val('');
-            //     window.alert("Please enter valid location");
-            //     return;
-            // }
-
-            return false;
-        });
-
+                return false;
+            });
+            autocompletes.push(autocomplete);
+        }
     }
 </script>
 

@@ -58,7 +58,7 @@ Libot Philippines
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" placeholder="Location" name="location" id="location" autocomplete="off" required="" value="{{ Request::query('location') }}" >
+                                                    <input type="text" class="form-control location" placeholder="Location" name="location" id="location" autocomplete="off" required="" value="{{ Request::query('location') }}" >
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -166,7 +166,6 @@ Libot Philippines
     <!-- Bootstrap Select JavaScript -->
     <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
-    @include('includes.places-autocomplete')
     @include('includes.message-block')
     @include('includes.register-first')
 @endsection()

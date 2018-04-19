@@ -13,7 +13,7 @@
 		<a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
 		<form id="search_form" role="search" class="top-nav-search collapse pull-left" action="{{ route('search') }}" method="get">
 			<div class="input-group">
-				<input type="text" name="query" class="form-control" placeholder="Search" value="{{ Request::query('query') }}">
+				<input type="text" name="location" class="form-control location" placeholder="Search by location" value="{{ Request::query('location') }}">
 				<input type="hidden" name="_token" value="{{ Session::token() }}">
 				<span class="input-group-btn">
 					<button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>

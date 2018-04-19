@@ -80,7 +80,7 @@ Dashboard
 											<input type="text" class="form-control" placeholder="Contact No (Eg. 09171234567)" aria-describedby="basic-addon2" name="contact_no" id="contact_no" value="{{ Request::old('contact_no') }}" pattern=".{11,}" required title="Valid Mobile number Ex. 09171234567">
 										</div>
 										<div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
-											<input type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="disabled" required="">
+											<input type="text" class="form-control location" placeholder="Location" aria-describedby="basic-addon2" name="location" id="location" value="{{ Request::old('location') }}" autocomplete="disabled" required="">
 										</div>
 										<div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
 											<textarea  class="form-control" name="body" id="new-post" rows="5" placeholder="More details (Eg. Toyota Hiace, Trip to Tagaytay.)" required="">{{ Request::old('body') }}</textarea>				
@@ -275,6 +275,5 @@ Dashboard
     <script src="vendors/bower_components/dropify/dist/js/dropify.min.js"></script>
 
 	@include('includes.message-block')
-	@include('includes.places-autocomplete')
 @endsection()
 
