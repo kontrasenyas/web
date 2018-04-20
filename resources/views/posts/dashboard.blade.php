@@ -53,7 +53,7 @@ Dashboard
 							</div>
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
-									<form action="{{ route('post.create') }}" method="post"  enctype="multipart/form-data">
+									<form id="post_dashboard" action="{{ route('post.create') }}" method="post"  enctype="multipart/form-data">
 										<div class="form-group">											
 											<div class="radio-list">
 												<div class="radio-inline pl-0">
@@ -92,7 +92,7 @@ Dashboard
 											{{-- <input name="image" id="input-id" type="file" class="file" data-preview-file-type="text"> --}}
 										</div>
 										{{-- onclick="this.disabled=true;this.form.submit();" --}}
-										<input type="submit" class="btn btn-success pull-left" value="Create Post" />
+										<input id="create_post" type="submit" class="btn btn-success pull-left" value="Create Post" />
 										<input type="hidden" name="_token" value="{{ Session::token() }}">
 									</form>
 								</div>	
@@ -275,5 +275,11 @@ Dashboard
     <script src="vendors/bower_components/dropify/dist/js/dropify.min.js"></script>
 
 	@include('includes.message-block')
+
+	<script type="text/javascript">
+		$('#post_dashboard').on('submit', function () {
+			$('#create_post').attr('disabled','disabled')
+		})
+	</script>
 @endsection()
 
