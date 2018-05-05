@@ -105,8 +105,9 @@ class PostController extends Controller
 		}
 
 		$post->update();
-
-		return redirect()->route('dashboard')->with(['message' => $message]);
+		return response()->json(['message' => 'Post created'], 200);
+		
+		//return redirect()->route('dashboard')->with(['message' => $message]);
 	}
 
 	public function getDeletePost($post_id)

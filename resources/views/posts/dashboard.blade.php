@@ -53,7 +53,7 @@ Dashboard
 							</div>
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
-									<form id="post_dashboard" action="{{ route('post.create') }}" method="post"  enctype="multipart/form-data">
+									<form action="" method="post" id="post-dashboard"  enctype="multipart/form-data">
 										<div class="form-group">											
 											<div class="radio-list">
 												<div class="radio-inline pl-0">
@@ -277,9 +277,83 @@ Dashboard
 	@include('includes.message-block')
 
 	<script type="text/javascript">
-		$('#post_dashboard').on('submit', function () {
+		$('#post-dashboard').on('submit', function () {
 			$('#create_post').attr('disabled','disabled')
 		})
+	</script>
+
+	<script type="text/javascript">		
+		$('#post-dashboard').on('submit', function(event) {
+			event.preventDefault();
+			var formData = new FormData($(this).parents('form')[0]);
+
+			var url = '{{ route('post.create') }}';
+			var token = '{{ Session::token() }}';
+			formData.append("_token", token);
+			formData.append("title",  $('#title').val());
+			formData.append("body",$('#new-post').val());
+			formData.append("capacity",$('#capacity').val());
+			formData.append("contact_no",$('#contact_no').val());
+			formData.append("location",$('#location').val());
+			formData.append("radio_type",$('input[name=radio_type]:checked').val());
+
+			var ins = document.getElementById('input-id').files.length;
+                for (var x = 0; x < ins; x++) {
+                        formData.append("images[]", document.getElementById('input-id').files[x]);
+                }
+			$.ajax({
+				method: 'POST',
+				url: url,
+				xhr: function() {
+	                var myXhr = $.ajaxSettings.xhr();
+	                return myXhr;
+	            },
+				data: formData,
+				cache: false,
+            	contentType: false,
+            	processData: false
+			})
+			.error(function(msg) {
+				//console.log(JSON.parse(msg["responseText"]))
+				var user = JSON.parse(msg["responseText"]);
+				var message = "";
+				for (key in user) {
+				    if (user.hasOwnProperty(key)) {
+				    	message += user[key];				     
+				    }
+				}    
+				$.toast({
+		            text: JSON.stringify(message),
+		            position: 'top-right',
+		            loaderBg:'#f2b701',
+		            icon: 'error',
+		            hideAfter: 3500, 
+		            stack: 6
+		          });
+			})
+			.done(function (msg) {
+				$('#title').val("");
+				$('#new-post').val("");
+				$('#capacity').val("");
+				$('#contact_no').val("");
+				$('#location').val("");
+				$('input[name=radio_type]:checked').val("");
+				$('.fileinput-remove').click();
+				
+				$.toast({
+		            text: 'Post successfully posted',
+		            position: 'top-right',
+		            loaderBg:'#f2b701',
+		            icon: 'success',
+		            hideAfter: 3500, 
+		            stack: 6
+		        });
+
+		        setTimeout(function () {
+				    location.reload();
+				}, 3500); 
+			});
+		});
 	</script>
 @endsection()
 
