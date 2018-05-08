@@ -212,6 +212,7 @@ Dashboard
 				</div>
 				<!-- /Row -->
 			</div>
+			@include('includes.loader')
 @endsection()
 
 @section('script')
@@ -284,6 +285,7 @@ Dashboard
 
 	<script type="text/javascript">		
 		$('#post-dashboard').on('submit', function(event) {
+			$('#overlay').show();
 			event.preventDefault();
 			var formData = new FormData($(this).parents('form')[0]);
 
@@ -351,7 +353,7 @@ Dashboard
 
 		        setTimeout(function () {
 				    location.reload();
-				}, 3500); 
+				}, 3500);
 			});
 		});
 	</script>
