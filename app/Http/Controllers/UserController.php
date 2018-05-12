@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Socialite;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Redirect;
 
 \Tinify\setKey(env('TINYPNG_KEY'));
 
@@ -38,8 +39,9 @@ class UserController extends Controller
         $userSocial = Socialite::driver('facebook')->user();
 
         $findUser = User::where('email', $userSocial->email)->first();
+		$redirect = session('url.intended');
 
-        if ($findUser) {        
+		if ($findUser) {   
 	        Auth::login($findUser);
     	}
     	else {
@@ -72,7 +74,7 @@ class UserController extends Controller
 	        Auth::login($user);
     	}        
 
-        return redirect()->route('dashboard');
+        return redirect($redirect);
 	}
 
 	public function getEmail($email)
@@ -111,6 +113,8 @@ class UserController extends Controller
 
 		]);
 
+		$redirect = session('url.intended');
+
 		$email = $request['email'];
 		$mobile_no = $request['mobile_no'];
 		$password = bcrypt($request['password']);
@@ -134,7 +138,7 @@ class UserController extends Controller
                 Mail::to($email)
 				->send(new \App\Mail\SendEmailRegisteredUser($user->first_name, $user->last_name, $user->mobile_no));
                 Auth::login($user);
-                return redirect()->route('dashboard');
+                return redirect($redirect);
             }
         }
         else {
@@ -144,15 +148,43 @@ class UserController extends Controller
         }
 	}
 
+	public function getLoginPage()
+	{
+		if (Auth::check()) {
+			return Redirect::to('/');
+		}
+
+	    if(!session()->has('url.intended'))
+	    {
+	        session(['url.intended' => url()->previous()]);
+	    }
+
+		return view('accounts.login');
+	}
+
+	public function getSignUpPage()
+	{
+		if (Auth::check()) {return Redirect::to('/');}
+
+	    if(!session()->has('url.intended'))
+	    {
+	        session(['url.intended' => url()->previous()]);
+	    }
+
+		return view('accounts.register');
+	}
+
 	public function postSignIn(Request $request)
 	{
+		$redirect = session('url.intended');
+
 		$this->validate($request, [
 			'mobile_no' => 'required',
 			'password' => 'required'
 		]);
 		
 		if(Auth::attempt(['mobile_no' => $request['mobile_no'], 'password' => $request['password']])) {
-			return redirect()->route('dashboard');
+			return redirect($redirect);
 		}
 		else {
 			return back()->withErrors([

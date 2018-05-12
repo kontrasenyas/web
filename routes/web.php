@@ -110,15 +110,15 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'moment.image'
     ]);
 
-	Route::get('/login', function() {
-	    if (Auth::check()) {return Redirect::to('/');}
-		return view('accounts.login');
-	})->name('login');
+    Route::get('/login', [
+       'uses' => 'UserController@getLoginPage',
+        'as' => 'login'
+    ]);
 
-	Route::get('/register', function() {
-        if (Auth::check()) {return Redirect::to('/');}
-		return view('accounts.register');
-	})->name('register');
+    Route::get('/register', [
+       'uses' => 'UserController@getSignUpPage',
+        'as' => 'register'
+    ]);
 
 	Route::get('/register/ajax/get-email/{email}', [
 		'uses' => 'UserController@getEmail',
