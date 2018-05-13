@@ -66,14 +66,16 @@ Login
                         <div class="clearfix"></div>
                       </div>
                       <input type="hidden" name="_token" value="{{ Session::token() }}"> 
+                      <input type="hidden" name="redirect" value="{{ URL::previous() }}">
                       <div class="form-group text-center">
-                        <button type="submit" class="btn btn-info btn-rounded" tabindex="3">sign in</button>
+                        <button type="submit" class="btn btn-info btn-rounded signin" tabindex="3" id="signin">sign in</button>
                       </div>
                     </form>
                     <form class="form-group text-center" action="{{ route('login.facebook') }}">
-                      <button class="loginBtn loginBtn--facebook" type="submit" onclick="this.disabled=true;this.form.submit();">Login with facebook</button>
+                      <button class="loginBtn loginBtn--facebook signin" type="submit" id="signin_fb">Login with facebook</button>
                       <input type="hidden" name="_token" value="{{ Session::token() }}"> 
                     </form>
+                    
                   </div>
                 </div>  
               </div>
@@ -138,4 +140,8 @@ Login
       background-image: linear-gradient(#5B7BD5, #4864B1);
     }
   </style>
+@endsection()
+
+@section('script')
+  @include('includes.clear-session')
 @endsection()

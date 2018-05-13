@@ -9,7 +9,6 @@ Route::group(['middleware' => ['web']],function(){
 	Route::get('login/facebook/callback', [
 		'uses' => 'UserController@handleProviderCallback',
 	]);
-
 	Route::get('/', [
 		'uses' => 'HomeController@getHome',
 		'as' => 'home'
@@ -108,6 +107,11 @@ Route::group(['middleware' => ['web']],function(){
     Route::get('/moment/{filename}', [
        'uses' => 'MomentController@getMomentImage',
         'as' => 'moment.image'
+    ]);
+
+    Route::get('clear/session/{key}', [
+    	'uses' => 'UserController@clearSessionKey',
+    	'as' => 'clear.session'
     ]);
 
     Route::get('/login', [

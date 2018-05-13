@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Socialite;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 \Tinify\setKey(env('TINYPNG_KEY'));
 
@@ -162,6 +163,14 @@ class UserController extends Controller
 		return view('accounts.login');
 	}
 
+	public function clearSessionKey($key)
+    {
+        if (Session::has($key))
+        {
+            Session::forget($key);
+        }
+    }
+
 	public function getSignUpPage()
 	{
 		if (Auth::check()) {return Redirect::to('/');}
@@ -196,6 +205,7 @@ class UserController extends Controller
 	public function getLogout()
 	{
 		Auth::logout();
+		$this->clearSessionKey('url.intended');
 		return redirect()->route('home');
 	}
 
