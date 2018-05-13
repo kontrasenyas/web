@@ -5,7 +5,7 @@
    });
 
 	$( document ).ready(function() {
-		console.log('{{session('url.intended')}}');
+		//console.log('{{session('url.intended')}}');
 	});
 
 	function clearSession(){
