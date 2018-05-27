@@ -276,6 +276,12 @@ Route::group(['middleware' => ['web']],function(){
 		'middleware' => 'auth'
 	]);
 
+	Route::post('/request-book', [
+		'uses'=>'PostController@postRequestToBook',
+		'as'=>'request-book'
+		
+	]);
+
 	Route::post('/like', [
 		'uses' => 'PostController@postLikePost',
 		'as' => 'like'

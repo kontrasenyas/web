@@ -15,4 +15,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Like');
     }
+
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking');
+    }
 }

@@ -45,7 +45,9 @@
 
 
 
-	</style>
+	</style>		
+	<!-- Bootstrap Daterangepicker CSS -->
+	<link href="vendors/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
 @endsection()
 
 @section('content')
@@ -204,6 +206,21 @@
 							                    </div>
 							                </a>
 							            </div>
+							            <div class="btn-group wishlist mb-20">
+							            	@if($post->bookings->first())
+							                <div class="btn btn-success btn-anim disabled">							                    	
+												<i class="fa fa-car"></i><span class="btn-text" title="Request to Book">Booked</span>
+							                </div>							                    
+							                @endif()
+
+							                @if(!$post->bookings->first())
+							                <a href="#" data-toggle="modal" data-target="#request" >
+							                    <div class="btn btn-success btn-anim">							                    	
+													<i class="fa fa-car"></i><span class="btn-text" title="Request to Book">Request to Book</span>
+							                    </div>							                    
+							                </a>
+							                @endif()
+							            </div>
 							            @endif    
 							            @if(!Auth::user())
 							            <div class="btn-group wishlist mb-20">
@@ -213,7 +230,15 @@
 							                    </div>
 							                </a>
 							            </div>
-							            @endif
+							            <div class="btn-group wishlist mb-20">
+							                <a href="#" data-toggle="modal" data-target="#register-first">
+							                    <div class="btn btn-success btn-anim">
+							                        <i class="fa fa-car"></i><span class="btn-text" title="Request to Book">Request to Book</span>
+							                    </div>
+							                </a>
+							            </div>
+							            @endif							            
+							            
 							        @endif
 									<p class="text-muted">{{ $post->view_count }} views</p>
 									<div id="fb-root"></div>
@@ -386,6 +411,35 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- Request Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="request">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Request to Book</h4>
+            </div>
+            <form action="request-book" method="POST" id="request-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="post-body">Title</label>
+                      	<div class="form-group mb-0">
+							<label class="control-label mb-10 text-left">Date Range With Time</label>
+							<input type="hidden" name="postid" value="{{ $post->id }}">							
+							<input type="text" class="form-control input-daterange-timepicker" name="daterange" value="{{date('m/d/y')}} 1:30 PM - {{ date('m/d/Y', strtotime("+1 day"))  }} 2:00 PM"/>
+						</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" id="modal-request" value="Save Changes" />
+                    <input type="hidden" name="_token" value="{{ Session::token() }}">
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection()
 
 @section('script')		
@@ -471,4 +525,14 @@
 	
 	@include('includes.register-first')
 	@include('includes.message-block')
+
+	<!-- JavaScripts -->
+		<!-- Moment JavaScript -->
+		<script type="text/javascript" src="vendors/bower_components/moment/min/moment-with-locales.min.js"></script>
+		<!-- Bootstrap Daterangepicker JavaScript -->
+		<script src="vendors/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+		
+		<!-- Form Picker Init JavaScript -->
+		<script src="dist/js/form-picker-data.js"></script>		
+		
 @endsection()

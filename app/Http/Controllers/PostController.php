@@ -6,6 +6,7 @@ use App\Post;
 use App\Like;
 use App\PostPhoto;
 use App\Review;
+use App\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -309,4 +310,23 @@ class PostController extends Controller
 
 		return redirect()->back()->with(['message' => $message]);
 	}
+
+	public function postRequestToBook(Request $request)
+    {
+        $this->validate($request, [
+             'daterange' => 'required'            
+        ]);    
+        $booking = new Booking();
+
+        $daterange = $request['daterange'];
+        $dates = explode(" - ", $daterange);
+
+        $booking->post_id = $request['postid'];
+        $booking->user_id = Auth::user()->id;
+        $booking->start_date = \Carbon\Carbon::parse($dates[0]);
+        $booking->end_date = \Carbon\Carbon::parse($dates[1]);
+        $booking->save();
+
+        return redirect()->back()->with(['message' => 'Thank you for booking. We will send notification to the owner of this post.']); 
+    }
 }
