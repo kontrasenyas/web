@@ -534,5 +534,31 @@
 		
 		<!-- Form Picker Init JavaScript -->
 		<script src="dist/js/form-picker-data.js"></script>		
-		
+
+		<script type="text/javascript">
+			$(document).on('ready', function () {
+				var len = 55;
+				var curr = len;
+				var prev = 0;
+
+				var input = $('#body').text();
+				output = [];
+
+				while (input[curr]) {
+				    if (input[curr++] == ' ') {
+				        output.push(input.substring(prev,curr));
+				        prev = curr;
+				        curr += len;
+				    }
+				}
+				output.push(input.substr(prev));
+				$('#body').text('');
+				var retOutput = "";
+				for (var i = 0; i < output.length; i++) {
+					retOutput += output[i];
+					retOutput += "\n"
+				}
+				$('#body').text(retOutput);
+			});
+		</script>		
 @endsection()
