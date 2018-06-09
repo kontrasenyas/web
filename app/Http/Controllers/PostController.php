@@ -193,6 +193,7 @@ class PostController extends Controller
 	{
         $post = Post::where('id', $post_id)->first();
         $post_photos = PostPhoto::where('post_id', $post->id)->get();
+        $bookings = Booking::where('user_id', Auth::user()->id)->where('post_id', $post_id)->where('status', '1')->first();
 
         $user_id = $post->user->id;
         $reviews = Review::where('user_to', $user_id);
@@ -208,13 +209,13 @@ class PostController extends Controller
             $rating = round($reviews_total / Review::where('user_to', $user_id)->get()->count(), 2);
 
             Post::where('id', $post_id)->increment('view_count');
-			return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'rating' => $rating, 'reviews' => $reviews]);
+			return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'rating' => $rating, 'reviews' => $reviews, 'bookings' => $bookings]);
         }
         else
         {
         	$reviews = $reviews->get();
         	Post::where('id', $post_id)->increment('view_count');
-            return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'reviews' => $reviews]);
+            return view('posts.details', ['post' => $post, 'post_photos' => $post_photos, 'reviews' => $reviews, 'bookings' => $bookings]);
         }        
 	}
 
@@ -325,8 +326,19 @@ class PostController extends Controller
         $booking->user_id = Auth::user()->id;
         $booking->start_date = \Carbon\Carbon::parse($dates[0]);
         $booking->end_date = \Carbon\Carbon::parse($dates[1]);
+        $booking->status = 1;
         $booking->save();
 
         return redirect()->back()->with(['message' => 'Thank you for booking. We will send notification to the owner of this post.']); 
+    }
+
+    public function deleteBook($booking_id)
+    {
+        $booking = Booking::where('id', $booking_id)->where('user_id', Auth::user()->id)->first();
+        $booking->status = 0;
+
+        $booking->update();
+
+        return redirect()->back()->with(['message' => 'Your booking is cancelled.']); 
     }
 }

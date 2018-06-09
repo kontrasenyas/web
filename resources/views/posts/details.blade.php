@@ -207,13 +207,15 @@
 							                </a>
 							            </div>
 							            <div class="btn-group wishlist mb-20">
-							            	@if($post->bookings->first())
-							                <div class="btn btn-success btn-anim disabled">							                    	
-												<i class="fa fa-car"></i><span class="btn-text" title="Request to Book">Booked</span>
-							                </div>							                    
+							            	@if($bookings)
+							            	<a href="{{ route('book.delete', ['booking_id' => $bookings->id]) }}" title="Cancel Booking" onclick="return confirm('Are you sure?')">
+							                <div class="btn btn-danger btn-anim">							                    	
+												<i class="fa fa-minus"></i> <span class="btn-text" title="Cancel Booking">Booked</span>
+							                </div>
+							                </a>
 							                @endif()
 
-							                @if(!$post->bookings->first())
+							                @if(!$bookings)
 							                <a href="#" data-toggle="modal" data-target="#request" >
 							                    <div class="btn btn-success btn-anim">							                    	
 													<i class="fa fa-car"></i><span class="btn-text" title="Request to Book">Request to Book</span>

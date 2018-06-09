@@ -282,6 +282,12 @@ Route::group(['middleware' => ['web']],function(){
 		
 	]);
 
+	Route::get('/delete-book/{booking_id}', [
+		'uses'=>'PostController@deleteBook',
+		'as'=>'book.delete',
+		'middleware' => 'auth'		
+	]);
+
 	Route::post('/like', [
 		'uses' => 'PostController@postLikePost',
 		'as' => 'like'
