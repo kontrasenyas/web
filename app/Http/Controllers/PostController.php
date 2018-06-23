@@ -191,9 +191,11 @@ class PostController extends Controller
 
 	public function getPostDetails($post_id)
 	{
+
         $post = Post::where('id', $post_id)->first();
         $post_photos = PostPhoto::where('post_id', $post->id)->get();
-        $bookings = Booking::where('user_id', Auth::user()->id)->where('post_id', $post_id)->where('status', '1')->first();
+        $user_id = Auth::user() ? Auth::user()->id : "x";
+        $bookings = Booking::where('user_id', $user_id)->where('post_id', $post_id)->where('status', '1')->first();
 
         $user_id = $post->user->id;
         $reviews = Review::where('user_to', $user_id);
